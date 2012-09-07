@@ -1,0 +1,283 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		307D13F015FA9CC600CB696C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307D13EF15FA9CC600CB696C /* UIKit.framework */; };
+		307D13F215FA9CC600CB696C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307D13F115FA9CC600CB696C /* Foundation.framework */; };
+		307D13F415FA9CC600CB696C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307D13F315FA9CC600CB696C /* CoreGraphics.framework */; };
+		307D13FC15FA9CC600CB696C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D13FB15FA9CC600CB696C /* main.m */; };
+		307D140015FA9CC600CB696C /* RFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D13FF15FA9CC600CB696C /* RFAppDelegate.m */; };
+		307D142D15FA9EE300CB696C /* RFJSONFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D142C15FA9EE300CB696C /* RFJSONFramework.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		307D13EB15FA9CC600CB696C /* RFJSONFramework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RFJSONFramework.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		307D13EF15FA9CC600CB696C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		307D13F115FA9CC600CB696C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		307D13F315FA9CC600CB696C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		307D13F715FA9CC600CB696C /* RFJSONFramework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RFJSONFramework-Info.plist"; sourceTree = "<group>"; };
+		307D13FB15FA9CC600CB696C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		307D13FD15FA9CC600CB696C /* RFJSONFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RFJSONFramework-Prefix.pch"; sourceTree = "<group>"; };
+		307D13FE15FA9CC600CB696C /* RFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RFAppDelegate.h; sourceTree = "<group>"; };
+		307D13FF15FA9CC600CB696C /* RFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RFAppDelegate.m; sourceTree = "<group>"; };
+		307D142B15FA9EE300CB696C /* RFJSONFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONFramework.h; sourceTree = "<group>"; };
+		307D142C15FA9EE300CB696C /* RFJSONFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONFramework.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		307D13E815FA9CC600CB696C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307D13F015FA9CC600CB696C /* UIKit.framework in Frameworks */,
+				307D13F215FA9CC600CB696C /* Foundation.framework in Frameworks */,
+				307D13F415FA9CC600CB696C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		307D13E015FA9CC600CB696C = {
+			isa = PBXGroup;
+			children = (
+				307D13F515FA9CC600CB696C /* RFJSONFramework */,
+				307D13EE15FA9CC600CB696C /* Frameworks */,
+				307D13EC15FA9CC600CB696C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		307D13EC15FA9CC600CB696C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				307D13EB15FA9CC600CB696C /* RFJSONFramework.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		307D13EE15FA9CC600CB696C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				307D13EF15FA9CC600CB696C /* UIKit.framework */,
+				307D13F115FA9CC600CB696C /* Foundation.framework */,
+				307D13F315FA9CC600CB696C /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		307D13F515FA9CC600CB696C /* RFJSONFramework */ = {
+			isa = PBXGroup;
+			children = (
+				307D142A15FA9ECD00CB696C /* RFJSONFramework */,
+				307D13FE15FA9CC600CB696C /* RFAppDelegate.h */,
+				307D13FF15FA9CC600CB696C /* RFAppDelegate.m */,
+				307D13F615FA9CC600CB696C /* Supporting Files */,
+			);
+			path = RFJSONFramework;
+			sourceTree = "<group>";
+		};
+		307D13F615FA9CC600CB696C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				307D13F715FA9CC600CB696C /* RFJSONFramework-Info.plist */,
+				307D13FB15FA9CC600CB696C /* main.m */,
+				307D13FD15FA9CC600CB696C /* RFJSONFramework-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		307D142A15FA9ECD00CB696C /* RFJSONFramework */ = {
+			isa = PBXGroup;
+			children = (
+				307D142B15FA9EE300CB696C /* RFJSONFramework.h */,
+				307D142C15FA9EE300CB696C /* RFJSONFramework.m */,
+			);
+			path = RFJSONFramework;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		307D13EA15FA9CC600CB696C /* RFJSONFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 307D141D15FA9CC600CB696C /* Build configuration list for PBXNativeTarget "RFJSONFramework" */;
+			buildPhases = (
+				307D13E715FA9CC600CB696C /* Sources */,
+				307D13E815FA9CC600CB696C /* Frameworks */,
+				307D13E915FA9CC600CB696C /* Resources */,
+				307D142915FA9D8500CB696C /* Enable Comment Tags */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RFJSONFramework;
+			productName = RFJSONFramework;
+			productReference = 307D13EB15FA9CC600CB696C /* RFJSONFramework.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		307D13E215FA9CC600CB696C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = RF;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = Oliromole;
+			};
+			buildConfigurationList = 307D13E515FA9CC600CB696C /* Build configuration list for PBXProject "RFJSONFramework" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 307D13E015FA9CC600CB696C;
+			productRefGroup = 307D13EC15FA9CC600CB696C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				307D13EA15FA9CC600CB696C /* RFJSONFramework */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		307D13E915FA9CC600CB696C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		307D142915FA9D8500CB696C /* Enable Comment Tags */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Enable Comment Tags";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "KEYWORDS=\"\\/\\/ RFJSONFRAMEWORKTODO:|\\/\\/ TODO:|\\/\\/ FIXME:|\\/\\/ \\?\\?\\?:|\\/\\/ \\!\\!\\!:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($KEYWORDS).*\\$\" | perl -p -e \"s/($KEYWORDS)/ warning: \\$1/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		307D13E715FA9CC600CB696C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307D13FC15FA9CC600CB696C /* main.m in Sources */,
+				307D140015FA9CC600CB696C /* RFAppDelegate.m in Sources */,
+				307D142D15FA9EE300CB696C /* RFJSONFramework.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		307D141B15FA9CC600CB696C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		307D141C15FA9CC600CB696C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		307D141E15FA9CC600CB696C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RFJSONFramework/RFJSONFramework-Prefix.pch";
+				INFOPLIST_FILE = "RFJSONFramework/RFJSONFramework-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		307D141F15FA9CC600CB696C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RFJSONFramework/RFJSONFramework-Prefix.pch";
+				INFOPLIST_FILE = "RFJSONFramework/RFJSONFramework-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		307D13E515FA9CC600CB696C /* Build configuration list for PBXProject "RFJSONFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				307D141B15FA9CC600CB696C /* Debug */,
+				307D141C15FA9CC600CB696C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		307D141D15FA9CC600CB696C /* Build configuration list for PBXNativeTarget "RFJSONFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				307D141E15FA9CC600CB696C /* Debug */,
+				307D141F15FA9CC600CB696C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 307D13E215FA9CC600CB696C /* Project object */;
+}
