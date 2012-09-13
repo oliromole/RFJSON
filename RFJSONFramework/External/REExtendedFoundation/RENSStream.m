@@ -1,9 +1,9 @@
 //
-//  RFJSONFramework.h
-//  RFJSONFramework
-//  https://github.com/oliromole/RFJSONFramework.git
+//  RENSStream.m
+//  REExtendedFoundation
+//  https://github.com/oliromole/REExtendedFoundation.git
 //
-//  Created by Roman Oliichuk on 2012.07.01.
+//  Created by Roman Oliichuk on 2012.07.22.
 //  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 
@@ -38,12 +38,63 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
 
-#import "RFJSONArrayAccumulateParser.h"
-#import "RFJSONArrayParser.h"
-#import "RFJSONArraySkipParser.h"
-#import "RFJSONDocumentParser.h"
-#import "RFJSONNodeParser.h"
-#import "RFJSONNodeParserType.h"
-#import "RFJSONOjectAccumulateParser.h"
-#import "RFJSONOjectParser.h"
-#import "RFJSONOjectSkipParser.h"
+#import "RENSStream.h"
+
+@implementation NSInputStream (NSInputStreamRENSInputStream)
+
+#pragma mark - Using Streams
+
+- (NSInteger)readAllBuffer:(uint8_t *)buffer maxLength:(NSUInteger)bufferLength
+{
+    NSInteger bytesRead = 0;
+    
+    do
+    {
+        NSInteger result = [self read:(buffer + bytesRead) maxLength:(bufferLength - bytesRead)];
+        
+        if (result < 0)
+        {
+            if (bytesRead == 0)
+            {
+                bytesRead = result;
+            }
+            
+            break;
+        }
+        
+        bytesRead += result;
+    } while (bytesRead < bufferLength);
+    
+    return bytesRead;
+}
+
+@end
+
+@implementation NSOutputStream (NSOutputStreamRWNSOutputStream)
+
+#pragma mark - Using Streams
+
+- (NSInteger)writeAllBuffer:(const uint8_t *)buffer maxLength:(NSUInteger)bufferLength
+{
+    NSInteger bytesWritten = 0;
+    
+    do {
+        int result = [self write:(buffer + bytesWritten) maxLength:(bufferLength - bytesWritten)];
+        
+        if (result < 0)
+        {
+            if (bytesWritten == 0)
+            {
+                bytesWritten = result;
+            }
+            
+            break;
+        }
+        
+        bytesWritten += result;
+    } while (bytesWritten < bufferLength);
+    
+    return bytesWritten;
+}
+
+@end

@@ -12,7 +12,52 @@
 		307D13F415FA9CC600CB696C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307D13F315FA9CC600CB696C /* CoreGraphics.framework */; };
 		307D13FC15FA9CC600CB696C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D13FB15FA9CC600CB696C /* main.m */; };
 		307D140015FA9CC600CB696C /* RFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D13FF15FA9CC600CB696C /* RFAppDelegate.m */; };
-		307D142D15FA9EE300CB696C /* RFJSONFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D142C15FA9EE300CB696C /* RFJSONFramework.m */; };
+		307D144D15FAA29F00CB696C /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D143515FAA29F00CB696C /* NSObject+SBJson.m */; };
+		307D144E15FAA29F00CB696C /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D143815FAA29F00CB696C /* SBJsonParser.m */; };
+		307D144F15FAA29F00CB696C /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D143A15FAA29F00CB696C /* SBJsonStreamParser.m */; };
+		307D145015FAA29F00CB696C /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D143C15FAA29F00CB696C /* SBJsonStreamParserAccumulator.m */; };
+		307D145115FAA29F00CB696C /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D143E15FAA29F00CB696C /* SBJsonStreamParserAdapter.m */; };
+		307D145215FAA29F00CB696C /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D144015FAA29F00CB696C /* SBJsonStreamParserState.m */; };
+		307D145315FAA29F00CB696C /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D144215FAA29F00CB696C /* SBJsonStreamWriter.m */; };
+		307D145415FAA29F00CB696C /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D144415FAA29F00CB696C /* SBJsonStreamWriterAccumulator.m */; };
+		307D145515FAA29F00CB696C /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D144615FAA29F00CB696C /* SBJsonStreamWriterState.m */; };
+		307D145615FAA29F00CB696C /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D144815FAA29F00CB696C /* SBJsonTokeniser.m */; };
+		307D145715FAA29F00CB696C /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D144A15FAA29F00CB696C /* SBJsonUTF8Stream.m */; };
+		307D145815FAA29F00CB696C /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 307D144C15FAA29F00CB696C /* SBJsonWriter.m */; };
+		308411EA1602A9470032F2E6 /* RFJSONArrayAccumulateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411D31602A9470032F2E6 /* RFJSONArrayAccumulateParser.m */; };
+		308411EB1602A9470032F2E6 /* RFJSONArrayParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411D51602A9470032F2E6 /* RFJSONArrayParser.m */; };
+		308411EC1602A9470032F2E6 /* RFJSONArraySkipParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411D71602A9470032F2E6 /* RFJSONArraySkipParser.m */; };
+		308411ED1602A9470032F2E6 /* RFJSONDocumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411D91602A9470032F2E6 /* RFJSONDocumentParser.m */; };
+		308411EE1602A9470032F2E6 /* RFJSONFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411DB1602A9470032F2E6 /* RFJSONFramework.m */; };
+		308411EF1602A9470032F2E6 /* RFJSONNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411DD1602A9470032F2E6 /* RFJSONNodeParser.m */; };
+		308411F01602A9470032F2E6 /* RFJSONNodeParserPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411DF1602A9470032F2E6 /* RFJSONNodeParserPrivate.m */; };
+		308411F11602A9470032F2E6 /* RFJSONNodeParserType.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411E11602A9470032F2E6 /* RFJSONNodeParserType.m */; };
+		308411F21602A9470032F2E6 /* RFJSONNodeParserTypeProtected.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411E31602A9470032F2E6 /* RFJSONNodeParserTypeProtected.m */; };
+		308411F31602A9470032F2E6 /* RFJSONOjectAccumulateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411E51602A9470032F2E6 /* RFJSONOjectAccumulateParser.m */; };
+		308411F41602A9470032F2E6 /* RFJSONOjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411E71602A9470032F2E6 /* RFJSONOjectParser.m */; };
+		308411F51602A9470032F2E6 /* RFJSONOjectSkipParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411E91602A9470032F2E6 /* RFJSONOjectSkipParser.m */; };
+		3084121F1602A9B60032F2E6 /* REBase256.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411F81602A9B60032F2E6 /* REBase256.m */; };
+		308412201602A9B60032F2E6 /* REExtendedFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411FA1602A9B60032F2E6 /* REExtendedFoundation.m */; };
+		308412211602A9B60032F2E6 /* RENSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411FC1602A9B60032F2E6 /* RENSArray.m */; };
+		308412221602A9B60032F2E6 /* RENSDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 308411FE1602A9B60032F2E6 /* RENSDateFormatter.m */; };
+		308412231602A9B60032F2E6 /* RENSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 308412001602A9B60032F2E6 /* RENSDictionary.m */; };
+		308412241602A9B60032F2E6 /* RENSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 308412021602A9B60032F2E6 /* RENSFileManager.m */; };
+		308412251602A9B60032F2E6 /* RENSIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 308412041602A9B60032F2E6 /* RENSIndexPath.m */; };
+		308412261602A9B60032F2E6 /* RENSInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 308412061602A9B60032F2E6 /* RENSInvocation.m */; };
+		308412271602A9B60032F2E6 /* RENSLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 308412081602A9B60032F2E6 /* RENSLocale.m */; };
+		308412281602A9B60032F2E6 /* RENSNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084120A1602A9B60032F2E6 /* RENSNotification.m */; };
+		308412291602A9B60032F2E6 /* RENSNotificationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084120C1602A9B60032F2E6 /* RENSNotificationQueue.m */; };
+		3084122A1602A9B60032F2E6 /* RENSNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084120E1602A9B60032F2E6 /* RENSNumber.m */; };
+		3084122B1602A9B60032F2E6 /* RENSObjCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 308412101602A9B60032F2E6 /* RENSObjCRuntime.m */; };
+		3084122C1602A9B60032F2E6 /* RENSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 308412121602A9B60032F2E6 /* RENSObject.m */; };
+		3084122D1602A9B60032F2E6 /* RENSPropertyList.m in Sources */ = {isa = PBXBuildFile; fileRef = 308412141602A9B60032F2E6 /* RENSPropertyList.m */; };
+		3084122E1602A9B60032F2E6 /* RENSRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 308412161602A9B60032F2E6 /* RENSRange.m */; };
+		3084122F1602A9B60032F2E6 /* RENSStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 308412181602A9B60032F2E6 /* RENSStream.m */; };
+		308412301602A9B60032F2E6 /* RENSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084121A1602A9B60032F2E6 /* RENSString.m */; };
+		308412311602A9B60032F2E6 /* RENSTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084121C1602A9B60032F2E6 /* RENSTimer.m */; };
+		308412321602A9B60032F2E6 /* RERFC822.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084121E1602A9B60032F2E6 /* RERFC822.m */; };
+		308412381602A9C90032F2E6 /* RWObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 308412351602A9C90032F2E6 /* RWObjC.m */; };
+		308412391602A9C90032F2E6 /* RWObjCWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 308412371602A9C90032F2E6 /* RWObjCWrapper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,8 +70,99 @@
 		307D13FD15FA9CC600CB696C /* RFJSONFramework-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RFJSONFramework-Prefix.pch"; sourceTree = "<group>"; };
 		307D13FE15FA9CC600CB696C /* RFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RFAppDelegate.h; sourceTree = "<group>"; };
 		307D13FF15FA9CC600CB696C /* RFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RFAppDelegate.m; sourceTree = "<group>"; };
-		307D142B15FA9EE300CB696C /* RFJSONFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONFramework.h; sourceTree = "<group>"; };
-		307D142C15FA9EE300CB696C /* RFJSONFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONFramework.m; sourceTree = "<group>"; };
+		307D143415FAA29F00CB696C /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
+		307D143515FAA29F00CB696C /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
+		307D143615FAA29F00CB696C /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
+		307D143715FAA29F00CB696C /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		307D143815FAA29F00CB696C /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		307D143915FAA29F00CB696C /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParser.h; sourceTree = "<group>"; };
+		307D143A15FAA29F00CB696C /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParser.m; sourceTree = "<group>"; };
+		307D143B15FAA29F00CB696C /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAccumulator.h; sourceTree = "<group>"; };
+		307D143C15FAA29F00CB696C /* SBJsonStreamParserAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAccumulator.m; sourceTree = "<group>"; };
+		307D143D15FAA29F00CB696C /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
+		307D143E15FAA29F00CB696C /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
+		307D143F15FAA29F00CB696C /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserState.h; sourceTree = "<group>"; };
+		307D144015FAA29F00CB696C /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserState.m; sourceTree = "<group>"; };
+		307D144115FAA29F00CB696C /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriter.h; sourceTree = "<group>"; };
+		307D144215FAA29F00CB696C /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriter.m; sourceTree = "<group>"; };
+		307D144315FAA29F00CB696C /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterAccumulator.h; sourceTree = "<group>"; };
+		307D144415FAA29F00CB696C /* SBJsonStreamWriterAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterAccumulator.m; sourceTree = "<group>"; };
+		307D144515FAA29F00CB696C /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterState.h; sourceTree = "<group>"; };
+		307D144615FAA29F00CB696C /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
+		307D144715FAA29F00CB696C /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonTokeniser.h; sourceTree = "<group>"; };
+		307D144815FAA29F00CB696C /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
+		307D144915FAA29F00CB696C /* SBJsonUTF8Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonUTF8Stream.h; sourceTree = "<group>"; };
+		307D144A15FAA29F00CB696C /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
+		307D144B15FAA29F00CB696C /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		307D144C15FAA29F00CB696C /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		308411D21602A9470032F2E6 /* RFJSONArrayAccumulateParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONArrayAccumulateParser.h; sourceTree = "<group>"; };
+		308411D31602A9470032F2E6 /* RFJSONArrayAccumulateParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONArrayAccumulateParser.m; sourceTree = "<group>"; };
+		308411D41602A9470032F2E6 /* RFJSONArrayParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONArrayParser.h; sourceTree = "<group>"; };
+		308411D51602A9470032F2E6 /* RFJSONArrayParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONArrayParser.m; sourceTree = "<group>"; };
+		308411D61602A9470032F2E6 /* RFJSONArraySkipParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONArraySkipParser.h; sourceTree = "<group>"; };
+		308411D71602A9470032F2E6 /* RFJSONArraySkipParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONArraySkipParser.m; sourceTree = "<group>"; };
+		308411D81602A9470032F2E6 /* RFJSONDocumentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONDocumentParser.h; sourceTree = "<group>"; };
+		308411D91602A9470032F2E6 /* RFJSONDocumentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONDocumentParser.m; sourceTree = "<group>"; };
+		308411DA1602A9470032F2E6 /* RFJSONFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONFramework.h; sourceTree = "<group>"; };
+		308411DB1602A9470032F2E6 /* RFJSONFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONFramework.m; sourceTree = "<group>"; };
+		308411DC1602A9470032F2E6 /* RFJSONNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONNodeParser.h; sourceTree = "<group>"; };
+		308411DD1602A9470032F2E6 /* RFJSONNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONNodeParser.m; sourceTree = "<group>"; };
+		308411DE1602A9470032F2E6 /* RFJSONNodeParserPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONNodeParserPrivate.h; sourceTree = "<group>"; };
+		308411DF1602A9470032F2E6 /* RFJSONNodeParserPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONNodeParserPrivate.m; sourceTree = "<group>"; };
+		308411E01602A9470032F2E6 /* RFJSONNodeParserType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONNodeParserType.h; sourceTree = "<group>"; };
+		308411E11602A9470032F2E6 /* RFJSONNodeParserType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONNodeParserType.m; sourceTree = "<group>"; };
+		308411E21602A9470032F2E6 /* RFJSONNodeParserTypeProtected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONNodeParserTypeProtected.h; sourceTree = "<group>"; };
+		308411E31602A9470032F2E6 /* RFJSONNodeParserTypeProtected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONNodeParserTypeProtected.m; sourceTree = "<group>"; };
+		308411E41602A9470032F2E6 /* RFJSONOjectAccumulateParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONOjectAccumulateParser.h; sourceTree = "<group>"; };
+		308411E51602A9470032F2E6 /* RFJSONOjectAccumulateParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONOjectAccumulateParser.m; sourceTree = "<group>"; };
+		308411E61602A9470032F2E6 /* RFJSONOjectParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONOjectParser.h; sourceTree = "<group>"; };
+		308411E71602A9470032F2E6 /* RFJSONOjectParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONOjectParser.m; sourceTree = "<group>"; };
+		308411E81602A9470032F2E6 /* RFJSONOjectSkipParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONOjectSkipParser.h; sourceTree = "<group>"; };
+		308411E91602A9470032F2E6 /* RFJSONOjectSkipParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONOjectSkipParser.m; sourceTree = "<group>"; };
+		308411F71602A9B60032F2E6 /* REBase256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REBase256.h; sourceTree = "<group>"; };
+		308411F81602A9B60032F2E6 /* REBase256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REBase256.m; sourceTree = "<group>"; };
+		308411F91602A9B60032F2E6 /* REExtendedFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REExtendedFoundation.h; sourceTree = "<group>"; };
+		308411FA1602A9B60032F2E6 /* REExtendedFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REExtendedFoundation.m; sourceTree = "<group>"; };
+		308411FB1602A9B60032F2E6 /* RENSArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSArray.h; sourceTree = "<group>"; };
+		308411FC1602A9B60032F2E6 /* RENSArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSArray.m; sourceTree = "<group>"; };
+		308411FD1602A9B60032F2E6 /* RENSDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSDateFormatter.h; sourceTree = "<group>"; };
+		308411FE1602A9B60032F2E6 /* RENSDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSDateFormatter.m; sourceTree = "<group>"; };
+		308411FF1602A9B60032F2E6 /* RENSDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSDictionary.h; sourceTree = "<group>"; };
+		308412001602A9B60032F2E6 /* RENSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSDictionary.m; sourceTree = "<group>"; };
+		308412011602A9B60032F2E6 /* RENSFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSFileManager.h; sourceTree = "<group>"; };
+		308412021602A9B60032F2E6 /* RENSFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSFileManager.m; sourceTree = "<group>"; };
+		308412031602A9B60032F2E6 /* RENSIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSIndexPath.h; sourceTree = "<group>"; };
+		308412041602A9B60032F2E6 /* RENSIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSIndexPath.m; sourceTree = "<group>"; };
+		308412051602A9B60032F2E6 /* RENSInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSInvocation.h; sourceTree = "<group>"; };
+		308412061602A9B60032F2E6 /* RENSInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSInvocation.m; sourceTree = "<group>"; };
+		308412071602A9B60032F2E6 /* RENSLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSLocale.h; sourceTree = "<group>"; };
+		308412081602A9B60032F2E6 /* RENSLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSLocale.m; sourceTree = "<group>"; };
+		308412091602A9B60032F2E6 /* RENSNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSNotification.h; sourceTree = "<group>"; };
+		3084120A1602A9B60032F2E6 /* RENSNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSNotification.m; sourceTree = "<group>"; };
+		3084120B1602A9B60032F2E6 /* RENSNotificationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSNotificationQueue.h; sourceTree = "<group>"; };
+		3084120C1602A9B60032F2E6 /* RENSNotificationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSNotificationQueue.m; sourceTree = "<group>"; };
+		3084120D1602A9B60032F2E6 /* RENSNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSNumber.h; sourceTree = "<group>"; };
+		3084120E1602A9B60032F2E6 /* RENSNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSNumber.m; sourceTree = "<group>"; };
+		3084120F1602A9B60032F2E6 /* RENSObjCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSObjCRuntime.h; sourceTree = "<group>"; };
+		308412101602A9B60032F2E6 /* RENSObjCRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSObjCRuntime.m; sourceTree = "<group>"; };
+		308412111602A9B60032F2E6 /* RENSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSObject.h; sourceTree = "<group>"; };
+		308412121602A9B60032F2E6 /* RENSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSObject.m; sourceTree = "<group>"; };
+		308412131602A9B60032F2E6 /* RENSPropertyList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSPropertyList.h; sourceTree = "<group>"; };
+		308412141602A9B60032F2E6 /* RENSPropertyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSPropertyList.m; sourceTree = "<group>"; };
+		308412151602A9B60032F2E6 /* RENSRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSRange.h; sourceTree = "<group>"; };
+		308412161602A9B60032F2E6 /* RENSRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSRange.m; sourceTree = "<group>"; };
+		308412171602A9B60032F2E6 /* RENSStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSStream.h; sourceTree = "<group>"; };
+		308412181602A9B60032F2E6 /* RENSStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSStream.m; sourceTree = "<group>"; };
+		308412191602A9B60032F2E6 /* RENSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSString.h; sourceTree = "<group>"; };
+		3084121A1602A9B60032F2E6 /* RENSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSString.m; sourceTree = "<group>"; };
+		3084121B1602A9B60032F2E6 /* RENSTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSTimer.h; sourceTree = "<group>"; };
+		3084121C1602A9B60032F2E6 /* RENSTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSTimer.m; sourceTree = "<group>"; };
+		3084121D1602A9B60032F2E6 /* RERFC822.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RERFC822.h; sourceTree = "<group>"; };
+		3084121E1602A9B60032F2E6 /* RERFC822.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RERFC822.m; sourceTree = "<group>"; };
+		308412341602A9C90032F2E6 /* RWObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWObjC.h; sourceTree = "<group>"; };
+		308412351602A9C90032F2E6 /* RWObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWObjC.m; sourceTree = "<group>"; };
+		308412361602A9C90032F2E6 /* RWObjCWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWObjCWrapper.h; sourceTree = "<group>"; };
+		308412371602A9C90032F2E6 /* RWObjCWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWObjCWrapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +209,8 @@
 		307D13F515FA9CC600CB696C /* RFJSONFramework */ = {
 			isa = PBXGroup;
 			children = (
-				307D142A15FA9ECD00CB696C /* RFJSONFramework */,
+				307D143215FAA29F00CB696C /* External */,
+				308411D11602A9470032F2E6 /* RFJSONFramework */,
 				307D13FE15FA9CC600CB696C /* RFAppDelegate.h */,
 				307D13FF15FA9CC600CB696C /* RFAppDelegate.m */,
 				307D13F615FA9CC600CB696C /* Supporting Files */,
@@ -91,13 +228,135 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		307D142A15FA9ECD00CB696C /* RFJSONFramework */ = {
+		307D143215FAA29F00CB696C /* External */ = {
 			isa = PBXGroup;
 			children = (
-				307D142B15FA9EE300CB696C /* RFJSONFramework.h */,
-				307D142C15FA9EE300CB696C /* RFJSONFramework.m */,
+				308411F61602A9B60032F2E6 /* REExtendedFoundation */,
+				308412331602A9C90032F2E6 /* RWObjCWrapper */,
+				307D143315FAA29F00CB696C /* SBJson */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		307D143315FAA29F00CB696C /* SBJson */ = {
+			isa = PBXGroup;
+			children = (
+				307D143415FAA29F00CB696C /* NSObject+SBJson.h */,
+				307D143515FAA29F00CB696C /* NSObject+SBJson.m */,
+				307D143615FAA29F00CB696C /* SBJson.h */,
+				307D143715FAA29F00CB696C /* SBJsonParser.h */,
+				307D143815FAA29F00CB696C /* SBJsonParser.m */,
+				307D143915FAA29F00CB696C /* SBJsonStreamParser.h */,
+				307D143A15FAA29F00CB696C /* SBJsonStreamParser.m */,
+				307D143B15FAA29F00CB696C /* SBJsonStreamParserAccumulator.h */,
+				307D143C15FAA29F00CB696C /* SBJsonStreamParserAccumulator.m */,
+				307D143D15FAA29F00CB696C /* SBJsonStreamParserAdapter.h */,
+				307D143E15FAA29F00CB696C /* SBJsonStreamParserAdapter.m */,
+				307D143F15FAA29F00CB696C /* SBJsonStreamParserState.h */,
+				307D144015FAA29F00CB696C /* SBJsonStreamParserState.m */,
+				307D144115FAA29F00CB696C /* SBJsonStreamWriter.h */,
+				307D144215FAA29F00CB696C /* SBJsonStreamWriter.m */,
+				307D144315FAA29F00CB696C /* SBJsonStreamWriterAccumulator.h */,
+				307D144415FAA29F00CB696C /* SBJsonStreamWriterAccumulator.m */,
+				307D144515FAA29F00CB696C /* SBJsonStreamWriterState.h */,
+				307D144615FAA29F00CB696C /* SBJsonStreamWriterState.m */,
+				307D144715FAA29F00CB696C /* SBJsonTokeniser.h */,
+				307D144815FAA29F00CB696C /* SBJsonTokeniser.m */,
+				307D144915FAA29F00CB696C /* SBJsonUTF8Stream.h */,
+				307D144A15FAA29F00CB696C /* SBJsonUTF8Stream.m */,
+				307D144B15FAA29F00CB696C /* SBJsonWriter.h */,
+				307D144C15FAA29F00CB696C /* SBJsonWriter.m */,
+			);
+			path = SBJson;
+			sourceTree = "<group>";
+		};
+		308411D11602A9470032F2E6 /* RFJSONFramework */ = {
+			isa = PBXGroup;
+			children = (
+				308411D21602A9470032F2E6 /* RFJSONArrayAccumulateParser.h */,
+				308411D31602A9470032F2E6 /* RFJSONArrayAccumulateParser.m */,
+				308411D41602A9470032F2E6 /* RFJSONArrayParser.h */,
+				308411D51602A9470032F2E6 /* RFJSONArrayParser.m */,
+				308411D61602A9470032F2E6 /* RFJSONArraySkipParser.h */,
+				308411D71602A9470032F2E6 /* RFJSONArraySkipParser.m */,
+				308411D81602A9470032F2E6 /* RFJSONDocumentParser.h */,
+				308411D91602A9470032F2E6 /* RFJSONDocumentParser.m */,
+				308411DA1602A9470032F2E6 /* RFJSONFramework.h */,
+				308411DB1602A9470032F2E6 /* RFJSONFramework.m */,
+				308411DC1602A9470032F2E6 /* RFJSONNodeParser.h */,
+				308411DD1602A9470032F2E6 /* RFJSONNodeParser.m */,
+				308411DE1602A9470032F2E6 /* RFJSONNodeParserPrivate.h */,
+				308411DF1602A9470032F2E6 /* RFJSONNodeParserPrivate.m */,
+				308411E01602A9470032F2E6 /* RFJSONNodeParserType.h */,
+				308411E11602A9470032F2E6 /* RFJSONNodeParserType.m */,
+				308411E21602A9470032F2E6 /* RFJSONNodeParserTypeProtected.h */,
+				308411E31602A9470032F2E6 /* RFJSONNodeParserTypeProtected.m */,
+				308411E41602A9470032F2E6 /* RFJSONOjectAccumulateParser.h */,
+				308411E51602A9470032F2E6 /* RFJSONOjectAccumulateParser.m */,
+				308411E61602A9470032F2E6 /* RFJSONOjectParser.h */,
+				308411E71602A9470032F2E6 /* RFJSONOjectParser.m */,
+				308411E81602A9470032F2E6 /* RFJSONOjectSkipParser.h */,
+				308411E91602A9470032F2E6 /* RFJSONOjectSkipParser.m */,
 			);
 			path = RFJSONFramework;
+			sourceTree = "<group>";
+		};
+		308411F61602A9B60032F2E6 /* REExtendedFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				308411F71602A9B60032F2E6 /* REBase256.h */,
+				308411F81602A9B60032F2E6 /* REBase256.m */,
+				308411F91602A9B60032F2E6 /* REExtendedFoundation.h */,
+				308411FA1602A9B60032F2E6 /* REExtendedFoundation.m */,
+				308411FB1602A9B60032F2E6 /* RENSArray.h */,
+				308411FC1602A9B60032F2E6 /* RENSArray.m */,
+				308411FD1602A9B60032F2E6 /* RENSDateFormatter.h */,
+				308411FE1602A9B60032F2E6 /* RENSDateFormatter.m */,
+				308411FF1602A9B60032F2E6 /* RENSDictionary.h */,
+				308412001602A9B60032F2E6 /* RENSDictionary.m */,
+				308412011602A9B60032F2E6 /* RENSFileManager.h */,
+				308412021602A9B60032F2E6 /* RENSFileManager.m */,
+				308412031602A9B60032F2E6 /* RENSIndexPath.h */,
+				308412041602A9B60032F2E6 /* RENSIndexPath.m */,
+				308412051602A9B60032F2E6 /* RENSInvocation.h */,
+				308412061602A9B60032F2E6 /* RENSInvocation.m */,
+				308412071602A9B60032F2E6 /* RENSLocale.h */,
+				308412081602A9B60032F2E6 /* RENSLocale.m */,
+				308412091602A9B60032F2E6 /* RENSNotification.h */,
+				3084120A1602A9B60032F2E6 /* RENSNotification.m */,
+				3084120B1602A9B60032F2E6 /* RENSNotificationQueue.h */,
+				3084120C1602A9B60032F2E6 /* RENSNotificationQueue.m */,
+				3084120D1602A9B60032F2E6 /* RENSNumber.h */,
+				3084120E1602A9B60032F2E6 /* RENSNumber.m */,
+				3084120F1602A9B60032F2E6 /* RENSObjCRuntime.h */,
+				308412101602A9B60032F2E6 /* RENSObjCRuntime.m */,
+				308412111602A9B60032F2E6 /* RENSObject.h */,
+				308412121602A9B60032F2E6 /* RENSObject.m */,
+				308412131602A9B60032F2E6 /* RENSPropertyList.h */,
+				308412141602A9B60032F2E6 /* RENSPropertyList.m */,
+				308412151602A9B60032F2E6 /* RENSRange.h */,
+				308412161602A9B60032F2E6 /* RENSRange.m */,
+				308412171602A9B60032F2E6 /* RENSStream.h */,
+				308412181602A9B60032F2E6 /* RENSStream.m */,
+				308412191602A9B60032F2E6 /* RENSString.h */,
+				3084121A1602A9B60032F2E6 /* RENSString.m */,
+				3084121B1602A9B60032F2E6 /* RENSTimer.h */,
+				3084121C1602A9B60032F2E6 /* RENSTimer.m */,
+				3084121D1602A9B60032F2E6 /* RERFC822.h */,
+				3084121E1602A9B60032F2E6 /* RERFC822.m */,
+			);
+			path = REExtendedFoundation;
+			sourceTree = "<group>";
+		};
+		308412331602A9C90032F2E6 /* RWObjCWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				308412341602A9C90032F2E6 /* RWObjC.h */,
+				308412351602A9C90032F2E6 /* RWObjC.m */,
+				308412361602A9C90032F2E6 /* RWObjCWrapper.h */,
+				308412371602A9C90032F2E6 /* RWObjCWrapper.m */,
+			);
+			path = RWObjCWrapper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,7 +441,52 @@
 			files = (
 				307D13FC15FA9CC600CB696C /* main.m in Sources */,
 				307D140015FA9CC600CB696C /* RFAppDelegate.m in Sources */,
-				307D142D15FA9EE300CB696C /* RFJSONFramework.m in Sources */,
+				307D144D15FAA29F00CB696C /* NSObject+SBJson.m in Sources */,
+				307D144E15FAA29F00CB696C /* SBJsonParser.m in Sources */,
+				307D144F15FAA29F00CB696C /* SBJsonStreamParser.m in Sources */,
+				307D145015FAA29F00CB696C /* SBJsonStreamParserAccumulator.m in Sources */,
+				307D145115FAA29F00CB696C /* SBJsonStreamParserAdapter.m in Sources */,
+				307D145215FAA29F00CB696C /* SBJsonStreamParserState.m in Sources */,
+				307D145315FAA29F00CB696C /* SBJsonStreamWriter.m in Sources */,
+				307D145415FAA29F00CB696C /* SBJsonStreamWriterAccumulator.m in Sources */,
+				307D145515FAA29F00CB696C /* SBJsonStreamWriterState.m in Sources */,
+				307D145615FAA29F00CB696C /* SBJsonTokeniser.m in Sources */,
+				307D145715FAA29F00CB696C /* SBJsonUTF8Stream.m in Sources */,
+				307D145815FAA29F00CB696C /* SBJsonWriter.m in Sources */,
+				308411EA1602A9470032F2E6 /* RFJSONArrayAccumulateParser.m in Sources */,
+				308411EB1602A9470032F2E6 /* RFJSONArrayParser.m in Sources */,
+				308411EC1602A9470032F2E6 /* RFJSONArraySkipParser.m in Sources */,
+				308411ED1602A9470032F2E6 /* RFJSONDocumentParser.m in Sources */,
+				308411EE1602A9470032F2E6 /* RFJSONFramework.m in Sources */,
+				308411EF1602A9470032F2E6 /* RFJSONNodeParser.m in Sources */,
+				308411F01602A9470032F2E6 /* RFJSONNodeParserPrivate.m in Sources */,
+				308411F11602A9470032F2E6 /* RFJSONNodeParserType.m in Sources */,
+				308411F21602A9470032F2E6 /* RFJSONNodeParserTypeProtected.m in Sources */,
+				308411F31602A9470032F2E6 /* RFJSONOjectAccumulateParser.m in Sources */,
+				308411F41602A9470032F2E6 /* RFJSONOjectParser.m in Sources */,
+				308411F51602A9470032F2E6 /* RFJSONOjectSkipParser.m in Sources */,
+				3084121F1602A9B60032F2E6 /* REBase256.m in Sources */,
+				308412201602A9B60032F2E6 /* REExtendedFoundation.m in Sources */,
+				308412211602A9B60032F2E6 /* RENSArray.m in Sources */,
+				308412221602A9B60032F2E6 /* RENSDateFormatter.m in Sources */,
+				308412231602A9B60032F2E6 /* RENSDictionary.m in Sources */,
+				308412241602A9B60032F2E6 /* RENSFileManager.m in Sources */,
+				308412251602A9B60032F2E6 /* RENSIndexPath.m in Sources */,
+				308412261602A9B60032F2E6 /* RENSInvocation.m in Sources */,
+				308412271602A9B60032F2E6 /* RENSLocale.m in Sources */,
+				308412281602A9B60032F2E6 /* RENSNotification.m in Sources */,
+				308412291602A9B60032F2E6 /* RENSNotificationQueue.m in Sources */,
+				3084122A1602A9B60032F2E6 /* RENSNumber.m in Sources */,
+				3084122B1602A9B60032F2E6 /* RENSObjCRuntime.m in Sources */,
+				3084122C1602A9B60032F2E6 /* RENSObject.m in Sources */,
+				3084122D1602A9B60032F2E6 /* RENSPropertyList.m in Sources */,
+				3084122E1602A9B60032F2E6 /* RENSRange.m in Sources */,
+				3084122F1602A9B60032F2E6 /* RENSStream.m in Sources */,
+				308412301602A9B60032F2E6 /* RENSString.m in Sources */,
+				308412311602A9B60032F2E6 /* RENSTimer.m in Sources */,
+				308412321602A9B60032F2E6 /* RERFC822.m in Sources */,
+				308412381602A9C90032F2E6 /* RWObjC.m in Sources */,
+				308412391602A9C90032F2E6 /* RWObjCWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

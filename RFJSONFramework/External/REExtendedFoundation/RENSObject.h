@@ -1,9 +1,9 @@
 //
-//  RFJSONFramework.h
-//  RFJSONFramework
-//  https://github.com/oliromole/RFJSONFramework.git
+//  RENSObject.h
+//  REExtendedFoundation
+//  https://github.com/oliromole/REExtendedFoundation.git
 //
-//  Created by Roman Oliichuk on 2012.07.01.
+//  Created by Roman Oliichuk on 2012.07.237.
 //  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 
@@ -38,12 +38,33 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
 
-#import "RFJSONArrayAccumulateParser.h"
-#import "RFJSONArrayParser.h"
-#import "RFJSONArraySkipParser.h"
-#import "RFJSONDocumentParser.h"
-#import "RFJSONNodeParser.h"
-#import "RFJSONNodeParserType.h"
-#import "RFJSONOjectAccumulateParser.h"
-#import "RFJSONOjectParser.h"
-#import "RFJSONOjectSkipParser.h"
+#import <Foundation/Foundation.h>
+
+@protocol NSInitializingInstance
+
+- (void)initializeInstance;
+- (void)deallocateInstance;
+
+@end
+
+@interface NSObject (NSObjectRENSObject)
+
+// Managing the NSObject Information
+
+- (NSMutableDictionary *)objectDictionary; // Default is nil. The first time the method is accessed, the NSMutableDictionary is created. This method returns nil for Core Foundation classes.
+
+// Identifying and Comparing the Reference of Objects
+
+- (NSComparisonResult)compareReference:(id)object;
+
+- (BOOL)isReferenceEqual:(id)object;
+- (NSUInteger)referenceHash;
+
+// Sending Messages
+
+- (id)performSelector:(SEL)aSelector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3;
+- (id)performSelector:(SEL)aSelector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4;
+- (id)performSelector:(SEL)aSelector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5;
+
+@end
+

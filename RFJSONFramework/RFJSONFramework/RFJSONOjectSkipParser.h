@@ -1,9 +1,9 @@
 //
-//  RFJSONFramework.h
+//  RFJSONOjectSkipParser.h
 //  RFJSONFramework
 //  https://github.com/oliromole/RFJSONFramework.git
 //
-//  Created by Roman Oliichuk on 2012.07.01.
+//  Created by Roman Oliichuk on 2012.02.17.
 //  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 
@@ -38,12 +38,14 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
 
-#import "RFJSONArrayAccumulateParser.h"
-#import "RFJSONArrayParser.h"
-#import "RFJSONArraySkipParser.h"
-#import "RFJSONDocumentParser.h"
-#import "RFJSONNodeParser.h"
-#import "RFJSONNodeParserType.h"
-#import "RFJSONOjectAccumulateParser.h"
+#import <Foundation/Foundation.h>
+
 #import "RFJSONOjectParser.h"
-#import "RFJSONOjectSkipParser.h"
+
+@interface RFJSONOjectSkipParser : RFJSONOjectParser
+{
+@protected
+    
+}
+
+@end

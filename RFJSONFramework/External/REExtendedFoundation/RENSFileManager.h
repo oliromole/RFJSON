@@ -1,9 +1,9 @@
 //
-//  RFJSONFramework.h
-//  RFJSONFramework
-//  https://github.com/oliromole/RFJSONFramework.git
+//  RENSFileManager.h
+//  REExtendedFoundation
+//  https://github.com/oliromole/REExtendedFoundation.git
 //
-//  Created by Roman Oliichuk on 2012.07.01.
+//  Created by Roman Oliichuk on 2012.06.26.
 //  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 
@@ -38,12 +38,19 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
 
-#import "RFJSONArrayAccumulateParser.h"
-#import "RFJSONArrayParser.h"
-#import "RFJSONArraySkipParser.h"
-#import "RFJSONDocumentParser.h"
-#import "RFJSONNodeParser.h"
-#import "RFJSONNodeParserType.h"
-#import "RFJSONOjectAccumulateParser.h"
-#import "RFJSONOjectParser.h"
-#import "RFJSONOjectSkipParser.h"
+#import <Foundation/Foundation.h>
+
+@interface NSFileManager (NSFileManagerRENSFileManager)
+
+// Determining Access to Files
+
+/* The following methods are of limited utility. Attempting to predicate behavior based on the current state of the filesystem or a particular file on the filesystem is encouraging odd behavior in the face of filesystem race conditions. It's far better to attempt an operation (like loading a file or creating a directory) and handle the error gracefully than it is to try to figure out ahead of time whether the operation will succeed.
+ */
+- (BOOL)fileExistsAtURL:(NSURL *)url;
+- (BOOL)fileExistsAtURL:(NSURL *)url isDirectory:(BOOL *)isDirectory;
+- (BOOL)isReadableFileAtURL:(NSURL *)url;
+- (BOOL)isWritableFileAtURL:(NSURL *)url;
+- (BOOL)isExecutableFileAtURL:(NSURL *)url;
+- (BOOL)isDeletableFileAtURL:(NSURL *)url;
+
+@end

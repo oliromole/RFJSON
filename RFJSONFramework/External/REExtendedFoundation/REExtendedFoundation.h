@@ -1,9 +1,9 @@
 //
-//  RFJSONFramework.h
-//  RFJSONFramework
-//  https://github.com/oliromole/RFJSONFramework.git
+//  REExtendedFoundation.h
+//  REExtendedFoundation
+//  https://github.com/oliromole/REExtendedFoundation.git
 //
-//  Created by Roman Oliichuk on 2012.07.01.
+//  Created by Roman Oliichuk on 2012.06.26.
 //  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 
@@ -38,12 +38,22 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
 
-#import "RFJSONArrayAccumulateParser.h"
-#import "RFJSONArrayParser.h"
-#import "RFJSONArraySkipParser.h"
-#import "RFJSONDocumentParser.h"
-#import "RFJSONNodeParser.h"
-#import "RFJSONNodeParserType.h"
-#import "RFJSONOjectAccumulateParser.h"
-#import "RFJSONOjectParser.h"
-#import "RFJSONOjectSkipParser.h"
+#import "RENSArray.h"
+#import "REBase256.h"
+#import "RENSDateFormatter.h"
+#import "RENSDictionary.h"
+#import "RENSFileManager.h"
+#import "RENSIndexPath.h"
+#import "RENSInvocation.h"
+#import "RENSLocale.h"
+#import "RENSNotification.h"
+#import "RENSNotificationQueue.h"
+#import "RENSNumber.h"
+#import "RENSObjCRuntime.h"
+#import "RENSObject.h"
+#import "RENSPropertyList.h"
+#import "RENSRange.h"
+#import "RENSStream.h"
+#import "RENSString.h"
+#import "RENSTimer.h"
+#import "RERFC822.h"

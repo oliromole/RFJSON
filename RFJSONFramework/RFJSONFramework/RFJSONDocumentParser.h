@@ -1,9 +1,9 @@
 //
-//  RFJSONFramework.h
+//  RFJSONDocument.h
 //  RFJSONFramework
 //  https://github.com/oliromole/RFJSONFramework.git
 //
-//  Created by Roman Oliichuk on 2012.07.01.
+//  Created by Roman Oliichuk on 2012.02.17.
 //  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 
@@ -38,12 +38,31 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
 
-#import "RFJSONArrayAccumulateParser.h"
-#import "RFJSONArrayParser.h"
-#import "RFJSONArraySkipParser.h"
-#import "RFJSONDocumentParser.h"
-#import "RFJSONNodeParser.h"
-#import "RFJSONNodeParserType.h"
-#import "RFJSONOjectAccumulateParser.h"
+#import <Foundation/Foundation.h>
+
+#import "SBJson.h"
+
 #import "RFJSONOjectParser.h"
-#import "RFJSONOjectSkipParser.h"
+
+@interface RFJSONDocument : NSObject <SBJsonStreamParserDelegate>
+{
+@protected
+    
+    BOOL                mIsError;
+    BOOL                mIsParserFinished;
+    BOOL                mIsParserStarted;
+    NSInteger           mSubJSONNodeDepth;
+    RFJSONOjectParser  *mRootJSONOjectParser;
+    SBJsonStreamParser *mJSONStreamParser;
+}
+
+#pragma mark - Managing the RFJSONDocument Object
+
+@property (nonatomic) BOOL isError;
+@property (nonatomic) BOOL isParserFinished;
+@property (nonatomic) BOOL isParserStarted;
+
+@property (nonatomic, retain) RFJSONOjectParser  *rootJSONOjectParser;
+@property (nonatomic, retain) SBJsonStreamParser *jsonStreamParser;
+
+@end

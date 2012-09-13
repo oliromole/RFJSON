@@ -1,9 +1,9 @@
 //
-//  RFJSONFramework.h
-//  RFJSONFramework
-//  https://github.com/oliromole/RFJSONFramework.git
+//  RENSPropertyList.h
+//  REExtendedFoundation
+//  https://github.com/oliromole/REExtendedFoundation.git
 //
-//  Created by Roman Oliichuk on 2012.07.01.
+//  Created by Roman Oliichuk on 2012.08.12.
 //  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 
@@ -38,12 +38,22 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
 
-#import "RFJSONArrayAccumulateParser.h"
-#import "RFJSONArrayParser.h"
-#import "RFJSONArraySkipParser.h"
-#import "RFJSONDocumentParser.h"
-#import "RFJSONNodeParser.h"
-#import "RFJSONNodeParserType.h"
-#import "RFJSONOjectAccumulateParser.h"
-#import "RFJSONOjectParser.h"
-#import "RFJSONOjectSkipParser.h"
+#import <Foundation/Foundation.h>
+
+@interface NSPropertyListSerialization (NSPropertyListSerializationRENSPropertyListSerialization)
+
+// Serializing a Property List
+
++ (NSData *)dataWithPropertyList:(id)plist error:(out NSError **)error NS_AVAILABLE(10_6, 4_0);
++ (NSData *)dataWithPropertyList:(id)plist;
++ (NSInteger)writePropertyList:(id)plist toStream:(NSOutputStream *)stream error:(out NSError **)error NS_AVAILABLE(10_6, 4_0);
++ (NSInteger)writePropertyList:(id)plist toStream:(NSOutputStream *)stream;
+
+// Deserializing a Property List
+
++ (id)propertyListWithData:(NSData *)data error:(out NSError **)error NS_AVAILABLE(10_6, 4_0);
++ (id)propertyListWithData:(NSData *)data;
++ (id)propertyListWithStream:(NSInputStream *)stream error:(out NSError **)error NS_AVAILABLE(10_6, 4_0);
++ (id)propertyListWithStream:(NSInputStream *)stream;
+
+@end

@@ -1,9 +1,9 @@
 //
-//  RFJSONFramework.h
+//  RFJSONNodeParserPrivate.h
 //  RFJSONFramework
 //  https://github.com/oliromole/RFJSONFramework.git
 //
-//  Created by Roman Oliichuk on 2012.07.01.
+//  Created by Roman Oliichuk on 2012.02.17.
 //  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 
@@ -38,12 +38,24 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
 
-#import "RFJSONArrayAccumulateParser.h"
-#import "RFJSONArrayParser.h"
-#import "RFJSONArraySkipParser.h"
-#import "RFJSONDocumentParser.h"
+#import <Foundation/Foundation.h>
+
 #import "RFJSONNodeParser.h"
-#import "RFJSONNodeParserType.h"
-#import "RFJSONOjectAccumulateParser.h"
-#import "RFJSONOjectParser.h"
-#import "RFJSONOjectSkipParser.h"
+
+@interface RFJSONNodeParser (RFJSONNodeParserRFJSONNodeParserPrivate)
+
+// Private Handling JSON
+
+- (void)_parserStated;
+- (void)_parserFinished;
+- (void)_parserFoundObjectStart;
+- (void)_parserFoundObjectKey:(NSString*)key;
+- (void)_parserFoundObjectEnd;
+- (void)_parserFoundArrayStart;
+- (void)_parserFoundArrayEnd;
+- (void)_parserFoundNull;
+- (void)_parserFoundBoolean:(BOOL)boolean;
+- (void)_parserFoundNumber:(NSNumber*)number;
+- (void)_parserFoundString:(NSString*)string;
+
+@end

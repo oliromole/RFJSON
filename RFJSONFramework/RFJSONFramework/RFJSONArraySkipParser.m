@@ -1,9 +1,9 @@
 //
-//  RFJSONFramework.h
+//  RFJSONArraySkipParser.m
 //  RFJSONFramework
 //  https://github.com/oliromole/RFJSONFramework.git
 //
-//  Created by Roman Oliichuk on 2012.07.01.
+//  Created by Roman Oliichuk on 2012.02.17.
 //  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 
@@ -38,12 +38,34 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
 
-#import "RFJSONArrayAccumulateParser.h"
-#import "RFJSONArrayParser.h"
 #import "RFJSONArraySkipParser.h"
-#import "RFJSONDocumentParser.h"
-#import "RFJSONNodeParser.h"
+
 #import "RFJSONNodeParserType.h"
-#import "RFJSONOjectAccumulateParser.h"
-#import "RFJSONOjectParser.h"
-#import "RFJSONOjectSkipParser.h"
+
+@implementation RFJSONArraySkipParser
+
+#pragma mark - Initializing a RFJSONArraySkip Class
+
+- (id)init
+{
+    if ((self = [super init]))
+    {
+        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeArray];
+        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeBool];
+        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeNull];
+        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeNumber];
+        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeObject];
+        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeString];
+    }
+    
+    return self;
+}
+
+#pragma mark - Deallocaating a RFJSONArraySkip Class
+
+- (void)dealloc
+{
+    [super dealloc];
+}
+
+@end

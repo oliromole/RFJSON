@@ -1,9 +1,9 @@
 //
-//  RFJSONFramework.h
+//  RFJSONNodeParserType.m
 //  RFJSONFramework
 //  https://github.com/oliromole/RFJSONFramework.git
 //
-//  Created by Roman Oliichuk on 2012.07.01.
+//  Created by Roman Oliichuk on 2012.02.17.
 //  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 
@@ -38,12 +38,55 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
 
-#import "RFJSONArrayAccumulateParser.h"
-#import "RFJSONArrayParser.h"
-#import "RFJSONArraySkipParser.h"
-#import "RFJSONDocumentParser.h"
-#import "RFJSONNodeParser.h"
 #import "RFJSONNodeParserType.h"
-#import "RFJSONOjectAccumulateParser.h"
-#import "RFJSONOjectParser.h"
-#import "RFJSONOjectSkipParser.h"
+
+NSString * RFJSONNodeParserTypeKey = @"RFJSONNodeParserTypeKey";
+
+NSNumber * RFJSONNodeParserTypeArray = nil;
+NSNumber * RFJSONNodeParserTypeBool = nil;
+NSNumber * RFJSONNodeParserTypeNull = nil;
+NSNumber * RFJSONNodeParserTypeNumber = nil;
+NSNumber * RFJSONNodeParserTypeObject = nil;
+NSNumber * RFJSONNodeParserTypeString = nil;
+
+@implementation NSNumber (NSNumberRFJSONNodeParserType)
+
+#pragma mark - Initializing a Class
+
++ (void)load
+{
+    @autoreleasepool
+    {
+        if (!RFJSONNodeParserTypeArray)
+        {
+            RFJSONNodeParserTypeArray = [[NSNumber alloc] initWithInteger:1];
+        }
+        
+        if (!RFJSONNodeParserTypeBool)
+        {
+            RFJSONNodeParserTypeBool = [[NSNumber alloc] initWithInteger:2];
+        }
+        
+        if (!RFJSONNodeParserTypeNull)
+        {
+            RFJSONNodeParserTypeNull = [[NSNumber alloc] initWithInteger:3];
+        }
+        
+        if (!RFJSONNodeParserTypeNumber)
+        {
+            RFJSONNodeParserTypeNumber = [[NSNumber alloc] initWithInteger:4];
+        }
+        
+        if (!RFJSONNodeParserTypeObject)
+        {
+            RFJSONNodeParserTypeObject = [[NSNumber alloc] initWithInteger:5];
+        }
+        
+        if (!RFJSONNodeParserTypeString)
+        {
+            RFJSONNodeParserTypeString = [[NSNumber alloc] initWithInteger:6];
+        }
+    }
+}
+
+@end
