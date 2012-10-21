@@ -53,7 +53,7 @@
     return range;
 }
 
-#pragma mar - Getting a Substring
+#pragma mark - Getting a Substring
 
 - (NSString *)copySubstringFromIndex:(NSUInteger)from
 {
