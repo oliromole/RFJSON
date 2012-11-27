@@ -266,7 +266,7 @@
                 [mSubJSONNodeParser release];
                 mSubJSONNodeParser = [[RFJSONArraySkipParser alloc] init];
             }
-            
+
             if (!mIsError && mSubJSONNodeParser)
             {
                 [mSubJSONNodeParser _parserStated];

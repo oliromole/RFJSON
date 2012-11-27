@@ -3,7 +3,7 @@
 //  StoAmigo
 //
 //  Created by Roman Oliichuk on 08/09/2012.
-//  Copyright (c) 2012 Oliromole. All rights reserved.
+//  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 
 #import "RFJSONNodeParserTypeProtected.h"

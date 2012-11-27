@@ -35,7 +35,7 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import "RFJSONNodeParser.h"
@@ -150,67 +150,67 @@
 
 - (void)_parserStated
 {
-    // This stub
+    // This stub.
     NSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFinished
 {
-    // This stub
+    // This stub.
     NSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundObjectKey:(NSString*)key
 {
-    // This stub
+    // This stub.
     NSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundObjectStart
 {
-    // This stub
+    // This stub.
     NSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundObjectEnd
 {
-    // This stub
+    // This stub.
     NSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundArrayStart
 {
-    // This stub
+    // This stub.
     NSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundArrayEnd
 {
-    // This stub
+    // This stub.
     NSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundNull
 {
-    // This stub
+    // This stub.
     NSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundBoolean:(BOOL)boolean
 {
-    // This stub
+    // This stub.
     NSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundNumber:(NSNumber*)number
 {
-    // This stub
+    // This stub.
     NSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundString:(NSString*)string
 {
-    // This stub
+    // This stub.
     NSAssert(NO, @"Override me!");
 }
 
