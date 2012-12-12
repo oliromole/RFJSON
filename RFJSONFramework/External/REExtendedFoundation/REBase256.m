@@ -35,7 +35,7 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import "REBase256.h"
@@ -49,7 +49,7 @@
     NSMutableData *mutableData = [[NSMutableData alloc] init];
     
     NSUInteger length = self.length;
-
+    
     BOOL hasError = NO;
     
     if ((length % 2) != 0)
@@ -71,12 +71,12 @@
             {
                 value0 = character0 - L'0';
             }
-
+            
             else if ((character0 >= L'A') && (character0 <= L'F'))
             {
                 value0 = 10 + (character0 - L'A');
             }
-
+            
             else if ((character0 >= L'a') && (character0 <= L'f'))
             {
                 value0 = 10 + (character0 - L'a');
@@ -122,7 +122,7 @@
         data = [mutableData copy];
     }
     
-    [mutableData release];
+    RENSObjectRelease(mutableData);
     mutableData = nil;
     
     return data;
@@ -130,7 +130,7 @@
 
 - (NSData *)decodeBase256
 {
-    NSData *data = [[self copyDecodeBase256] autorelease];
+    NSData *data = RENSObjectAutorelease([self copyDecodeBase256]);
     return data;
 }
 
@@ -154,7 +154,7 @@
     
     NSString *string = [mutableString copy];
     
-    [mutableString release];
+    RENSObjectRelease(mutableString);
     mutableString = nil;
     
     return string;
@@ -162,7 +162,7 @@
 
 - (NSString *)encodeBase256
 {
-    NSString *string = [[self copyEncodeBase256] autorelease];
+    NSString *string = RENSObjectAutorelease([self copyEncodeBase256]);
     return string;
 }
 

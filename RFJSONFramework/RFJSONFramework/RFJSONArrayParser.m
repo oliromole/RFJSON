@@ -35,7 +35,7 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import "RFJSONArrayParser.h"
@@ -63,10 +63,10 @@
 
 - (void)dealloc
 {
-    [mJSONNodeParserTypes release];
+    RENSObjectRelease(mJSONNodeParserTypes);
     mJSONNodeParserTypes = nil;
     
-    [super dealloc];
+    RENSObjectSuperDealloc();
 }
 
 #pragma mark - Private Handling JSON
@@ -146,7 +146,7 @@
             
             if (!mIsError && !mSubJSONNodeParser)
             {
-                [mSubJSONNodeParser release];
+                RENSObjectRelease(mSubJSONNodeParser);
                 mSubJSONNodeParser = [[RFJSONOjectSkipParser alloc] init];
             }
             
@@ -211,7 +211,7 @@
                     self.isError = YES;
                 }
                 
-                [mSubJSONNodeParser release];
+                RENSObjectRelease(mSubJSONNodeParser);
                 mSubJSONNodeParser = nil;
             }
         }
@@ -263,10 +263,10 @@
             
             if (!mIsError && !mSubJSONNodeParser)
             {
-                [mSubJSONNodeParser release];
+                RENSObjectRelease(mSubJSONNodeParser);
                 mSubJSONNodeParser = [[RFJSONArraySkipParser alloc] init];
             }
-
+            
             if (!mIsError && mSubJSONNodeParser)
             {
                 [mSubJSONNodeParser _parserStated];
@@ -328,7 +328,7 @@
                     self.isError = YES;
                 }
                 
-                [mSubJSONNodeParser release];
+                RENSObjectRelease(mSubJSONNodeParser);
                 mSubJSONNodeParser = nil;
             }
         }

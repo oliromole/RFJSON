@@ -35,7 +35,7 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import "RENSNotificationQueue.h"
@@ -79,7 +79,12 @@
 
 - (void)dequeueNotificationsMatchingName:(NSString *)aName
 {
-    NSNotification *notification = [NSNotification notificationWithName:aName object:[[[NSObject alloc] init] autorelease]];
+    NSObject *object = [[NSObject alloc] init];
+    
+    NSNotification *notification = [NSNotification notificationWithName:aName object:object];
+    
+    RENSObjectRelease(object);
+    object = nil;
     
     [self dequeueNotificationsMatching:notification coalesceMask:NSNotificationCoalescingOnName];
 }
@@ -94,7 +99,7 @@
 - (void)dequeueNotificationsMatchingName:(NSString *)aName object:(id)anObject
 {
     NSNotification *notification = [NSNotification notificationWithName:aName object:anObject];
-
+    
     [self dequeueNotificationsMatching:notification coalesceMask:NSNotificationCoalescingOnNameAndSender];
 }
 

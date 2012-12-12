@@ -35,10 +35,12 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import <Foundation/Foundation.h>
+
+#import "REExtendedCompiler.h"
 
 #import "RFJSONOjectParser.h"
 
@@ -51,6 +53,6 @@
 
 // Managing the RFJSONOjectAccumulateParser Object
 
-@property (nonatomic, retain) NSMutableDictionary *jsonObject;
+@property (nonatomic, strong) NSMutableDictionary *jsonObject;
 
 @end

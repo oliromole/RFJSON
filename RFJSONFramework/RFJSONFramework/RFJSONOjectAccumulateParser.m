@@ -35,7 +35,7 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import "RFJSONOjectAccumulateParser.h"
@@ -87,10 +87,10 @@ NSMutableDictionary *RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserType
 
 - (void)dealloc
 {
-    [mJSONObject release];
+    RENSObjectRelease(mJSONObject);
     mJSONObject = nil;
     
-    [super dealloc];
+    RENSObjectSuperDealloc();
 }
 
 #pragma mark - Managing the RFJSONOjectAccumulateParser Object
@@ -101,7 +101,7 @@ NSMutableDictionary *RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserType
 
 - (void)parserFoundObjectStart
 {
-    [mSubJSONNodeParser release];
+    RENSObjectRelease(mSubJSONNodeParser);
     mSubJSONNodeParser = [[RFJSONOjectAccumulateParser alloc] init];
 }
 
@@ -115,7 +115,7 @@ NSMutableDictionary *RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserType
 
 - (void)parserFoundArrayStart
 {
-    [mSubJSONNodeParser release];
+    RENSObjectRelease(mSubJSONNodeParser);
     mSubJSONNodeParser = [[RFJSONArrayAccumulateParser alloc] init];
 }
 

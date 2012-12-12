@@ -70,10 +70,10 @@
 
 - (void)dealloc
 {
-    [mJSONArray release];
+    RENSObjectRelease(mJSONArray);
     mJSONArray = nil;
     
-    [super dealloc];
+    RENSObjectSuperDealloc();
 }
 
 #pragma mark - Managing the RFJSONArrayAccumulateParser Object
@@ -84,7 +84,7 @@
 
 - (void)parserFoundObjectStart
 {
-    [mSubJSONNodeParser release];
+    RENSObjectRelease(mSubJSONNodeParser);
     mSubJSONNodeParser = [[RFJSONOjectAccumulateParser alloc] init];
 }
 
@@ -98,7 +98,7 @@
 
 - (void)parserFoundArrayStart
 {
-    [mSubJSONNodeParser release];
+    RENSObjectRelease(mSubJSONNodeParser);
     mSubJSONNodeParser = [[RFJSONArrayAccumulateParser alloc] init];
 }
 

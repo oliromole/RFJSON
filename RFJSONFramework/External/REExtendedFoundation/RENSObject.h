@@ -3,7 +3,7 @@
 //  REExtendedFoundation
 //  https://github.com/oliromole/REExtendedFoundation.git
 //
-//  Created by Roman Oliichuk on 2012.07.237.
+//  Created by Roman Oliichuk on 2012.07.23.
 //  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 
@@ -35,12 +35,16 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import <Foundation/Foundation.h>
 
-@protocol NSInitializingInstance
+#import "REExtendedCompiler.h"
+
+@protocol NSInitializingInstance <NSObject>
+
+@required
 
 - (void)initializeInstance;
 - (void)deallocateInstance;
@@ -48,6 +52,10 @@
 @end
 
 @interface NSObject (NSObjectRENSObject)
+
+// Synchronizing the Singleton
+
++ (NSObject *)singletonSynchronizer;
 
 // Managing the NSObject Information
 
@@ -68,3 +76,4 @@
 
 @end
 
+#define NSMutableObjectCastOrCopy(object, className) ({ __typeof__(object) __object = (object); [__object isKindOfClass:[className class]] ? [((className *)(__object)) retain] : [(__object) mutableCopy]; })

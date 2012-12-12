@@ -35,15 +35,23 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import <Foundation/Foundation.h>
 
+#import "REExtendedCompiler.h"
+
 FOUNDATION_EXTERN const NSRange NSRangeNotFound;
 
-NS_INLINE BOOL NSIsRangeNotFound(NSRange range)
+NS_INLINE BOOL NSRangeIsNotFound(NSRange range)
 {
     BOOL result = ((range.location == NSNotFound) && (range.length == 0));
+    return result;
+}
+
+NS_INLINE BOOL NSRangeEqualToRange(NSRange range1, NSRange range2)
+{
+    BOOL result = (range1.location == range2.location) && (range1.length == range2.length);
     return result;
 }

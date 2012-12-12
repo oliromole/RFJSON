@@ -35,7 +35,7 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import "RFJSONOjectParser.h"
@@ -66,13 +66,13 @@ NSString * RFJSONOjectParserAllOtherObjectKeys = @"RFJSONOjectParserAllOtherObje
 
 - (void)dealloc
 {
-    [mJSONObjectKey release];
+    RENSObjectRelease(mJSONObjectKey);
     mJSONObjectKey = nil;
     
-    [mJSONObjectKeyJSONNodeParserTypes release];
+    RENSObjectRelease(mJSONObjectKeyJSONNodeParserTypes);
     mJSONObjectKeyJSONNodeParserTypes = nil;
     
-    [super dealloc];
+    RENSObjectSuperDealloc();
 }
 
 #pragma mark - Private Handling JSON
@@ -114,8 +114,8 @@ NSString * RFJSONOjectParserAllOtherObjectKeys = @"RFJSONOjectParserAllOtherObje
                 jsonTypes = [mJSONObjectKeyJSONNodeParserTypes objectForKey:RFJSONOjectParserAllOtherObjectKeys];
             }
             
-            [mJSONObjectKey release];
-            mJSONObjectKey = [key retain];
+            RENSObjectRelease(mJSONObjectKey);
+            mJSONObjectKey = RENSObjectRetain(key);
             
             if (jsonTypes)
             {
@@ -183,7 +183,7 @@ NSString * RFJSONOjectParserAllOtherObjectKeys = @"RFJSONOjectParserAllOtherObje
             
             if (!mIsError && !mSubJSONNodeParser)
             {
-                [mSubJSONNodeParser release];
+                RENSObjectRelease(mSubJSONNodeParser);
                 mSubJSONNodeParser = [[RFJSONOjectSkipParser alloc] init];
             }
             
@@ -260,10 +260,10 @@ NSString * RFJSONOjectParserAllOtherObjectKeys = @"RFJSONOjectParserAllOtherObje
                 
                 if (!mIsError)
                 {
-                    [mJSONObjectKey release];
+                    RENSObjectRelease(mJSONObjectKey);
                     mJSONObjectKey = nil;
                     
-                    [mSubJSONNodeParser release];
+                    RENSObjectRelease(mSubJSONNodeParser);
                     mSubJSONNodeParser = nil;
                 }
             }
@@ -326,7 +326,7 @@ NSString * RFJSONOjectParserAllOtherObjectKeys = @"RFJSONOjectParserAllOtherObje
             
             if (!mIsError && !mSubJSONNodeParser)
             {
-                [mSubJSONNodeParser release];
+                RENSObjectRelease(mSubJSONNodeParser);
                 mSubJSONNodeParser = [[RFJSONArraySkipParser alloc] init];
             }
             
@@ -403,10 +403,10 @@ NSString * RFJSONOjectParserAllOtherObjectKeys = @"RFJSONOjectParserAllOtherObje
                 
                 if (!mIsError)
                 {
-                    [mJSONObjectKey release];
+                    RENSObjectRelease(mJSONObjectKey);
                     mJSONObjectKey = nil;
                     
-                    [mSubJSONNodeParser release];
+                    RENSObjectRelease(mSubJSONNodeParser);
                     mSubJSONNodeParser = nil;
                 }
             }
@@ -465,7 +465,7 @@ NSString * RFJSONOjectParserAllOtherObjectKeys = @"RFJSONOjectParserAllOtherObje
             
             if (!mIsError)
             {
-                [mJSONObjectKey release];
+                RENSObjectRelease(mJSONObjectKey);
                 mJSONObjectKey = nil;
             }
         }
@@ -518,7 +518,7 @@ NSString * RFJSONOjectParserAllOtherObjectKeys = @"RFJSONOjectParserAllOtherObje
             
             if (!mIsError)
             {
-                [mJSONObjectKey release];
+                RENSObjectRelease(mJSONObjectKey);
                 mJSONObjectKey = nil;
             }
         }
@@ -571,7 +571,7 @@ NSString * RFJSONOjectParserAllOtherObjectKeys = @"RFJSONOjectParserAllOtherObje
             
             if (!mIsError)
             {
-                [mJSONObjectKey release];
+                RENSObjectRelease(mJSONObjectKey);
                 mJSONObjectKey = nil;
             }
         }
@@ -624,7 +624,7 @@ NSString * RFJSONOjectParserAllOtherObjectKeys = @"RFJSONOjectParserAllOtherObje
             
             if (!mIsError)
             {
-                [mJSONObjectKey release];
+                RENSObjectRelease(mJSONObjectKey);
                 mJSONObjectKey = nil;
             }
         }

@@ -1,5 +1,5 @@
 //
-//  RERFC822.h
+//  RERFC822.m
 //  REExtendedFoundation
 //  https://github.com/oliromole/REExtendedFoundation.git
 //
@@ -35,7 +35,7 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import "RERFC822.h"
@@ -49,7 +49,7 @@
     NSDate *date = nil;
     
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-
+    
     if (locale)
     {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -83,14 +83,14 @@
             }
         }
         
-        [dateFormatter release];
+        RENSObjectRelease(dateFormatter);
         dateFormatter = nil;
     }
     
-    [locale release];
+    RENSObjectRelease(locale);
     locale = nil;
-
-    return date;    
+    
+    return date;
 }
 
 @end
@@ -117,11 +117,11 @@
             string = [dateFormatter stringFromDate:self];
         }
         
-        [dateFormatter release];
+        RENSObjectRelease(dateFormatter);
         dateFormatter = nil;
     }
     
-    [locale release];
+    RENSObjectRelease(locale);
     locale = nil;
     
     return string;

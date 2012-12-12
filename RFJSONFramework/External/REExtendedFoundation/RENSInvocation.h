@@ -35,10 +35,12 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import <Foundation/Foundation.h>
+
+#import "REExtendedCompiler.h"
 
 @interface NSInvocation (NSInvocationRENSInvocation)
 
@@ -69,12 +71,21 @@
 - (void)performInvocationInBackground:(NSInvocation *)invocation;
 - (void)performInvocationOnMainThread:(NSInvocation *)invocation waitUntilDone:(BOOL)wait;
 - (void)performInvocationOnMainThread:(NSInvocation *)invocation waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performInvocationOnSecondThread:(NSInvocation *)invocation waitUntilDone:(BOOL)wait;
+- (void)performInvocationOnSecondThread:(NSInvocation *)invocation waitUntilDone:(BOOL)wait modes:(NSArray *)array;
 
-- (void)performSelectorOnMainThread:(SEL)aSelector waitUntilDone:(BOOL)wait;
-- (void)performSelectorOnMainThread:(SEL)aSelector waitUntilDone:(BOOL)wait modes:(NSArray *)array;
-- (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait;
-- (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait modes:(NSArray *)array;
-- (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait;
-- (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performSelectorOnMainThread:(SEL)selector waitUntilDone:(BOOL)wait;
+- (void)performSelectorOnMainThread:(SEL)selector waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+
+- (void)performSelectorOnSecondThread:(SEL)selector waitUntilDone:(BOOL)wait;
+- (void)performSelectorOnSecondThread:(SEL)selector waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait modes:(NSArray *)array;
 
 @end

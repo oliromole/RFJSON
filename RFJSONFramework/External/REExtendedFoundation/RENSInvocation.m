@@ -35,10 +35,12 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import "RENSInvocation.h"
+
+#import "RENSThread.h"
 
 @implementation NSInvocation (NSInvocationRENSInvocation)
 
@@ -100,7 +102,7 @@
                     void *pArgument = va_arg(valist, void *);
                     
                     [invocation setArgument:pArgument atIndex:indexOfArgument];
-                }                
+                }
                 
                 va_end(valist);
             }
@@ -144,7 +146,7 @@
                     void *pArgument = va_arg(valist, void *);
                     
                     [invocation setArgument:pArgument atIndex:indexOfArgument];
-                }                
+                }
                 
                 va_end(valist);
             }
@@ -227,7 +229,7 @@
                     void *pArgument = va_arg(valist, void *);
                     
                     [invocation setArgument:pArgument atIndex:indexOfArgument];
-                }                
+                }
                 
                 va_end(valist);
             }
@@ -277,7 +279,7 @@
                     void *pArgument = va_arg(valist, void *);
                     
                     [invocation setArgument:pArgument atIndex:indexOfArgument];
-                }                
+                }
                 
                 va_end(valist);
             }
@@ -373,7 +375,7 @@
                         void *pArgument = va_arg(valist, void *);
                         
                         [invocation setArgument:pArgument atIndex:indexOfArgument];
-                    }                
+                    }
                     
                     va_end(valist);
                 }
@@ -430,7 +432,7 @@
                         void *pArgument = va_arg(valist, void *);
                         
                         [invocation setArgument:pArgument atIndex:indexOfArgument];
-                    }                
+                    }
                     
                     va_end(valist);
                 }
@@ -465,15 +467,15 @@
     
     NSUInteger methodReturnLength = methodSignature.methodReturnLength;
     
-    NSUInteger numberOfIds = (methodReturnLength + sizeof(id) - 1) / sizeof(id);
+    NSUInteger numberOfIDs = (methodReturnLength + sizeof(id) - 1) / sizeof(id);
     
-    if (numberOfIds == 0)
+    if (numberOfIDs == 0)
     {
-        numberOfIds = 1;
+        numberOfIDs = 1;
     }
     
-    id ids[numberOfIds];
-    memset(ids, 0, (numberOfIds * sizeof(id)));
+    id ids[numberOfIDs];
+    memset(ids, 0, (numberOfIDs * sizeof(id)));
     
     if (methodReturnLength > 0)
     {
@@ -569,6 +571,26 @@
     [self performSelectorOnMainThread:@selector(performInvocation:) withObject:invocation waitUntilDone:wait modes:modes];
 }
 
+- (void)performInvocationOnSecondThread:(NSInvocation *)invocation waitUntilDone:(BOOL)wait
+{
+    if (!invocation)
+    {
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: invocation can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+    }
+    
+    [self performSelectorOnSecondThread:@selector(performInvocation:) withObject:invocation waitUntilDone:wait];
+}
+
+- (void)performInvocationOnSecondThread:(NSInvocation *)invocation waitUntilDone:(BOOL)wait modes:(NSArray *)modes
+{
+    if (!invocation)
+    {
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: invocation can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+    }
+    
+    [self performSelectorOnSecondThread:@selector(performInvocation:) withObject:invocation waitUntilDone:wait modes:modes];
+}
+
 - (void)performSelectorOnMainThread:(SEL)selector waitUntilDone:(BOOL)wait
 {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector];
@@ -585,30 +607,72 @@
 
 - (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait
 {
-    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:object1, object2];
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2];
     
     [self performInvocationOnMainThread:invocation waitUntilDone:wait];
 }
 
 - (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait modes:(NSArray *)modes
 {
-    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:object1, object2];
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2];
     
     [self performInvocationOnMainThread:invocation waitUntilDone:wait modes:modes];
 }
 
 - (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait
 {
-    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:object1, object2, object3];
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3];
     
     [self performInvocationOnMainThread:invocation waitUntilDone:wait];
 }
 
 - (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait modes:(NSArray *)modes
 {
-    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:object1, object2, object3];
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3];
     
     [self performInvocationOnMainThread:invocation waitUntilDone:wait modes:modes];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector waitUntilDone:(BOOL)wait
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector];
+    
+    [self performInvocationOnSecondThread:invocation waitUntilDone:wait];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector waitUntilDone:(BOOL)wait modes:(NSArray *)modes
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector];
+    
+    [self performInvocationOnSecondThread:invocation waitUntilDone:wait modes:modes];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2];
+    
+    [self performInvocationOnSecondThread:invocation waitUntilDone:wait];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait modes:(NSArray *)modes
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2];
+    
+    [self performInvocationOnSecondThread:invocation waitUntilDone:wait modes:modes];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3];
+    
+    [self performInvocationOnSecondThread:invocation waitUntilDone:wait];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait modes:(NSArray *)modes
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3];
+    
+    [self performInvocationOnSecondThread:invocation waitUntilDone:wait modes:modes];
 }
 
 @end

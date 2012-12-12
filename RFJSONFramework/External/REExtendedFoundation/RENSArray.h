@@ -35,10 +35,14 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import <Foundation/Foundation.h>
+
+#import "REExtendedCompiler.h"
+
+#import "RENSObject.h"
 
 @interface NSArray (NSArrayRENSArray)
 
@@ -114,3 +118,5 @@
 - (void)exchangeObjectAtIndexPath:(NSIndexPath *)indexPath1 withObjectAtIndexPath:(NSIndexPath *)indexPath2 usingChildArrayBlock:(id (^)(id object, NSIndexPath *indexPath))block;
 
 @end
+
+#define NSMutableArrayCastOrCopy(array) NSMutableObjectCastOrCopy(array, NSMutableArray)

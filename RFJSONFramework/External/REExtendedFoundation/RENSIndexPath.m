@@ -35,7 +35,7 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import "RENSIndexPath.h"
@@ -62,7 +62,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
         self = [self initWithIndexes:NULL length:0];
     }
     
-    // Length > 0
+    // Length > 0.
     else
     {
         NSUInteger indexes[length];
@@ -94,7 +94,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
         indexPath = [self indexPathWithIndexes:NULL length:0];
     }
     
-    // Length > 0
+    // Length > 0.
     else
     {
         NSUInteger indexes[length];
@@ -142,8 +142,8 @@ NSIndexPath * NSIndexPathEmpty = nil;
 
 - (NSIndexPath *)indexPathByAppendingIndexPath:(NSIndexPath *)aIndexPath
 {
-    NSIndexPath *indexPath = [[self copyIndexPathByAppendingIndexPath:aIndexPath] autorelease];
-    return indexPath;
+    NSIndexPath *indexPath = [self copyIndexPathByAppendingIndexPath:aIndexPath];
+    return RENSObjectAutorelease(indexPath);
 }
 
 - (NSIndexPath *)copyIndexPathByAppendingLength:(NSUInteger)length2, ...
@@ -152,10 +152,10 @@ NSIndexPath * NSIndexPathEmpty = nil;
     
     if (length2 == 0)
     {
-        indexPath = [self retain];
+        indexPath = RENSObjectRetain(self);
     }
     
-    // Length > 0
+    // Length > 0.
     else
     {
         NSUInteger length1 = self.length;
@@ -164,7 +164,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
         NSUInteger indexes[length];
         
         [self getIndexes:indexes];
-
+        
         va_list valist;
         va_start(valist, length2);
         
@@ -189,10 +189,10 @@ NSIndexPath * NSIndexPathEmpty = nil;
     
     if (length2 == 0)
     {
-        indexPath = self;
+        indexPath = RENSObjectRetain(self);
     }
     
-    // Length > 0
+    // Length > 0.
     else
     {
         NSUInteger length1 = self.length;
@@ -214,10 +214,10 @@ NSIndexPath * NSIndexPathEmpty = nil;
         
         va_end(valist);
         
-        indexPath = [NSIndexPath indexPathWithIndexes:indexes length:length];
+        indexPath = [[NSIndexPath alloc] initWithIndexes:indexes length:length];
     }
     
-    return indexPath;
+    return RENSObjectAutorelease(indexPath);
 }
 
 #pragma mark - Dividing Index Paths
@@ -228,7 +228,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
     {
         @throw [NSException exceptionWithName:NSRangeException reason:@"The fromPosition argument is invalid." userInfo:nil];
     }
-
+    
     NSRange range;
     range.location = fromPosition;
     range.length = self.length - fromPosition;
@@ -240,8 +240,8 @@ NSIndexPath * NSIndexPathEmpty = nil;
 
 - (NSIndexPath *)subindexPathFromPosition:(NSUInteger)fromPosition
 {
-    NSIndexPath *subindexPath = [[self copySubindexPathFromPosition:fromPosition] autorelease];
-    return subindexPath;
+    NSIndexPath *subindexPath = [self copySubindexPathFromPosition:fromPosition];
+    return RENSObjectAutorelease(subindexPath);
 }
 
 - (NSIndexPath *)copySubindexPathToPosition:(NSUInteger)toPosition
@@ -257,32 +257,32 @@ NSIndexPath * NSIndexPathEmpty = nil;
 
 - (NSIndexPath *)subindexPathToPosition:(NSUInteger)toPosition
 {
-    NSIndexPath *subindexPath = [[self copySubindexPathToPosition:toPosition] autorelease];
-    return subindexPath;
+    NSIndexPath *subindexPath = [self copySubindexPathToPosition:toPosition];
+    return RENSObjectAutorelease(subindexPath);
 }
 
 - (NSIndexPath *)copySubindexPathWithRange:(NSRange)range
 {
     if (NSMaxRange(range) > self.length)
     {
-        @throw [NSException exceptionWithName:NSRangeException reason:@"The range is invalid." userInfo:nil];
+        @throw [NSException exceptionWithName:NSRangeException reason:@"The range argument is invalid." userInfo:nil];
     }
     
     NSUInteger length = self.length;
-
+    
     NSUInteger indexes[length];
     
     [self getIndexes:indexes];
     
     NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndexes:(indexes + range.location) length:range.length];
     
-    return indexPath;    
+    return indexPath;
 }
 
 - (NSIndexPath *)subindexPathWithRange:(NSRange)range
 {
-    NSIndexPath *subindexPath = [[self copySubindexPathWithRange:range] autorelease];
-    return subindexPath;
+    NSIndexPath *subindexPath = [self copySubindexPathWithRange:range];
+    return RENSObjectAutorelease(subindexPath);
 }
 
 #pragma mark - Finding SubindexPaths
@@ -317,7 +317,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
     }
     
     NSRange range = NSRangeNotFound;
-
+    
     NSUInteger length1 = self.length;
     NSUInteger length2 = indexPath2.length;
     
@@ -430,14 +430,14 @@ NSIndexPath * NSIndexPathEmpty = nil;
     {
         @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"The target argument is nil." userInfo:nil];
     }
-
+    
     if (!indexPath3)
     {
         @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"The replacement argument is nil." userInfo:nil];
     }
     
     NSUInteger maxSearchRange = NSMaxRange(searchRange);
-
+    
     NSUInteger length1 = self.length;
     NSUInteger length2 = indexPath2.length;
     NSUInteger length3 = indexPath3.length;
@@ -495,30 +495,30 @@ NSIndexPath * NSIndexPathEmpty = nil;
                 {
                     ranges1[numberOfRanges1].location = oldPosition1;
                     ranges1[numberOfRanges1].length = position1 - oldPosition1;
-
+                    
                     length += ranges1[numberOfRanges1].length + length3;
-
+                    
                     numberOfRanges1++;
                     
                     oldPosition1 = position1 + length2;
                     position1 = position1 + length2 - 1;
                 }
             }
-
+            
             ranges1[numberOfRanges1].location = oldPosition1;
             ranges1[numberOfRanges1].length = length1 - oldPosition1;
             
             length += ranges1[numberOfRanges1].length;
-
+            
             numberOfRanges1++;
-
+            
             NSUInteger indexes[length];
             NSUInteger position = 0;
             
             for (NSUInteger indexOfRange1 = 0; indexOfRange1 < numberOfRanges1; indexOfRange1++)
             {
                 NSRange range1 = ranges1[indexOfRange1];
-
+                
                 memcpy((indexes + position), (indexes1 + range1.location), (sizeof(NSUInteger) * range1.length));
                 
                 position += range1.length;
@@ -526,18 +526,18 @@ NSIndexPath * NSIndexPathEmpty = nil;
                 if (indexOfRange1 < (numberOfRanges1 - 1))
                 {
                     memcpy((indexes + position), indexes3, (sizeof(NSUInteger) * length3));
-
+                    
                     position += length3;
                 }
             }
-
+            
             indexPath = [[NSIndexPath alloc] initWithIndexes:indexes length:length];
         }
     }
     
     else
     {
-        indexPath = [self retain];
+        indexPath = RENSObjectRetain(self);
     }
     
     return indexPath;
@@ -545,8 +545,8 @@ NSIndexPath * NSIndexPathEmpty = nil;
 
 - (NSIndexPath *)indexPathByReplacingOccurrencesOfIndexPath:(NSIndexPath *)target withIndexPath:(NSIndexPath *)replacement options:(NSIndexPathCompareOptions)options range:(NSRange)searchRange
 {
-    NSIndexPath *indexPath = [[self copyIndexPathByReplacingOccurrencesOfIndexPath:target withIndexPath:replacement options:options range:searchRange] autorelease];
-    return indexPath;
+    NSIndexPath *indexPath = [self copyIndexPathByReplacingOccurrencesOfIndexPath:target withIndexPath:replacement options:options range:searchRange];
+    return RENSObjectAutorelease(indexPath);
 }
 
 - (NSIndexPath *)copyIndexPathByReplacingOccurrencesOfIndexPath:(NSIndexPath *)target withIndexPath:(NSIndexPath *)replacement
@@ -556,14 +556,14 @@ NSIndexPath * NSIndexPathEmpty = nil;
     searchRange.length = self.length;
     
     NSIndexPath *indexPath = [self copyIndexPathByReplacingOccurrencesOfIndexPath:target withIndexPath:replacement options:0 range:searchRange];
-                              
+    
     return indexPath;
 }
 
 - (NSIndexPath *)indexPathByReplacingOccurrencesOfIndexPath:(NSIndexPath *)target withIndexPath:(NSIndexPath *)replacement
 {
-    NSIndexPath *indexPath = [[self copyIndexPathByReplacingOccurrencesOfIndexPath:target withIndexPath:replacement] autorelease];
-    return indexPath;
+    NSIndexPath *indexPath = [self copyIndexPathByReplacingOccurrencesOfIndexPath:target withIndexPath:replacement];
+    return RENSObjectAutorelease(indexPath);
 }
 
 - (NSIndexPath *)copyIndexPathByReplacingIndexesInRange:(NSRange)range withIndexPath:(NSIndexPath *)indexPath2
@@ -574,7 +574,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
     }
     
     NSUInteger maxRange = NSMaxRange(range);
-
+    
     NSUInteger length1 = self.length;
     NSUInteger length2 = indexPath2.length;
     NSUInteger length = length1 - range.length + length2;
@@ -583,7 +583,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
     {
         @throw [NSException exceptionWithName:NSRangeException reason:@"The range argument is invalid." userInfo:nil];
     }
-
+    
     NSUInteger indexes1[length1];
     NSUInteger indexes2[length2];
     NSUInteger indexes[length];
@@ -602,8 +602,8 @@ NSIndexPath * NSIndexPathEmpty = nil;
 
 - (NSIndexPath *)indexPathByReplacingIndexesInRange:(NSRange)range withIndexPath:(NSIndexPath *)replacement
 {
-    NSIndexPath *indexPath = [[self copyIndexPathByReplacingIndexesInRange:range withIndexPath:replacement] autorelease];
-    return indexPath;
+    NSIndexPath *indexPath = [self copyIndexPathByReplacingIndexesInRange:range withIndexPath:replacement];
+    return RENSObjectAutorelease(indexPath);
 }
 
 #pragma mark - Comparing Index Paths
@@ -707,7 +707,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
     
     NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndexes:indexes length:(length + 1)];
     
-    return indexPath;    
+    return indexPath;
 }
 
 - (NSIndexPath *)copyIndexPathByRemovingLastIndex
@@ -730,7 +730,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
         indexPath = [[NSIndexPath alloc] initWithIndexes:indexes length:(length - 1)];
     }
     
-    return indexPath;    
+    return indexPath;
 }
 
 @end

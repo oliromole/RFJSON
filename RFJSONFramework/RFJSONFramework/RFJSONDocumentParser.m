@@ -35,7 +35,7 @@
  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #import "RFJSONDocumentParser.h"
@@ -65,14 +65,14 @@
 
 - (void)dealloc
 {
-    [mRootJSONOjectParser release];
+    RENSObjectRelease(mRootJSONOjectParser);
     mRootJSONOjectParser = nil;
     
     mJSONStreamParser.delegate = self;
-    [mJSONStreamParser release];
+    RENSObjectRelease(mJSONStreamParser);
     mJSONStreamParser = nil;
     
-    [super dealloc];
+    RENSObjectSuperDealloc();
 }
 
 #pragma mark - Managing the RFJSONDocument Object
@@ -105,8 +105,8 @@
     if (mJSONStreamParser != jsonStreamParser)
     {
         mJSONStreamParser.delegate = nil;
-        [mJSONStreamParser release];
-        mJSONStreamParser = [jsonStreamParser retain];
+        RENSObjectRelease(mJSONStreamParser);
+        mJSONStreamParser = RENSObjectRetain(jsonStreamParser);
         mJSONStreamParser.delegate = self;
     }
 }
