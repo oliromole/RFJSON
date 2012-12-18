@@ -52,3 +52,11 @@
 }
 
 @end
+
+@interface NSObject (NSObjectRFJSONArrayParser)
+
+// Getting JSONNodeParserTypes
+
++ (NSSet *)jsonNodeParserTypes;
+
+@end

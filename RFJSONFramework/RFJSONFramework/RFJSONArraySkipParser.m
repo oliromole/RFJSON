@@ -40,7 +40,11 @@
 
 #import "RFJSONArraySkipParser.h"
 
+#import "REExtendedFoundation.h"
+
 #import "RFJSONNodeParserType.h"
+
+static NSSet * volatile RFJSONArraySkipParser_JSONNodeParserTypes = nil;
 
 @implementation RFJSONArraySkipParser
 
@@ -50,12 +54,6 @@
 {
     if ((self = [super init]))
     {
-        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeArray];
-        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeBool];
-        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeNull];
-        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeNumber];
-        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeObject];
-        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeString];
     }
     
     return self;
@@ -66,6 +64,41 @@
 - (void)dealloc
 {
     RENSObjectSuperDealloc();
+}
+
+#pragma mark - Conforming the NSObjectRFJSONArrayParser Protocol
+
+#pragma mark Getting JSONNodeParserTypes
+
++ (NSSet *)jsonNodeParserTypes
+{
+    if (!RFJSONArraySkipParser_JSONNodeParserTypes)
+    {
+        NSObject *singletonSynchronizer = [NSObject singletonSynchronizer];
+        
+        @synchronized(singletonSynchronizer)
+        {
+            if (!RFJSONArraySkipParser_JSONNodeParserTypes)
+            {
+                NSMutableSet *jsonNodeParserTypes = [[RFJSONArrayParser jsonNodeParserTypes] mutableCopy];
+                NSAssert(jsonNodeParserTypes, @"The method has a logical error.");
+                
+                [jsonNodeParserTypes addObject:RFJSONNodeParserTypeArray];
+                [jsonNodeParserTypes addObject:RFJSONNodeParserTypeBool];
+                [jsonNodeParserTypes addObject:RFJSONNodeParserTypeNull];
+                [jsonNodeParserTypes addObject:RFJSONNodeParserTypeNumber];
+                [jsonNodeParserTypes addObject:RFJSONNodeParserTypeObject];
+                [jsonNodeParserTypes addObject:RFJSONNodeParserTypeString];
+                
+                RFJSONArraySkipParser_JSONNodeParserTypes = [jsonNodeParserTypes copy];
+                
+                RENSObjectRelease(jsonNodeParserTypes);
+                jsonNodeParserTypes = nil;
+            }
+        }
+    }
+    
+    return RFJSONArraySkipParser_JSONNodeParserTypes;
 }
 
 @end

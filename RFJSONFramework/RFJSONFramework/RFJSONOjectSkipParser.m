@@ -40,6 +40,10 @@
 
 #import "RFJSONOjectSkipParser.h"
 
+#import "REExtendedFoundation.h"
+
+static NSDictionary * volatile RFJSONOjectSkipParser_JSONObjectKeyJSONNodeParserTypes = nil;
+
 @implementation RFJSONOjectSkipParser
 
 #pragma mark - Initializing a RFJSONOjectSkipParser Class
@@ -58,6 +62,34 @@
 - (void)dealloc
 {
     RENSObjectSuperDealloc();
+}
+
+#pragma mark - Conforming the NSObjectRFJSONOjectParser Protocol
+
+#pragma mark Getting JSONNodeParserTypes for JSONObjectKeys
+
++ (NSDictionary *)jsonObjectKeyJSONNodeParserTypes
+{
+    if (!RFJSONOjectSkipParser_JSONObjectKeyJSONNodeParserTypes)
+    {
+        NSObject *singletonSynchronizer = [NSObject singletonSynchronizer];
+        
+        @synchronized(singletonSynchronizer)
+        {
+            if (!RFJSONOjectSkipParser_JSONObjectKeyJSONNodeParserTypes)
+            {
+                NSMutableDictionary *jsonObjectKeyJSONNodeParserTypes = [[RFJSONOjectParser jsonObjectKeyJSONNodeParserTypes] mutableCopy];
+                NSAssert(jsonObjectKeyJSONNodeParserTypes, @"The method has a logical error.");
+                
+                RFJSONOjectSkipParser_JSONObjectKeyJSONNodeParserTypes = [jsonObjectKeyJSONNodeParserTypes copy];
+                
+                RENSObjectRelease(jsonObjectKeyJSONNodeParserTypes);
+                jsonObjectKeyJSONNodeParserTypes = nil;
+            }
+        }
+    }
+    
+    return RFJSONOjectSkipParser_JSONObjectKeyJSONNodeParserTypes;
 }
 
 @end

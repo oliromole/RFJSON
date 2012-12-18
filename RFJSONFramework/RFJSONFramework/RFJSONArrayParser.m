@@ -40,10 +40,16 @@
 
 #import "RFJSONArrayParser.h"
 
+#import "REExtendedFoundation.h"
+
 #import "RFJSONArraySkipParser.h"
 #import "RFJSONNodeParserPrivate.h"
 #import "RFJSONNodeParserType.h"
 #import "RFJSONOjectSkipParser.h"
+
+static NSSet * volatile RFJSONArrayParser_JSONNodeParserTypes = nil;
+
+static NSSet * volatile NSObject_JSONNodeParserTypes = nil;
 
 @implementation RFJSONArrayParser
 
@@ -53,7 +59,14 @@
 {
     if ((self = [super init]))
     {
-        mJSONNodeParserTypes = [[NSMutableSet alloc] init];
+        NSSet *jsonNodeParserTypes = [[self class] jsonNodeParserTypes];
+        
+        mJSONNodeParserTypes = [jsonNodeParserTypes mutableCopy];
+        
+        if (!mJSONNodeParserTypes)
+        {
+            mJSONNodeParserTypes = [[NSMutableSet alloc] init];
+        }
     }
     
     return self;
@@ -486,6 +499,52 @@
             }
         }
     }
+}
+
+#pragma mark - Conforming the NSObjectRFJSONArrayParser Protocol
+
+#pragma mark Getting JSONNodeParserTypes
+
++ (NSSet *)jsonNodeParserTypes
+{
+    if (!RFJSONArrayParser_JSONNodeParserTypes)
+    {
+        NSObject *singletonSynchronizer = [NSObject singletonSynchronizer];
+        
+        @synchronized(singletonSynchronizer)
+        {
+            if (!RFJSONArrayParser_JSONNodeParserTypes)
+            {
+                RFJSONArrayParser_JSONNodeParserTypes = [[NSSet alloc] init];
+            }
+        }
+    }
+    
+    return RFJSONArrayParser_JSONNodeParserTypes;
+}
+
+@end
+
+@implementation NSObject (NSObjectRFJSONArrayParser)
+
+#pragma mark - Getting JSONNodeParserTypes
+
++ (NSSet *)jsonNodeParserTypes
+{
+    if (!NSObject_JSONNodeParserTypes)
+    {
+        NSObject *singletonSynchronizer = [NSObject singletonSynchronizer];
+        
+        @synchronized(singletonSynchronizer)
+        {
+            if (!NSObject_JSONNodeParserTypes)
+            {
+                NSObject_JSONNodeParserTypes = [[NSSet alloc] init];
+            }
+        }
+    }
+    
+    return NSObject_JSONNodeParserTypes;
 }
 
 @end

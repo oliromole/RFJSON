@@ -46,28 +46,9 @@
 #import "RFJSONNodeParserType.h"
 #import "RFJSONNodeParserTypeProtected.h"
 
-NSMutableDictionary *RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserTypes = nil;
+static NSDictionary * volatile RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserTypes = nil;
 
 @implementation RFJSONOjectAccumulateParser
-
-#pragma mark - Initializing a Class
-
-+ (void)load
-{
-    @autoreleasepool
-    {
-        RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserTypes = [[NSMutableDictionary alloc] init];
-        [RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserTypes setObject:[NSMutableSet setWithObjects:
-                                                                                 [NSNumber RFJSONNodeParserTypeArray],
-                                                                                 [NSNumber RFJSONNodeParserTypeBool],
-                                                                                 [NSNumber RFJSONNodeParserTypeNull],
-                                                                                 [NSNumber RFJSONNodeParserTypeNumber],
-                                                                                 [NSNumber RFJSONNodeParserTypeObject],
-                                                                                 [NSNumber RFJSONNodeParserTypeString],
-                                                                                 nil]
-                                                                         forKey:RFJSONOjectParserAllOtherObjectKeys];
-    }
-}
 
 #pragma mark - Initializing a RFJSONOjectAccumulateParser Class
 
@@ -75,8 +56,6 @@ NSMutableDictionary *RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserType
 {
     if ((self = [super init]))
     {
-        [mJSONObjectKeyJSONNodeParserTypes addEntriesFromDictionary:RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserTypes];
-        
         mJSONObject = [[NSMutableDictionary alloc] init];
     }
     
@@ -145,6 +124,44 @@ NSMutableDictionary *RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserType
 - (void)parserFoundString:(NSString*)string
 {
     [mJSONObject setObject:string forKey:mJSONObjectKey];
+}
+
+#pragma mark - Conforming the NSObjectRFJSONOjectParser Protocol
+
+#pragma mark Getting JSONNodeParserTypes for JSONObjectKeys
+
++ (NSDictionary *)jsonObjectKeyJSONNodeParserTypes
+{
+    if (!RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserTypes)
+    {
+        NSObject *singletonSynchronizer = [NSObject singletonSynchronizer];
+        
+        @synchronized(singletonSynchronizer)
+        {
+            if (!RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserTypes)
+            {
+                NSMutableDictionary *jsonObjectKeyJSONNodeParserTypes = [[RFJSONOjectParser jsonObjectKeyJSONNodeParserTypes] mutableCopy];
+                NSAssert(jsonObjectKeyJSONNodeParserTypes, @"The method has a logical error.");
+                
+                [jsonObjectKeyJSONNodeParserTypes setObject:[NSMutableSet setWithObjects:
+                                                             RFJSONNodeParserTypeArray,
+                                                             RFJSONNodeParserTypeBool,
+                                                             RFJSONNodeParserTypeNull,
+                                                             RFJSONNodeParserTypeNumber,
+                                                             RFJSONNodeParserTypeObject,
+                                                             RFJSONNodeParserTypeString,
+                                                             nil]
+                                                     forKey:RFJSONOjectParserAllOtherObjectKeys];
+                
+                RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserTypes = [jsonObjectKeyJSONNodeParserTypes copy];
+                
+                RENSObjectRelease(jsonObjectKeyJSONNodeParserTypes);
+                jsonObjectKeyJSONNodeParserTypes = nil;
+            }
+        }
+    }
+    
+    return RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserTypes;
 }
 
 @end

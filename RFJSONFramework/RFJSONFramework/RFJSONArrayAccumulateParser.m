@@ -45,6 +45,8 @@
 #import "RFJSONNodeParserType.h"
 #import "RFJSONOjectAccumulateParser.h"
 
+static NSSet * volatile RFJSONArrayAccumulateParser_JSONNodeParserTypes = nil;
+
 @implementation RFJSONArrayAccumulateParser
 
 #pragma mark - Initializing and Creating a RFJSONArrayAccumulateParser
@@ -53,13 +55,6 @@
 {
     if ((self = [super init]))
     {
-        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeArray];
-        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeBool];
-        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeNull];
-        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeNumber];
-        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeObject];
-        [mJSONNodeParserTypes addObject:RFJSONNodeParserTypeString];
-        
         mJSONArray = [[NSMutableArray alloc] init];
     }
     
@@ -128,6 +123,41 @@
 - (void)parserFoundString:(NSString*)string
 {
     [mJSONArray addObject:string];
+}
+
+#pragma mark - Conforming the NSObjectRFJSONArrayParser Protocol
+
+#pragma mark Getting JSONNodeParserTypes
+
++ (NSSet *)jsonNodeParserTypes
+{
+    if (!RFJSONArrayAccumulateParser_JSONNodeParserTypes)
+    {
+        NSObject *singletonSynchronizer = [NSObject singletonSynchronizer];
+        
+        @synchronized(singletonSynchronizer)
+        {
+            if (!RFJSONArrayAccumulateParser_JSONNodeParserTypes)
+            {
+                NSMutableSet *jsonNodeParserTypes = [[RFJSONArrayParser jsonNodeParserTypes] mutableCopy];
+                NSAssert(jsonNodeParserTypes, @"The method has a logical error.");
+                
+                [jsonNodeParserTypes addObject:RFJSONNodeParserTypeArray];
+                [jsonNodeParserTypes addObject:RFJSONNodeParserTypeBool];
+                [jsonNodeParserTypes addObject:RFJSONNodeParserTypeNull];
+                [jsonNodeParserTypes addObject:RFJSONNodeParserTypeNumber];
+                [jsonNodeParserTypes addObject:RFJSONNodeParserTypeObject];
+                [jsonNodeParserTypes addObject:RFJSONNodeParserTypeString];
+                
+                RFJSONArrayAccumulateParser_JSONNodeParserTypes = [jsonNodeParserTypes copy];
+                
+                RENSObjectRelease(jsonNodeParserTypes);
+                jsonNodeParserTypes = nil;
+            }
+        }
+    }
+    
+    return RFJSONArrayAccumulateParser_JSONNodeParserTypes;
 }
 
 @end

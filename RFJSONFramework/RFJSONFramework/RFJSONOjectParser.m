@@ -40,12 +40,18 @@
 
 #import "RFJSONOjectParser.h"
 
+#import "REExtendedFoundation.h"
+
 #import "RFJSONArraySkipParser.h"
 #import "RFJSONNodeParserPrivate.h"
 #import "RFJSONNodeParserType.h"
 #import "RFJSONOjectSkipParser.h"
 
 NSString * RFJSONOjectParserAllOtherObjectKeys = @"RFJSONOjectParserAllOtherObjectKeys";
+
+static NSDictionary * volatile RFJSONOjectParser_JSONObjectKeyJSONNodeParserTypes = nil;
+
+static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
 
 @implementation RFJSONOjectParser
 
@@ -56,7 +62,15 @@ NSString * RFJSONOjectParserAllOtherObjectKeys = @"RFJSONOjectParserAllOtherObje
     if ((self = [super init]))
     {
         mJSONObjectKey = nil;
-        mJSONObjectKeyJSONNodeParserTypes = [[NSMutableDictionary alloc] init];
+        
+        NSDictionary *jsonObjectKeyJSONNodeParserTypes = [[self class] jsonObjectKeyJSONNodeParserTypes];
+        
+        mJSONObjectKeyJSONNodeParserTypes = [jsonObjectKeyJSONNodeParserTypes mutableCopy];
+        
+        if (!mJSONObjectKeyJSONNodeParserTypes)
+        {
+            mJSONObjectKeyJSONNodeParserTypes = [[NSMutableDictionary alloc] init];
+        }
     }
     
     return self;
@@ -629,6 +643,52 @@ NSString * RFJSONOjectParserAllOtherObjectKeys = @"RFJSONOjectParserAllOtherObje
             }
         }
     }
+}
+
+#pragma mark - Conforming the NSObjectRFJSONOjectParser Protocol
+
+#pragma mark Getting JSONNodeParserTypes for JSONObjectKeys
+
++ (NSDictionary *)jsonObjectKeyJSONNodeParserTypes
+{
+    if (!RFJSONOjectParser_JSONObjectKeyJSONNodeParserTypes)
+    {
+        NSObject *singletonSynchronizer = [NSObject singletonSynchronizer];
+        
+        @synchronized(singletonSynchronizer)
+        {
+            if (!RFJSONOjectParser_JSONObjectKeyJSONNodeParserTypes)
+            {
+                RFJSONOjectParser_JSONObjectKeyJSONNodeParserTypes = [[NSDictionary alloc] init];
+            }
+        }
+    }
+    
+    return RFJSONOjectParser_JSONObjectKeyJSONNodeParserTypes;
+}
+
+@end
+
+@implementation NSObject (NSObjectRFJSONOjectParser)
+
+#pragma mark - Getting JSONNodeParserTypes for JSONObjectKeys
+
++ (NSDictionary *)jsonObjectKeyJSONNodeParserTypes
+{
+    if (!NSObject_JSONObjectKeyJSONNodeParserTypes)
+    {
+        NSObject *singletonSynchronizer = [NSObject singletonSynchronizer];
+        
+        @synchronized(singletonSynchronizer)
+        {
+            if (!NSObject_JSONObjectKeyJSONNodeParserTypes)
+            {
+                NSObject_JSONObjectKeyJSONNodeParserTypes = [[NSDictionary alloc] init];
+            }
+        }
+    }
+    
+    return NSObject_JSONObjectKeyJSONNodeParserTypes;
 }
 
 @end

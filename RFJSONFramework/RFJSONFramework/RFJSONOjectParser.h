@@ -55,3 +55,11 @@
 @end
 
 FOUNDATION_EXTERN NSString * RFJSONOjectParserAllOtherObjectKeys;
+
+@interface NSObject (NSObjectRFJSONOjectParser)
+
+// Getting JSONNodeParserTypes for JSONObjectKeys
+
++ (NSDictionary *)jsonObjectKeyJSONNodeParserTypes;
+
+@end
