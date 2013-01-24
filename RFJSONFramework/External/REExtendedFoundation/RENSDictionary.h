@@ -53,12 +53,42 @@
 
 @end
 
-@interface NSMutableDictionary (NSMutableDictionaryRENSDictionary)
+@interface NSDictionary (NSDictionaryRENSDictionary_6_0_Dynamic)
+@end
+
+#if __IPHONE_6_0 > __IPHONE_OS_VERSION_MAX_ALLOWED
+
+@interface NSDictionary (NSDictionaryRENSDictionary_6_0)
+
+// Accessing Keys and Values
+
+- (id)objectForKeyedSubscript:(id)key;
+
+@end
+
+#endif
+
+@interface NSMutableDictionary (NSMutableDictionaryRENSMutableDictionary)
 
 // Removing Entries From a Mutable Dictionary
 
 - (void)removeAllObjectsExceptObjectsForKeys:(NSArray *)keys;
 
 @end
+
+@interface NSMutableDictionary (NSMutableDictionaryRENSMutableDictionary_6_0_Dynamic)
+@end
+
+#if __IPHONE_6_0 > __IPHONE_OS_VERSION_MAX_ALLOWED
+
+@interface NSMutableDictionary (NSMutableDictionaryRENSMutableDictionary_6_0)
+
+// Adding Entries to a Mutable Dictionary
+
+- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key NS_AVAILABLE(10_8, 6_0);
+
+@end
+
+#endif
 
 #define NSMutableDictionaryCastOrCopy(dictionary) NSMutableObjectCastOrCopy(dictionary, NSMutableDictionary)

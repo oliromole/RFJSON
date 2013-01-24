@@ -44,9 +44,9 @@
 
 #pragma mark - Managing Notification Observers
 
-- (void)addObserver:(id)observer selector:(SEL)aSelector name:(NSString *)aName
+- (void)addObserver:(id)observer selector:(SEL)selector name:(NSString *)aName
 {
-    [self addObserver:observer selector:aSelector name:aName object:nil];
+    [self addObserver:observer selector:selector name:aName object:nil];
 }
 
 @end

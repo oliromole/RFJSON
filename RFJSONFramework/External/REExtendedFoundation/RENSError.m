@@ -40,13 +40,15 @@
 
 #import "RENSError.h"
 
+#import "REExtendedFoundation.h"
+
 @implementation NSError (NSErrorRENSError)
 
 #pragma mark - Combining the User Info
 
 - (NSError *)copyErrorByAddingEntriesToUserInfo:(NSDictionary *)otherUserInfo
 {
-    NSAssert(otherUserInfo, @"The otherUserInfo argument is nil.");
+    RENSAssert(otherUserInfo, @"The otherUserInfo argument is nil.");
     
     NSInteger code = self.code;
     NSString *domain = self.domain;

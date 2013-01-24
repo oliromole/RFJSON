@@ -65,27 +65,39 @@
 - (id)performInvocation:(NSInvocation *)invocation;
 - (void)performInvocation:(NSInvocation *)invocation returnValue:(void *)returnLocation;
 - (void)performInvocation:(NSInvocation *)invocation onThread:(NSThread *)thr waitUntilDone:(BOOL)wait;
-- (void)performInvocation:(NSInvocation *)invocation onThread:(NSThread *)thr waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performInvocation:(NSInvocation *)invocation onThread:(NSThread *)thr waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
 - (void)performInvocation:(NSInvocation *)invocation afterDelay:(NSTimeInterval)delay;
 - (void)performInvocation:(NSInvocation *)invocation afterDelay:(NSTimeInterval)delay inModes:(NSArray *)array;
 - (void)performInvocationInBackground:(NSInvocation *)invocation;
 - (void)performInvocationOnMainThread:(NSInvocation *)invocation waitUntilDone:(BOOL)wait;
-- (void)performInvocationOnMainThread:(NSInvocation *)invocation waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performInvocationOnMainThread:(NSInvocation *)invocation waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
 - (void)performInvocationOnSecondThread:(NSInvocation *)invocation waitUntilDone:(BOOL)wait;
-- (void)performInvocationOnSecondThread:(NSInvocation *)invocation waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performInvocationOnSecondThread:(NSInvocation *)invocation waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
+
+// Sending Messages on the Main Thread
 
 - (void)performSelectorOnMainThread:(SEL)selector waitUntilDone:(BOOL)wait;
-- (void)performSelectorOnMainThread:(SEL)selector waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performSelectorOnMainThread:(SEL)selector waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
 - (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait;
-- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
 - (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait;
-- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 waitUntilDone:(BOOL)wait;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 waitUntilDone:(BOOL)wait;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
+
+// Sending Messages on the Second Thread
 
 - (void)performSelectorOnSecondThread:(SEL)selector waitUntilDone:(BOOL)wait;
-- (void)performSelectorOnSecondThread:(SEL)selector waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performSelectorOnSecondThread:(SEL)selector waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
 - (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait;
-- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
 - (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait;
-- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 waitUntilDone:(BOOL)wait;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 waitUntilDone:(BOOL)wait;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
 
 @end

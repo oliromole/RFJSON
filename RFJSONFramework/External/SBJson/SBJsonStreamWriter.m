@@ -1,22 +1,22 @@
 /*
  Copyright (c) 2010, Stig Brautaset.
  All rights reserved.
-
+ 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are
  met:
-
-   Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-
-   Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the distribution.
-
-   Neither the name of the the author nor the names of its contributors
-   may be used to endorse or promote products derived from this software
-   without specific prior written permission.
-
+ 
+ Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.
+ 
+ Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in the
+ documentation and/or other materials provided with the distribution.
+ 
+ Neither the name of the the author nor the names of its contributors
+ may be used to endorse or promote products derived from this software
+ without specific prior written permission.
+ 
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
  TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
@@ -39,7 +39,6 @@ static NSNumber *kFalse;
 static NSNumber *kPositiveInfinity;
 static NSNumber *kNegativeInfinity;
 
-
 @implementation SBJsonStreamWriter
 
 @synthesize error;
@@ -53,11 +52,11 @@ static NSNumber *kNegativeInfinity;
 + (void)initialize {
     if (self == [SBJsonStreamWriter class])
     {
-        kNotANumber = [[NSDecimalNumber notANumber] retain];
-        kPositiveInfinity = [[NSNumber numberWithDouble:+INFINITY] retain];
-        kNegativeInfinity = [[NSNumber numberWithDouble:-INFINITY] retain];
-        kTrue = [[NSNumber numberWithBool:YES] retain];
-        kFalse = [[NSNumber numberWithBool:NO] retain];
+        kNotANumber = [NSDecimalNumber notANumber];
+        kPositiveInfinity = [[NSNumber alloc] initWithDouble:+INFINITY];
+        kNegativeInfinity = [[NSNumber alloc] initWithDouble:-INFINITY];
+        kTrue = [[NSNumber alloc] initWithBool:YES];
+        kFalse = [[NSNumber alloc] initWithBool:NO];
     }
 }
 
@@ -77,21 +76,17 @@ static NSNumber *kNegativeInfinity;
 }
 
 - (void)dealloc {
-    [cache release];
     cache = nil;
     
-    [error release];
     error = nil;
     
     if (sortKeysComparator) {
-        Block_release(sortKeysComparator);
+        // ???
+        //Block_release(sortKeysComparator);
         sortKeysComparator = NULL;
     }
     
-    [stateStack release];
     stateStack = nil;
-    
-    [super dealloc];
 }
 
 #pragma mark Methods
@@ -103,7 +98,7 @@ static NSNumber *kNegativeInfinity;
 - (BOOL)writeObject:(NSDictionary *)dict {
 	if (![self writeObjectOpen])
 		return NO;
-
+    
 	NSArray *keys = [dict allKeys];
 	
 	if (sortKeys) {
@@ -114,19 +109,19 @@ static NSNumber *kNegativeInfinity;
 			keys = [keys sortedArrayUsingSelector:@selector(compare:)];
 		}
 	}
-
+    
 	for (id k in keys) {
 		if (![k isKindOfClass:[NSString class]]) {
 			self.error = [NSString stringWithFormat:@"JSON object key must be string: %@", k];
 			return NO;
 		}
-
+        
 		if (![self writeString:k])
 			return NO;
 		if (![self writeValue:[dict objectForKey:k]])
 			return NO;
 	}
-
+    
 	return [self writeObjectClose];
 }
 
@@ -139,41 +134,39 @@ static NSNumber *kNegativeInfinity;
 	return [self writeArrayClose];
 }
 
-
 - (BOOL)writeObjectOpen {
 	if ([state isInvalidState:self]) return NO;
 	if ([state expectingKey:self]) return NO;
 	[state appendSeparator:self];
 	if (humanReadable && stateStack.count) [state appendWhitespace:self];
-
+    
     [stateStack addObject:state];
     self.state = [SBJsonStreamWriterStateObjectStart sharedInstance];
-
+    
 	if (maxDepth && stateStack.count > maxDepth) {
 		self.error = @"Nested too deep";
 		return NO;
 	}
-
+    
 	[delegate writer:self appendBytes:"{" length:1];
 	return YES;
 }
 
 - (BOOL)writeObjectClose {
 	if ([state isInvalidState:self]) return NO;
-
-    SBJsonStreamWriterState *prev = [state retain];
-
+    
+    SBJsonStreamWriterState *prev = state;
+    
     self.state = [stateStack lastObject];
     [stateStack removeLastObject];
-
+    
 	if (humanReadable) [prev appendWhitespace:self];
 	[delegate writer:self appendBytes:"}" length:1];
     
 	[state transitionState:self];
     
-    [prev release];
     prev = nil;
-
+    
 	return YES;
 }
 
@@ -182,15 +175,15 @@ static NSNumber *kNegativeInfinity;
 	if ([state expectingKey:self]) return NO;
 	[state appendSeparator:self];
 	if (humanReadable && stateStack.count) [state appendWhitespace:self];
-
+    
     [stateStack addObject:state];
 	self.state = [SBJsonStreamWriterStateArrayStart sharedInstance];
-
+    
 	if (maxDepth && stateStack.count > maxDepth) {
 		self.error = @"Nested too deep";
 		return NO;
 	}
-
+    
 	[delegate writer:self appendBytes:"[" length:1];
 	return YES;
 }
@@ -198,20 +191,19 @@ static NSNumber *kNegativeInfinity;
 - (BOOL)writeArrayClose {
 	if ([state isInvalidState:self]) return NO;
 	if ([state expectingKey:self]) return NO;
-
-    SBJsonStreamWriterState *prev = [state retain];;
-
+    
+    SBJsonStreamWriterState *prev = state;
+    
     self.state = [stateStack lastObject];
     [stateStack removeLastObject];
-
+    
 	if (humanReadable) [prev appendWhitespace:self];
 	[delegate writer:self appendBytes:"]" length:1];
     
 	[state transitionState:self];
     
-    [prev release];
     prev = nil;
-
+    
 	return YES;
 }
 
@@ -220,7 +212,7 @@ static NSNumber *kNegativeInfinity;
 	if ([state expectingKey:self]) return NO;
 	[state appendSeparator:self];
 	if (humanReadable) [state appendWhitespace:self];
-
+    
 	[delegate writer:self appendBytes:"null" length:4];
 	[state transitionState:self];
 	return YES;
@@ -231,7 +223,7 @@ static NSNumber *kNegativeInfinity;
 	if ([state expectingKey:self]) return NO;
 	[state appendSeparator:self];
 	if (humanReadable) [state appendWhitespace:self];
-
+    
 	if (x)
 		[delegate writer:self appendBytes:"true" length:4];
 	else
@@ -240,29 +232,28 @@ static NSNumber *kNegativeInfinity;
 	return YES;
 }
 
-
 - (BOOL)writeValue:(id)o {
 	if ([o isKindOfClass:[NSDictionary class]]) {
 		return [self writeObject:o];
-
+        
 	} else if ([o isKindOfClass:[NSArray class]]) {
 		return [self writeArray:o];
-
+        
 	} else if ([o isKindOfClass:[NSString class]]) {
 		[self writeString:o];
 		return YES;
-
+        
 	} else if ([o isKindOfClass:[NSNumber class]]) {
 		return [self writeNumber:o];
-
+        
 	} else if ([o isKindOfClass:[NSNull class]]) {
 		return [self writeNull];
-
+        
 	} else if ([o respondsToSelector:@selector(proxyForJson)]) {
 		return [self writeValue:[o proxyForJson]];
-
+        
 	}
-
+    
 	self.error = [NSString stringWithFormat:@"JSON serialisation not supported for %@", [o class]];
 	return NO;
 }
@@ -312,17 +303,17 @@ static const char *strForChar(int c) {
 	if ([state isInvalidState:self]) return NO;
 	[state appendSeparator:self];
 	if (humanReadable) [state appendWhitespace:self];
-
+    
 	NSMutableData *buf = [cache objectForKey:string];
 	if (!buf) {
-
+        
         NSUInteger len = [string lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
         const char *utf8 = [string UTF8String];
         NSUInteger written = 0, i = 0;
-
+        
         buf = [NSMutableData dataWithCapacity:(NSUInteger)(len * 1.1f)];
         [buf appendBytes:"\"" length:1];
-
+        
         for (i = 0; i < len; i++) {
             int c = utf8[i];
             BOOL isControlChar = c >= 0 && c < 32;
@@ -330,19 +321,19 @@ static const char *strForChar(int c) {
                 if (i - written)
                     [buf appendBytes:utf8 + written length:i - written];
                 written = i + 1;
-
+                
                 const char *t = strForChar(c);
                 [buf appendBytes:t length:strlen(t)];
             }
         }
-
+        
         if (i - written)
             [buf appendBytes:utf8 + written length:i - written];
-
+        
         [buf appendBytes:"\"" length:1];
         [cache setObject:buf forKey:string];
     }
-
+    
 	[delegate writer:self appendBytes:[buf bytes] length:[buf length]];
 	[state transitionState:self];
 	return YES;
@@ -351,29 +342,29 @@ static const char *strForChar(int c) {
 - (BOOL)writeNumber:(NSNumber*)number {
 	if (number == kTrue || number == kFalse)
 		return [self writeBool:[number boolValue]];
-
+    
 	if ([state isInvalidState:self]) return NO;
 	if ([state expectingKey:self]) return NO;
 	[state appendSeparator:self];
 	if (humanReadable) [state appendWhitespace:self];
-
+    
 	if ([kPositiveInfinity isEqualToNumber:number]) {
 		self.error = @"+Infinity is not a valid number in JSON";
 		return NO;
-
+        
 	} else if ([kNegativeInfinity isEqualToNumber:number]) {
 		self.error = @"-Infinity is not a valid number in JSON";
 		return NO;
-
+        
 	} else if ([kNotANumber isEqualToNumber:number]) {
 		self.error = @"NaN is not a valid number in JSON";
 		return NO;
 	}
-
+    
 	const char *objcType = [number objCType];
 	char num[128];
 	size_t len;
-
+    
 	switch (objcType[0]) {
 		case 'c': case 'i': case 's': case 'l': case 'q':
 			len = snprintf(num, sizeof num, "%lld", [number longLongValue]);

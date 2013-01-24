@@ -159,7 +159,6 @@ NSNumber * NSNumberBoolYES = nil;
     }
     
     return comparisonResult;
-    
 }
 
 @end

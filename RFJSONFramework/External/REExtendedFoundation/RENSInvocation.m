@@ -107,6 +107,8 @@
                 va_end(valist);
             }
         }
+        
+        [invocation retainArguments];
     }
     
     return invocation;
@@ -235,6 +237,8 @@
             }
         }
     }
+    
+    [invocation retainArguments];
     
     return invocation;
 }
@@ -381,6 +385,8 @@
                 }
             }
         }
+        
+        [invocation retainArguments];
     }
     
     return invocation;
@@ -443,6 +449,8 @@
                 [invocation retainArguments];
             }
         }
+        
+        [invocation retainArguments];
     }
     
     return invocation;
@@ -458,7 +466,7 @@
 {
     if (!invocation)
     {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: invocation can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: The invocation argument can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
     }
     
     [invocation invokeWithTarget:self];
@@ -490,7 +498,7 @@
 {
     if (!invocation)
     {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: invocation can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: The invocation argument can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
     }
     
     [invocation invokeWithTarget:self];
@@ -505,7 +513,7 @@
 {
     if (!invocation)
     {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: invocation can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: The invocation argument can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
     }
     
     [self performSelector:@selector(performInvocation:) onThread:thread withObject:invocation waitUntilDone:wait];
@@ -515,7 +523,7 @@
 {
     if (!invocation)
     {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: invocation can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: The invocation argument can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
     }
     
     [self performSelector:@selector(performInvocation:) onThread:thread withObject:invocation waitUntilDone:wait modes:modes];
@@ -525,7 +533,7 @@
 {
     if (!invocation)
     {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: invocation can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: The invocation argument can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
     }
     
     [self performSelector:@selector(performInvocation:) withObject:invocation afterDelay:delay];
@@ -535,7 +543,7 @@
 {
     if (!invocation)
     {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: invocation can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: The invocation argument can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
     }
     
     [self performSelector:@selector(performInvocation:) withObject:invocation afterDelay:delay inModes:modes];
@@ -545,7 +553,7 @@
 {
     if (!invocation)
     {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: invocation can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: The invocation argument can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
     }
     
     [self performSelectorInBackground:@selector(performInvocation:) withObject:invocation];
@@ -555,7 +563,7 @@
 {
     if (!invocation)
     {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: invocation can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: The invocation argument can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
     }
     
     [self performSelectorOnMainThread:@selector(performInvocation:) withObject:invocation waitUntilDone:wait];
@@ -565,7 +573,7 @@
 {
     if (!invocation)
     {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: invocation can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: The invocation argument can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
     }
     
     [self performSelectorOnMainThread:@selector(performInvocation:) withObject:invocation waitUntilDone:wait modes:modes];
@@ -575,7 +583,7 @@
 {
     if (!invocation)
     {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: invocation can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: The invocation argument can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
     }
     
     [self performSelectorOnSecondThread:@selector(performInvocation:) withObject:invocation waitUntilDone:wait];
@@ -585,93 +593,133 @@
 {
     if (!invocation)
     {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: invocation can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: The invocation argument can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
     }
     
     [self performSelectorOnSecondThread:@selector(performInvocation:) withObject:invocation waitUntilDone:wait modes:modes];
 }
 
+#pragma mark - Sending Messages on the Main Thread
+
 - (void)performSelectorOnMainThread:(SEL)selector waitUntilDone:(BOOL)wait
 {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector];
-    
     [self performInvocationOnMainThread:invocation waitUntilDone:wait];
 }
 
 - (void)performSelectorOnMainThread:(SEL)selector waitUntilDone:(BOOL)wait modes:(NSArray *)modes
 {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector];
-    
     [self performInvocationOnMainThread:invocation waitUntilDone:wait modes:modes];
 }
 
 - (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait
 {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2];
-    
     [self performInvocationOnMainThread:invocation waitUntilDone:wait];
 }
 
 - (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait modes:(NSArray *)modes
 {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2];
-    
     [self performInvocationOnMainThread:invocation waitUntilDone:wait modes:modes];
 }
 
 - (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait
 {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3];
-    
     [self performInvocationOnMainThread:invocation waitUntilDone:wait];
 }
 
 - (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait modes:(NSArray *)modes
 {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3];
-    
     [self performInvocationOnMainThread:invocation waitUntilDone:wait modes:modes];
 }
+
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 waitUntilDone:(BOOL)wait
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3, &object4];
+    [self performInvocationOnMainThread:invocation waitUntilDone:wait];
+}
+
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 waitUntilDone:(BOOL)wait modes:(NSArray *)modes
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3, &object4];
+    [self performInvocationOnMainThread:invocation waitUntilDone:wait modes:modes];
+}
+
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 waitUntilDone:(BOOL)wait
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3, &object4, &object5];
+    [self performInvocationOnMainThread:invocation waitUntilDone:wait];
+}
+
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 waitUntilDone:(BOOL)wait modes:(NSArray *)modes
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3, &object4, &object5];
+    [self performInvocationOnMainThread:invocation waitUntilDone:wait modes:modes];
+}
+
+#pragma mark - Sending Messages on the Second Thread
 
 - (void)performSelectorOnSecondThread:(SEL)selector waitUntilDone:(BOOL)wait
 {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector];
-    
     [self performInvocationOnSecondThread:invocation waitUntilDone:wait];
 }
 
 - (void)performSelectorOnSecondThread:(SEL)selector waitUntilDone:(BOOL)wait modes:(NSArray *)modes
 {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector];
-    
     [self performInvocationOnSecondThread:invocation waitUntilDone:wait modes:modes];
 }
 
 - (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait
 {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2];
-    
     [self performInvocationOnSecondThread:invocation waitUntilDone:wait];
 }
 
 - (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 waitUntilDone:(BOOL)wait modes:(NSArray *)modes
 {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2];
-    
     [self performInvocationOnSecondThread:invocation waitUntilDone:wait modes:modes];
 }
 
 - (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait
 {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3];
-    
     [self performInvocationOnSecondThread:invocation waitUntilDone:wait];
 }
 
 - (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 waitUntilDone:(BOOL)wait modes:(NSArray *)modes
 {
     NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3];
-    
+    [self performInvocationOnSecondThread:invocation waitUntilDone:wait modes:modes];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 waitUntilDone:(BOOL)wait
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3, &object4];
+    [self performInvocationOnSecondThread:invocation waitUntilDone:wait];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 waitUntilDone:(BOOL)wait modes:(NSArray *)modes
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3, &object4];
+    [self performInvocationOnSecondThread:invocation waitUntilDone:wait modes:modes];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 waitUntilDone:(BOOL)wait
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3, &object4, &object5];
+    [self performInvocationOnSecondThread:invocation waitUntilDone:wait];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 waitUntilDone:(BOOL)wait modes:(NSArray *)modes
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector retainedArguments:YES arguments:&object1, &object2, &object3, &object4, &object5];
     [self performInvocationOnSecondThread:invocation waitUntilDone:wait modes:modes];
 }
 

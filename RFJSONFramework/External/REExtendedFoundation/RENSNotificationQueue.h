@@ -64,3 +64,64 @@ enum
 - (void)dequeueNotificationsMatchingName:(NSString *)aName object:(id)anObject userInfo:(NSDictionary *)aUserInfo coalesceMask:(NSUInteger)coalesceMask;
 
 @end
+
+@interface NSInvocation (NSInvocationRENSNotificationQueue)
+
+// Dispatching an Invocation
+
+- (void)invokeWithTarget:(id)target postingStyle:(NSPostingStyle)postingStyle;
+- (void)invokePostingStyle:(NSPostingStyle)postingStyle;
+
+@end
+
+FOUNDATION_EXTERN NSString * const NSInvocationInvokeNotification;
+FOUNDATION_EXTERN NSString * const NSInvocationInvokeInovationKey;
+FOUNDATION_EXTERN NSString * const NSInvocationInvokeTargetKey;
+
+@interface NSObject (NSObjectRENSNotificationQueue)
+
+// Sending Messages
+
+- (void)performInvocation:(NSInvocation *)invocation postingStyle:(NSPostingStyle)postingStyle;
+
+- (void)performSelector:(SEL)selector postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelector:(SEL)selector withObject:(id)object postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2 postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 postingStyle:(NSPostingStyle)postingStyle;
+
+// Sending Messages on a Thread
+
+- (void)performInvocation:(NSInvocation *)invocation onThread:(NSThread *)thread postingStyle:(NSPostingStyle)postingStyle;
+
+- (void)performSelector:(SEL)selector onThread:(NSThread *)thread postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelector:(SEL)selector onThread:(NSThread *)thread withObject:(id)object postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelector:(SEL)selector onThread:(NSThread *)thread withObject:(id)object1 withObject:(id)object2 postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelector:(SEL)selector onThread:(NSThread *)thread withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelector:(SEL)selector onThread:(NSThread *)thread withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelector:(SEL)selector onThread:(NSThread *)thread withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 postingStyle:(NSPostingStyle)postingStyle;
+
+// Sending Messages on the Main Thread
+
+- (void)performInvocationOnMainThread:(NSInvocation *)invocation postingStyle:(NSPostingStyle)postingStyle;
+
+- (void)performSelectorOnMainThread:(SEL)selector postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 postingStyle:(NSPostingStyle)postingStyle;
+
+// Sending Messages on the Second Thread
+
+- (void)performInvocationOnSecondThread:(NSInvocation *)invocation postingStyle:(NSPostingStyle)postingStyle;
+
+- (void)performSelectorOnSecondThread:(SEL)selector postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 postingStyle:(NSPostingStyle)postingStyle;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 postingStyle:(NSPostingStyle)postingStyle;
+
+@end

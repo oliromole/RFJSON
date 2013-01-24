@@ -40,6 +40,8 @@
 
 #import "RENSThread.h"
 
+#import "REExtendedFoundation.h"
+
 @interface RENSOtherThread : NSThread
 
 @end
@@ -88,9 +90,9 @@
             }
         }
         
-        NSAssert(!self.isCancelled, @"The %@ class is incorrectly used.", NSStringFromClass([self class]));
-        NSAssert(!self.isFinished, @"The %@ class is incorrectly used.", NSStringFromClass([self class]));
-        NSAssert((runLoopRunResult != kCFRunLoopRunStopped), @"The %@ class is incorrectly used.", NSStringFromClass([self class]));
+        RENSAssert(!self.isCancelled, @"The %@ class is incorrectly used.", NSStringFromClass([self class]));
+        RENSAssert(!self.isFinished, @"The %@ class is incorrectly used.", NSStringFromClass([self class]));
+        RENSAssert((runLoopRunResult != kCFRunLoopRunStopped), @"The %@ class is incorrectly used.", NSStringFromClass([self class]));
     }
 }
 
@@ -140,17 +142,15 @@ static RENSOtherThread * volatile NSThread_SecondThread = nil;
 
 #pragma mark - Sending Messages
 
-- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)argument waitUntilDone:(BOOL)wait modes:(NSArray *)array
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)argument waitUntilDone:(BOOL)wait modes:(NSArray *)modes
 {
     NSThread *secondThread = [NSThread secondThread];
-    
-    [self performSelector:selector onThread:secondThread withObject:argument waitUntilDone:wait modes:array];
+    [self performSelector:selector onThread:secondThread withObject:argument waitUntilDone:wait modes:modes];
 }
 
 - (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)argument waitUntilDone:(BOOL)wait
 {
     NSThread *secondThread = [NSThread secondThread];
-    
     [self performSelector:selector onThread:secondThread withObject:argument waitUntilDone:wait];
 }
 

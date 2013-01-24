@@ -43,10 +43,17 @@
 #import "REExtendedCompiler.h"
 
 FOUNDATION_EXTERN const NSRange NSRangeNotFound;
+FOUNDATION_EXTERN const NSRange NSRangeZero;
 
 NS_INLINE BOOL NSRangeIsNotFound(NSRange range)
 {
     BOOL result = ((range.location == NSNotFound) && (range.length == 0));
+    return result;
+}
+
+NS_INLINE BOOL NSRangeIsZero(NSRange range)
+{
+    BOOL result = ((range.location == 0) && (range.length == 0));
     return result;
 }
 

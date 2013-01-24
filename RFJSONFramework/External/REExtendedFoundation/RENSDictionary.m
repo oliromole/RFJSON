@@ -40,6 +40,8 @@
 
 #import "RENSDictionary.h"
 
+#import <objc/runtime.h>
+
 @implementation NSDictionary (NSDictionaryRENSDictionary)
 
 #pragma mark - Accessing Keys and Values
@@ -90,7 +92,23 @@
 
 @end
 
-@implementation NSMutableDictionary (NSMutableDictionaryRENSDictionary)
+static id NSDictionary_ObjectForKeyedSubscript(NSDictionary *self, SEL _cmd, id key)
+{
+    printf("a");
+    id object = [self objectForKey:key];
+    return object;
+}
+
+@implementation NSDictionary (NSDictionaryRENSDictionary_6_0)
+
++ (void)load
+{
+    class_addMethod([NSDictionary class], @selector(objectForKeyedSubscript:), (IMP)NSDictionary_ObjectForKeyedSubscript, "@12@0:4@8");
+}
+
+@end
+
+@implementation NSMutableDictionary (NSMutableDictionaryRENSMutableDictionary)
 
 #pragma mark - Removing Entries From a Mutable Dictionary
 
@@ -113,6 +131,20 @@
     
     RENSObjectRelease(mutableDictionary);
     mutableDictionary = nil;
+}
+
+@end
+
+static void NSMutableDictionary_setObject_ForKeyedSubscript(NSMutableDictionary *self, SEL _cmd, id object, id<NSCopying> key)
+{
+    [self setObject:object forKey:key];
+}
+
+@implementation NSMutableDictionary (NSMutableDictionaryRENSMutableDictionary_6_0_Dynamic)
+
++ (void)load
+{
+    class_addMethod([NSDictionary class], @selector(setObject:forKeyedSubscript:), (IMP)NSMutableDictionary_setObject_ForKeyedSubscript, "v16@0:4@8@12");
 }
 
 @end

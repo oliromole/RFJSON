@@ -58,8 +58,7 @@
 
 // Sending Messages
 
-- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)argument waitUntilDone:(BOOL)wait modes:(NSArray *)array;
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)argument waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
 - (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)argument waitUntilDone:(BOOL)wait;
 
 @end
-

@@ -6,16 +6,16 @@
  modification, are permitted provided that the following conditions are
  met:
  
-   Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-  
-   Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the distribution.
+ Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.
  
-   Neither the name of the the author nor the names of its contributors
-   may be used to endorse or promote products derived from this software
-   without specific prior written permission.
+ Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in the
+ documentation and/or other materials provided with the distribution.
+ 
+ Neither the name of the the author nor the names of its contributors
+ may be used to endorse or promote products derived from this software
+ without specific prior written permission.
  
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
@@ -39,8 +39,6 @@
 
 @end
 
-
-
 @implementation SBJsonStreamParserAdapter
 
 @synthesize delegate;
@@ -57,33 +55,25 @@
 		currentType = SBJsonStreamParserAdapterNone;
 	}
 	return self;
-}	
-
-- (void)dealloc {
-    [array release];
-    array = nil;
-    
-    [dict release];
-    dict = nil;
-    
-    [keyStack release];
-    keyStack = nil;
-    
-    [stack release];
-    stack = nil;
-
-    [super dealloc];
 }
 
-#pragma mark Private methods
+- (void)dealloc {
+    array = nil;
+    
+    dict = nil;
+    
+    keyStack = nil;
+    
+    stack = nil;
+}
+
+#pragma mark Private Methods
 
 - (void)pop {
 	[stack removeLastObject];
     
-    [array release];
 	array = nil;
 	
-    [dict release];
     dict = nil;
     
 	currentType = SBJsonStreamParserAdapterNone;
@@ -91,12 +81,10 @@
 	id value = [stack lastObject];
 	
 	if ([value isKindOfClass:[NSArray class]]) {
-        [array release];
-		array = [value retain];
+		array = value;
 		currentType = SBJsonStreamParserAdapterArray;
 	} else if ([value isKindOfClass:[NSDictionary class]]) {
-        [dict release];
-		dict = [value retain];
+		dict = value;
 		currentType = SBJsonStreamParserAdapterObject;
 	}
 }
@@ -108,7 +96,7 @@
 		case SBJsonStreamParserAdapterArray:
 			[array addObject:obj];
 			break;
-
+            
 		case SBJsonStreamParserAdapterObject:
 			NSParameterAssert(keyStack.count);
 			[dict setObject:obj forKey:[keyStack lastObject]];
@@ -120,20 +108,18 @@
 				[delegate parser:parser foundArray:obj];
 			} else {
 				[delegate parser:parser foundObject:obj];
-			}				
+			}
 			break;
-
+            
 		default:
 			break;
 	}
 }
 
-
-#pragma mark Delegate methods
+#pragma mark Delegate Methods
 
 - (void)parserFoundObjectStart:(SBJsonStreamParser*)parser {
 	if (++depth > self.levelsToSkip) {
-        [dict release];
 		dict = [[NSMutableDictionary alloc] init];
 		[stack addObject:dict];
 		currentType = SBJsonStreamParserAdapterObject;
@@ -146,17 +132,14 @@
 
 - (void)parserFoundObjectEnd:(SBJsonStreamParser*)parser {
 	if (depth-- > self.levelsToSkip) {
-		id value = [dict retain];
+		id value = dict;
 		[self pop];
 		[self parser:parser found:value];
-        [value release];
-        value = nil;
 	}
 }
 
 - (void)parserFoundArrayStart:(SBJsonStreamParser*)parser {
 	if (++depth > self.levelsToSkip) {
-        [array release];
 		array = [[NSMutableArray alloc] init];
 		[stack addObject:array];
 		currentType = SBJsonStreamParserAdapterArray;
@@ -165,16 +148,14 @@
 
 - (void)parserFoundArrayEnd:(SBJsonStreamParser*)parser {
 	if (depth-- > self.levelsToSkip) {
-		id value = [array retain];
+		id value = array;
 		[self pop];
 		[self parser:parser found:value];
-        [value release];
-        value = nil;
 	}
 }
 
 - (void)parser:(SBJsonStreamParser*)parser foundBoolean:(BOOL)x {
-	[self parser:parser found:[NSNumber numberWithBool:x]];
+	[self parser:parser found:[[NSNumber alloc] initWithBool:x]];
 }
 
 - (void)parserFoundNull:(SBJsonStreamParser*)parser {

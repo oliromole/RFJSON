@@ -73,6 +73,8 @@
 		30B31DD31678BF9700CCE51F /* RENSSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B31DC81678BF9700CCE51F /* RENSSet.m */; };
 		30B31DD41678BF9700CCE51F /* RENSThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B31DCA1678BF9700CCE51F /* RENSThread.m */; };
 		30B31DD51678BF9700CCE51F /* RENSURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B31DCC1678BF9700CCE51F /* RENSURLRequest.m */; };
+		30DB4C7B16B0CEB800F7573A /* RENSException.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB4C7816B0CEB800F7573A /* RENSException.m */; };
+		30DB4C7C16B0CEB800F7573A /* RENSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DB4C7A16B0CEB800F7573A /* RENSNull.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -207,6 +209,10 @@
 		30B31DCA1678BF9700CCE51F /* RENSThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSThread.m; sourceTree = "<group>"; };
 		30B31DCB1678BF9700CCE51F /* RENSURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSURLRequest.h; sourceTree = "<group>"; };
 		30B31DCC1678BF9700CCE51F /* RENSURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSURLRequest.m; sourceTree = "<group>"; };
+		30DB4C7716B0CEB800F7573A /* RENSException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSException.h; sourceTree = "<group>"; };
+		30DB4C7816B0CEB800F7573A /* RENSException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSException.m; sourceTree = "<group>"; };
+		30DB4C7916B0CEB800F7573A /* RENSNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RENSNull.h; sourceTree = "<group>"; };
+		30DB4C7A16B0CEB800F7573A /* RENSNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RENSNull.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,6 +390,8 @@
 				308412001602A9B60032F2E6 /* RENSDictionary.m */,
 				30B31DC11678BF9700CCE51F /* RENSError.h */,
 				30B31DC21678BF9700CCE51F /* RENSError.m */,
+				30DB4C7716B0CEB800F7573A /* RENSException.h */,
+				30DB4C7816B0CEB800F7573A /* RENSException.m */,
 				308412011602A9B60032F2E6 /* RENSFileManager.h */,
 				308412021602A9B60032F2E6 /* RENSFileManager.m */,
 				308412031602A9B60032F2E6 /* RENSIndexPath.h */,
@@ -398,6 +406,8 @@
 				3084120A1602A9B60032F2E6 /* RENSNotification.m */,
 				3084120B1602A9B60032F2E6 /* RENSNotificationQueue.h */,
 				3084120C1602A9B60032F2E6 /* RENSNotificationQueue.m */,
+				30DB4C7916B0CEB800F7573A /* RENSNull.h */,
+				30DB4C7A16B0CEB800F7573A /* RENSNull.m */,
 				3084120D1602A9B60032F2E6 /* RENSNumber.h */,
 				3084120E1602A9B60032F2E6 /* RENSNumber.m */,
 				3084120F1602A9B60032F2E6 /* RENSObjCRuntime.h */,
@@ -599,6 +609,8 @@
 				30B31DD31678BF9700CCE51F /* RENSSet.m in Sources */,
 				30B31DD41678BF9700CCE51F /* RENSThread.m in Sources */,
 				30B31DD51678BF9700CCE51F /* RENSURLRequest.m in Sources */,
+				30DB4C7B16B0CEB800F7573A /* RENSException.m in Sources */,
+				30DB4C7C16B0CEB800F7573A /* RENSNull.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

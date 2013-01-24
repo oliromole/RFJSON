@@ -45,6 +45,8 @@
 
 #import <pthread.h>
 
+#import "REExtendedFoundation.h"
+
 static NSObject * volatile NSObject_SingletonSynchronizer = nil;
 
 typedef struct RENSObjectDictionaryHashTableLevel1
@@ -146,26 +148,26 @@ static void NSObject_ObjectDictionary_Dealloc(id self, SEL _cmd)
     int                 result = 0;
     
     result = pthread_mutexattr_init(&mutextAttr);
-    NSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not initialize a mutex attribute.");
+    RENSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not initialize a mutex attribute.");
     
     result = pthread_mutexattr_setpshared(&mutextAttr, PTHREAD_PROCESS_PRIVATE );
-    NSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not set a process-shared of the mutex attribute.");
+    RENSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not set a process-shared of the mutex attribute.");
     
     result = pthread_mutexattr_settype(&mutextAttr, PTHREAD_MUTEX_NORMAL);
-    NSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not set a type of the mutex attribute.");
+    RENSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not set a type of the mutex attribute.");
     
     result = pthread_mutex_init(&NSObject_ObjectDictionary_Mutext, &mutextAttr);
-    NSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not initialize a mutex.");
+    RENSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not initialize a mutex.");
     
     result = pthread_mutexattr_destroy(&mutextAttr);
-    NSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not destroy the mutex attribute.");
+    RENSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not destroy the mutex attribute.");
 }
 
 #pragma mark - Synchronizing the Singleton
 
 + (NSObject *)singletonSynchronizer
 {
-    NSAssert(NSObject_SingletonSynchronizer, @"The %@ class is incorrectly used.", NSStringFromClass([self class]));
+    RENSAssert(NSObject_SingletonSynchronizer, @"The %@ class is incorrectly used.", NSStringFromClass([self class]));
     
     return NSObject_SingletonSynchronizer;
 }
@@ -178,20 +180,20 @@ static void NSObject_ObjectDictionary_Dealloc(id self, SEL _cmd)
     int                  result = 0;
     
     result = pthread_mutex_lock(&NSObject_ObjectDictionary_Mutext);
-    NSAssert((result == 0), @"The %@ method can not lock the mutex.", NSStringFromSelector(_cmd));
+    RENSAssert((result == 0), @"The %@ method can not lock the mutex.", NSStringFromSelector(_cmd));
     
     if (!NSObject_ObjectDictionary_Initialized)
     {
         NSObject *object = [[NSObject alloc] init];
-        NSAssert(object, @"The %@ method can not create a object.", NSStringFromSelector(_cmd));
+        RENSAssert(object, @"The %@ method can not create a object.", NSStringFromSelector(_cmd));
         
         NSObject_ObjectDictionary_ObjectTypeID = CFGetTypeID(RECMBridge(CFTypeRef, object));
         
         RENSObjectRelease(object);
         object = nil;
         
-        NSObject_ObjectDictionary_HashTableLevel0s = malloc(sizeof(RENSObjectDictionaryHashTableLevel0) * NS_OBJECT_OBJECT_DICTIONARY_HASH_TABLE_LEVEL0S_LENGTH);
-        NSAssert(NSObject_ObjectDictionary_HashTableLevel0s, @"The %@ method can not alloc memory.", NSStringFromSelector(_cmd));
+        NSObject_ObjectDictionary_HashTableLevel0s = (RENSObjectDictionaryHashTableLevel0 *)malloc(sizeof(RENSObjectDictionaryHashTableLevel0) * NS_OBJECT_OBJECT_DICTIONARY_HASH_TABLE_LEVEL0S_LENGTH);
+        RENSAssert(NSObject_ObjectDictionary_HashTableLevel0s, @"The %@ method can not alloc memory.", NSStringFromSelector(_cmd));
         
         memset(NSObject_ObjectDictionary_HashTableLevel0s, 0, (sizeof(RENSObjectDictionaryHashTableLevel0) * NS_OBJECT_OBJECT_DICTIONARY_HASH_TABLE_LEVEL0S_LENGTH));
         
@@ -249,7 +251,7 @@ static void NSObject_ObjectDictionary_Dealloc(id self, SEL _cmd)
                     
                     hashTableLevel0->level1sCount++;
                     
-                    NSAssert((hashTableLevel0->level1sCount <= hashTableLevel0->level1sLength), @"The %@ method has a logical error.", NSStringFromSelector(_cmd));
+                    RENSAssert((hashTableLevel0->level1sCount <= hashTableLevel0->level1sLength), @"The %@ method has a logical error.", NSStringFromSelector(_cmd));
                     
                     break;
                 }
@@ -260,10 +262,10 @@ static void NSObject_ObjectDictionary_Dealloc(id self, SEL _cmd)
         
         if (!objectDictionary)
         {
-            NSAssert((hashTableLevel0->level1sCount == hashTableLevel0->level1sLength), @"The %@ method has a logical error.", NSStringFromSelector(_cmd));
+            RENSAssert((hashTableLevel0->level1sCount == hashTableLevel0->level1sLength), @"The %@ method has a logical error.", NSStringFromSelector(_cmd));
             
-            RENSObjectDictionaryHashTableLevel1 *hashTableLevel1s = malloc(sizeof(RENSObjectDictionaryHashTableLevel1) * (hashTableLevel0->level1sLength + 1));
-            NSAssert(hashTableLevel1s, @"The %@ method can not alloc memory.", NSStringFromSelector(_cmd));
+            RENSObjectDictionaryHashTableLevel1 *hashTableLevel1s = (RENSObjectDictionaryHashTableLevel1 *)malloc(sizeof(RENSObjectDictionaryHashTableLevel1) * (hashTableLevel0->level1sLength + 1));
+            RENSAssert(hashTableLevel1s, @"The %@ method can not alloc memory.", NSStringFromSelector(_cmd));
             
             memcpy(hashTableLevel1s, hashTableLevel0->level1s, (sizeof(RENSObjectDictionaryHashTableLevel1) * hashTableLevel0->level1sLength));
             
@@ -282,7 +284,7 @@ static void NSObject_ObjectDictionary_Dealloc(id self, SEL _cmd)
     }
     
     result = pthread_mutex_unlock(&NSObject_ObjectDictionary_Mutext);
-    NSAssert((result == 0), @"The %@ method can not unlock the mutex.", NSStringFromSelector(_cmd));
+    RENSAssert((result == 0), @"The %@ method can not unlock the mutex.", NSStringFromSelector(_cmd));
     
     return objectDictionary;
 }
@@ -321,6 +323,46 @@ static void NSObject_ObjectDictionary_Dealloc(id self, SEL _cmd)
 {
     NSUInteger referenceHash = (NSUInteger)self;
     return referenceHash;
+}
+
++ (NSComparisonResult)compareLeftObjectReference:(id)leftObject rightObjectReference:(id)rightObject
+{
+    NSComparisonResult comparisonResult;
+    
+    if (leftObject < rightObject)
+    {
+        comparisonResult = NSOrderedAscending;
+    }
+    
+    else if (leftObject > rightObject)
+    {
+        comparisonResult = NSOrderedDescending;
+    }
+    
+    else
+    {
+        comparisonResult = NSOrderedSame;
+    }
+    
+    return comparisonResult;
+}
+
++ (BOOL)isEqualLeftObject:(id)leftObject rightObject:(id)rightObject
+{
+    BOOL isEqual = (leftObject == rightObject);
+    
+    if (isEqual && leftObject && rightObject)
+    {
+        isEqual = [leftObject isEqual:rightObject];
+    }
+    
+    return isEqual;
+}
+
++ (BOOL)isEqualLeftObjectReference:(id)leftObject rightObjectReference:(id)rightObject
+{
+    BOOL isEqual = (leftObject == rightObject);
+    return isEqual;
 }
 
 #pragma mark - Sending Messages

@@ -40,6 +40,9 @@
 
 #import "RENSNotificationQueue.h"
 
+#import "RENSInvocation.h"
+#import "RENSNotification.h"
+
 @implementation NSNotificationQueue (NSNotificationQueueRENSNotificationQueue)
 
 #pragma mark - Managing Notifications
@@ -115,6 +118,260 @@
     NSNotification *notification = [NSNotification notificationWithName:aName object:anObject userInfo:aUserInfo];
     
     [self dequeueNotificationsMatching:notification coalesceMask:coalesceMask];
+}
+
+@end
+
+@implementation NSInvocation (NSInvocationRENSNotificationQueue)
+
+#pragma mark - Dispatching an Invocation
+
+- (void)invokeWithTarget:(id)target postingStyle:(NSPostingStyle)postingStyle
+{
+    if (!target)
+    {
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: The target argument can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+    }
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(invocationInvokeNotification:) name:NSInvocationInvokeNotification object:self];
+    
+    NSNotificationQueue *notificationQueue = [NSNotificationQueue defaultQueue];
+    [notificationQueue enqueueNotificationName:NSInvocationInvokeNotification
+                                        object:self
+                                      userInfo:(@{
+                                                NSInvocationInvokeInovationKey : self,
+                                                NSInvocationInvokeTargetKey : target
+                                                })
+                                  postingStyle:postingStyle];
+}
+
+- (void)invokePostingStyle:(NSPostingStyle)postingStyle
+{
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(invocationInvokeNotification:) name:NSInvocationInvokeNotification object:self];
+    
+    NSNotificationQueue *notificationQueue = [NSNotificationQueue defaultQueue];
+    [notificationQueue enqueueNotificationName:NSInvocationInvokeNotification
+                                        object:self
+                                      userInfo:(@{
+                                                NSInvocationInvokeInovationKey : self
+                                                })
+                                  postingStyle:postingStyle];
+}
+
+#pragma mark - Notitications
+
+#pragma mark NSInvocation Notitications
+
+- (void)invocationInvokeNotification:(NSNotification *)notitication
+{
+    if (NSNotificationEqualToNotificationNameAndObject(notitication, NSInvocationInvokeNotification, self))
+    {
+        NSDictionary *userInfo = notitication.userInfo;
+        id invokeTarget = userInfo[NSInvocationInvokeTargetKey];
+        
+        if (invokeTarget)
+        {
+            [self invokeWithTarget:invokeTarget];
+        }
+        
+        else
+        {
+            [self invoke];
+        }
+        
+        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+        [notificationCenter removeObserver:self name:NSInvocationInvokeNotification object:self];
+    }
+}
+
+@end
+
+NSString * const NSInvocationInvokeNotification = @"NSInvocationInvokeNotification";
+NSString * const NSInvocationInvokeInovationKey = @"NSInvocationInvokeInovationKey";
+NSString * const NSInvocationInvokeTargetKey = @"NSInvocationInvokeTargetKey";
+
+@implementation NSObject (NSObjectRENSNotificationQueue)
+
+#pragma mark - Sending Messages
+
+- (void)performInvocation:(NSInvocation *)invocation postingStyle:(NSPostingStyle)postingStyle
+{
+    if (!invocation)
+    {
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"-[%@ %@]: The invocation argument can not be nil.", NSStringFromClass(self.class), NSStringFromSelector(_cmd)] userInfo:nil];
+    }
+    
+    [invocation invokeWithTarget:self postingStyle:postingStyle];
+}
+
+- (void)performSelector:(SEL)selector postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector];
+    [invocation invokePostingStyle:postingStyle];
+}
+
+- (void)performSelector:(SEL)selector withObject:(id)object postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object];
+    [invocation invokePostingStyle:postingStyle];
+}
+
+- (void)performSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2];
+    [invocation invokePostingStyle:postingStyle];
+}
+
+- (void)performSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2, &object3];
+    [invocation invokePostingStyle:postingStyle];
+}
+
+- (void)performSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2, &object3, &object4];
+    [invocation invokePostingStyle:postingStyle];
+}
+
+- (void)performSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2, &object3, &object4, &object5, nil];
+    [invocation invokePostingStyle:postingStyle];
+}
+
+#pragma mark - Sending Messages on a Thread
+
+- (void)performInvocation:(NSInvocation *)invocation onThread:(NSThread *)thread postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation2 = [NSInvocation invocationWithTarget:self selector:@selector(performInvocation:postingStyle:) arguments:&invocation, &postingStyle];
+    [self performInvocation:invocation2 onThread:thread waitUntilDone:NO];
+}
+
+- (void)performSelector:(SEL)selector onThread:(NSThread *)thread postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector];
+    [self performInvocation:invocation onThread:thread postingStyle:postingStyle];
+}
+
+- (void)performSelector:(SEL)selector onThread:(NSThread *)thread withObject:(id)object postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object];
+    [self performInvocation:invocation onThread:thread postingStyle:postingStyle];
+}
+
+- (void)performSelector:(SEL)selector onThread:(NSThread *)thread withObject:(id)object1 withObject:(id)object2 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2];
+    [self performInvocation:invocation onThread:thread postingStyle:postingStyle];
+}
+
+- (void)performSelector:(SEL)selector onThread:(NSThread *)thread withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2, &object3];
+    [self performInvocation:invocation onThread:thread postingStyle:postingStyle];
+}
+
+- (void)performSelector:(SEL)selector onThread:(NSThread *)thread withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2, &object3, &object4];
+    [self performInvocation:invocation onThread:thread postingStyle:postingStyle];
+}
+
+- (void)performSelector:(SEL)selector onThread:(NSThread *)thread withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2, &object3, &object4, &object5];
+    [self performInvocation:invocation onThread:thread postingStyle:postingStyle];
+}
+
+#pragma mark - Sending Messages on the Main Thread
+
+- (void)performInvocationOnMainThread:(NSInvocation *)invocation postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation2 = [NSInvocation invocationWithTarget:self selector:@selector(performInvocation:postingStyle:) arguments:&invocation, &postingStyle];
+    [self performInvocationOnMainThread:invocation2 waitUntilDone:NO];
+}
+
+- (void)performSelectorOnMainThread:(SEL)selector postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector];
+    [self performInvocationOnMainThread:invocation postingStyle:postingStyle];
+}
+
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object];
+    [self performInvocationOnMainThread:invocation postingStyle:postingStyle];
+}
+
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2];
+    [self performInvocationOnMainThread:invocation postingStyle:postingStyle];
+}
+
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2, &object3];
+    [self performInvocationOnMainThread:invocation postingStyle:postingStyle];
+}
+
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2, &object3, &object4];
+    [self performInvocationOnMainThread:invocation postingStyle:postingStyle];
+}
+
+- (void)performSelectorOnMainThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2, &object3, &object4, &object5];
+    [self performInvocationOnMainThread:invocation postingStyle:postingStyle];
+}
+
+#pragma mark - Sending Messages on the Second Thread
+
+- (void)performInvocationOnSecondThread:(NSInvocation *)invocation postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation2 = [NSInvocation invocationWithTarget:self selector:@selector(performInvocation:postingStyle:) arguments:&invocation, &postingStyle];
+    [self performInvocationOnSecondThread:invocation2 waitUntilDone:NO];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector];
+    [self performInvocationOnSecondThread:invocation postingStyle:postingStyle];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object];
+    [self performInvocationOnSecondThread:invocation postingStyle:postingStyle];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2];
+    [self performInvocationOnSecondThread:invocation postingStyle:postingStyle];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2, &object3];
+    [self performInvocationOnSecondThread:invocation postingStyle:postingStyle];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2, &object3, &object4];
+    [self performInvocationOnSecondThread:invocation postingStyle:postingStyle];
+}
+
+- (void)performSelectorOnSecondThread:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5 postingStyle:(NSPostingStyle)postingStyle
+{
+    NSInvocation *invocation = [NSInvocation invocationWithTarget:self selector:selector arguments:&object1, &object2, &object3, &object4, &object5];
+    [self performInvocationOnSecondThread:invocation postingStyle:postingStyle];
 }
 
 @end

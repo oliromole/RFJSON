@@ -61,19 +61,18 @@
 - (BOOL)fileExistsAtURL:(NSURL *)url isDirectory:(BOOL *)isDirectory
 {
     BOOL fileExists = NO;
+    BOOL isDirectory2 = NO;
     
     NSString *path = url.path;
     
     if (path)
     {
-        BOOL isDirectory2 = (isDirectory ? *isDirectory : NO);
-        
         fileExists = [self fileExistsAtPath:path isDirectory:(isDirectory ? &isDirectory2 : NULL)];
-        
-        if (isDirectory)
-        {
-            *isDirectory = isDirectory2;
-        }
+    }
+    
+    if (isDirectory)
+    {
+        *isDirectory = isDirectory2;
     }
     
     return fileExists;

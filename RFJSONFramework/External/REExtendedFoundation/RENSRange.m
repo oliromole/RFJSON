@@ -41,3 +41,4 @@
 #import "RENSRange.h"
 
 const NSRange NSRangeNotFound = {NSNotFound, 0};
+const NSRange NSRangeZero = {0, 0};

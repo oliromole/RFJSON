@@ -79,7 +79,7 @@ static NSDictionary * volatile RFJSONOjectSkipParser_JSONObjectKeyJSONNodeParser
             if (!RFJSONOjectSkipParser_JSONObjectKeyJSONNodeParserTypes)
             {
                 NSMutableDictionary *jsonObjectKeyJSONNodeParserTypes = [[RFJSONOjectParser jsonObjectKeyJSONNodeParserTypes] mutableCopy];
-                NSAssert(jsonObjectKeyJSONNodeParserTypes, @"The method has a logical error.");
+                RENSAssert(jsonObjectKeyJSONNodeParserTypes, @"The method has a logical error.");
                 
                 RFJSONOjectSkipParser_JSONObjectKeyJSONNodeParserTypes = [jsonObjectKeyJSONNodeParserTypes copy];
                 

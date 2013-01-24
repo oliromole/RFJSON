@@ -31,7 +31,6 @@
 
 #import "SBJsonUTF8Stream.h"
 
-
 @implementation SBJsonUTF8Stream
 
 @synthesize index = _index;
@@ -45,10 +44,7 @@
 }
 
 - (void)dealloc {
-    [_data release];
     _data = nil;
-    
-    [super dealloc];
 }
 
 - (void)appendData:(NSData *)data_ {
@@ -63,11 +59,10 @@
     
     [_data appendData:data_];
     
-    // This is an optimisation. 
+    // This is an optimisation.
     _bytes = (const char*)[_data bytes];
     _length = [_data length];
 }
-
 
 - (BOOL)getUnichar:(unichar*)ch {
     if (_index < _length) {
@@ -92,9 +87,9 @@
             case '"':
             case '\\':
             case 0 ... 0x1f:
-                *string = [[[NSString alloc] initWithBytes:(_bytes + start)
+                *string = [[NSString alloc] initWithBytes:(_bytes + start)
                                                    length:(_index - start)
-                                                 encoding:NSUTF8StringEncoding] autorelease];
+                                                 encoding:NSUTF8StringEncoding];
                 return YES;
                 break;
             default:
@@ -139,9 +134,8 @@
 }
 
 - (NSString*)stringWithRange:(NSRange)range {
-    return [[[NSString alloc] initWithBytes:_bytes + range.location length:range.length encoding:NSUTF8StringEncoding] autorelease];
+    return [[NSString alloc] initWithBytes:_bytes + range.location length:range.length encoding:NSUTF8StringEncoding];
     
 }
-
 
 @end

@@ -31,7 +31,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface SBJsonUTF8Stream : NSObject {
 @private
     const char *_bytes;
@@ -39,7 +38,7 @@
     NSUInteger _length;
 }
 
-@property (assign) NSUInteger index;
+@property NSUInteger index;
 
 - (void)appendData:(NSData*)data_;
 

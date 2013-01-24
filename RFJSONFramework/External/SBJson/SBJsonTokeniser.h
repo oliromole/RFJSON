@@ -41,7 +41,7 @@ typedef enum {
     
     sbjson_token_object_start,
     sbjson_token_object_end,
-
+    
     sbjson_token_separator,
     sbjson_token_keyval_separator,
     
@@ -55,7 +55,7 @@ typedef enum {
 
 @class SBJsonUTF8Stream;
 
-@interface SBJsonTokeniser : NSObject 
+@interface SBJsonTokeniser : NSObject
 
 @property (strong) SBJsonUTF8Stream *stream;
 @property (copy) NSString *error;

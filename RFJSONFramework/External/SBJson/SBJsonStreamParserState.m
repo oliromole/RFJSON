@@ -1,22 +1,22 @@
 /*
  Copyright (c) 2010, Stig Brautaset.
  All rights reserved.
-
+ 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are
  met:
-
-   Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-
-   Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the distribution.
-
-   Neither the name of the the author nor the names of its contributors
-   may be used to endorse or promote products derived from this software
-   without specific prior written permission.
-
+ 
+ Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.
+ 
+ Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in the
+ documentation and/or other materials provided with the distribution.
+ 
+ Neither the name of the the author nor the names of its contributors
+ may be used to endorse or promote products derived from this software
+ without specific prior written permission.
+ 
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
  TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
@@ -75,23 +75,22 @@
     return state;
 }
 
-
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
 	return token == sbjson_token_array_start || token == sbjson_token_object_start;
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
-
+    
 	SBJsonStreamParserState *state = nil;
 	switch (tok) {
 		case sbjson_token_array_start:
 			state = [SBJsonStreamParserStateArrayStart sharedInstance];
 			break;
-
+            
 		case sbjson_token_object_start:
 			state = [SBJsonStreamParserStateObjectStart sharedInstance];
 			break;
-
+            
 		case sbjson_token_array_end:
 		case sbjson_token_object_end:
 			if (parser.supportMultipleDocuments)
@@ -99,16 +98,15 @@
 			else
 				state = [SBJsonStreamParserStateComplete sharedInstance];
 			break;
-
+            
 		case sbjson_token_eof:
 			return;
-
+            
 		default:
 			state = [SBJsonStreamParserStateError sharedInstance];
 			break;
 	}
-
-
+    
 	parser.state = state;
 }
 
@@ -129,7 +127,6 @@
     }
     return state;
 }
-
 
 - (NSString*)name { return @"after outer-most array or object"; }
 
@@ -152,7 +149,6 @@
     }
     return state;
 }
-
 
 - (NSString*)name { return @"in error"; }
 
@@ -179,7 +175,6 @@
     }
     return state;
 }
-
 
 - (NSString*)name { return @"at beginning of object"; }
 
@@ -245,7 +240,6 @@
     return state;
 }
 
-
 - (NSString*)name { return @"as object value"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
@@ -259,7 +253,7 @@
 		case sbjson_token_string:
 			return YES;
 			break;
-
+            
 		default:
 			return NO;
 			break;
@@ -286,7 +280,6 @@
     return state;
 }
 
-
 - (NSString*)name { return @"after object value"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
@@ -305,7 +298,6 @@
 	parser.state = [SBJsonStreamParserStateObjectNeedKey sharedInstance];
 }
 
-
 @end
 
 #pragma mark -
@@ -321,7 +313,6 @@
     }
     return state;
 }
-
 
 - (NSString*)name { return @"in place of object key"; }
 
@@ -353,7 +344,6 @@
     return state;
 }
 
-
 - (NSString*)name { return @"at array start"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
@@ -363,7 +353,7 @@
 		case sbjson_token_separator:
 			return NO;
 			break;
-
+            
 		default:
 			return YES;
 			break;
@@ -390,9 +380,7 @@
     return state;
 }
 
-
 - (NSString*)name { return @"after array value"; }
-
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
 	return token == sbjson_token_array_end || token == sbjson_token_separator;
@@ -419,9 +407,7 @@
     return state;
 }
 
-
 - (NSString*)name { return @"as array value"; }
-
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
 	switch (token) {
@@ -431,7 +417,7 @@
 		case sbjson_token_separator:
 			return NO;
 			break;
-
+            
 		default:
 			return YES;
 			break;

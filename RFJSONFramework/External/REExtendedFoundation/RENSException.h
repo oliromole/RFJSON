@@ -1,9 +1,9 @@
 //
-//  RENSObject.h
+//  RENSException.h
 //  REExtendedFoundation
 //  https://github.com/oliromole/REExtendedFoundation.git
 //
-//  Created by Roman Oliichuk on 2012.07.23.
+//  Created by Roman Oliichuk on 2013.01.14.
 //  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 
@@ -40,45 +40,28 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
+#define RENSAssert(condition, format, ...) \
+    do \
+    { \
+        if (!(condition)) \
+        { \
+            NSString *_rens_assert_message = [NSString stringWithFormat:(format), ##__VA_ARGS__]; \
+            _rens_assert_message = _rens_assert_message; \
+             \
+            NSAssert1(condition, @"%@", _rens_assert_message); \
+        } \
+    } \
+    while (0)
 
-@protocol NSInitializingInstance <NSObject>
-
-@required
-
-- (void)initializeInstance;
-- (void)deallocateInstance;
-
-@end
-
-@interface NSObject (NSObjectRENSObject)
-
-// Synchronizing the Singleton
-
-+ (NSObject *)singletonSynchronizer;
-
-// Managing the NSObject Information
-
-- (NSMutableDictionary *)objectDictionary; // Default is nil. The first time the method is accessed, the NSMutableDictionary is created. This method returns nil for Core Foundation classes.
-
-// Identifying and Comparing the Reference of Objects
-
-- (NSComparisonResult)compareReference:(id)object;
-
-- (BOOL)isReferenceEqual:(id)object;
-- (NSUInteger)referenceHash;
-
-+ (NSComparisonResult)compareLeftObjectReference:(id)leftObject rightObjectReference:(id)rightObject;
-
-+ (BOOL)isEqualLeftObject:(id)leftObject rightObject:(id)rightObject;
-+ (BOOL)isEqualLeftObjectReference:(id)leftObject rightObjectReference:(id)rightObject;
-
-// Sending Messages
-
-- (id)performSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3;
-- (id)performSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4;
-- (id)performSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5;
-
-@end
-
-#define NSMutableObjectCastOrCopy(object, className) ({ __typeof__(object) __object = (object); [__object isKindOfClass:[className class]] ? RENSObjectRetain((className *)(__object)) : [(__object) mutableCopy]; })
+#define RENSCAssert(condition, format, ...) \
+    do \
+    { \
+        if (!(condition)) \
+        { \
+            NSString *_rensc_assert_message = [NSString stringWithFormat:(format), ##__VA_ARGS__]; \
+            _rensc_assert_message = _rensc_assert_message; \
+             \
+            NSCAssert1(NO, @"%@", _rensc_assert_message); \
+        } \
+    } \
+    while (0)

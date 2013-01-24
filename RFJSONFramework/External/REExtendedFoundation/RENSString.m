@@ -98,7 +98,7 @@
         @throw [NSException exceptionWithName:NSRangeException reason:@"The range argument is invalid." userInfo:nil];
     }
     
-    unichar *characters = malloc(range.length * sizeof(unichar));
+    unichar *characters = (unichar *)malloc((range.length + 1) * sizeof(unichar));
     
     if (!characters)
     {
@@ -106,6 +106,8 @@
     }
     
     [self getCharacters:characters range:range];
+    
+    characters[range.length] = L'\0';
     
     NSString *string = [[NSString alloc] initWithCharactersNoCopy:characters length:range.length freeWhenDone:YES];
     

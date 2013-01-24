@@ -1,9 +1,9 @@
 //
-//  RENSObject.h
+//  RENSNull.m
 //  REExtendedFoundation
 //  https://github.com/oliromole/REExtendedFoundation.git
 //
-//  Created by Roman Oliichuk on 2012.07.23.
+//  Created by Roman Oliichuk on 2013.01.13.
 //  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 
@@ -38,47 +38,4 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
-
-#import "REExtendedCompiler.h"
-
-@protocol NSInitializingInstance <NSObject>
-
-@required
-
-- (void)initializeInstance;
-- (void)deallocateInstance;
-
-@end
-
-@interface NSObject (NSObjectRENSObject)
-
-// Synchronizing the Singleton
-
-+ (NSObject *)singletonSynchronizer;
-
-// Managing the NSObject Information
-
-- (NSMutableDictionary *)objectDictionary; // Default is nil. The first time the method is accessed, the NSMutableDictionary is created. This method returns nil for Core Foundation classes.
-
-// Identifying and Comparing the Reference of Objects
-
-- (NSComparisonResult)compareReference:(id)object;
-
-- (BOOL)isReferenceEqual:(id)object;
-- (NSUInteger)referenceHash;
-
-+ (NSComparisonResult)compareLeftObjectReference:(id)leftObject rightObjectReference:(id)rightObject;
-
-+ (BOOL)isEqualLeftObject:(id)leftObject rightObject:(id)rightObject;
-+ (BOOL)isEqualLeftObjectReference:(id)leftObject rightObjectReference:(id)rightObject;
-
-// Sending Messages
-
-- (id)performSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3;
-- (id)performSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4;
-- (id)performSelector:(SEL)selector withObject:(id)object1 withObject:(id)object2 withObject:(id)object3 withObject:(id)object4 withObject:(id)object5;
-
-@end
-
-#define NSMutableObjectCastOrCopy(object, className) ({ __typeof__(object) __object = (object); [__object isKindOfClass:[className class]] ? RENSObjectRetain((className *)(__object)) : [(__object) mutableCopy]; })
+#import "RENSNull.h"

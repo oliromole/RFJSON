@@ -6,16 +6,16 @@
  modification, are permitted provided that the following conditions are
  met:
  
-   Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-  
-   Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the distribution.
+ Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.
  
-   Neither the name of the the author nor the names of its contributors
-   may be used to endorse or promote products derived from this software
-   without specific prior written permission.
+ Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in the
+ documentation and/or other materials provided with the distribution.
+ 
+ Neither the name of the the author nor the names of its contributors
+ may be used to endorse or promote products derived from this software
+ without specific prior written permission.
  
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
@@ -45,11 +45,11 @@
  
  @code
  - (id)proxyForJson {
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-	name, @"name",
-	phone, @"phone",
-	email, @"email",
-	nil];
+ return [[NSDictionary alloc] initWithObjectsAndKeys:
+ name, @"name",
+ phone, @"phone",
+ email, @"email",
+ nil];
  }
  @endcode
  
@@ -77,9 +77,9 @@
  and match calls to these. For example, you may want to call -writeArrayOpen
  to start an array and then repeatedly call -writeObject: with various objects
  before finishing off with a -writeArrayClose call.
-  
+ 
  @see @ref json2objc
-
+ 
  */
 
 @interface SBJsonStreamWriter : NSObject {
@@ -87,7 +87,7 @@
 }
 
 @property (nonatomic, unsafe_unretained) SBJsonStreamWriterState *state; // Internal
-@property (nonatomic, readonly, strong) NSMutableArray *stateStack; // Internal 
+@property (nonatomic, readonly, strong) NSMutableArray *stateStack; // Internal
 
 /**
  @brief delegate to receive JSON output
@@ -132,7 +132,7 @@
 /// Contains the error description after an error has occured.
 @property (copy) NSString *error;
 
-/** 
+/**
  Write an NSDictionary to the JSON stream.
  @return YES if successful, or NO on failure
  */
@@ -144,46 +144,46 @@
  */
 - (BOOL)writeArray:(NSArray *)array;
 
-/** 
+/**
  Start writing an Object to the stream
  @return YES if successful, or NO on failure
-*/
+ */
 - (BOOL)writeObjectOpen;
 
 /**
  Close the current object being written
  @return YES if successful, or NO on failure
-*/
+ */
 - (BOOL)writeObjectClose;
 
 /** Start writing an Array to the stream
  @return YES if successful, or NO on failure
-*/
+ */
 - (BOOL)writeArrayOpen;
 
 /** Close the current Array being written
  @return YES if successful, or NO on failure
-*/
+ */
 - (BOOL)writeArrayClose;
 
 /** Write a null to the stream
  @return YES if successful, or NO on failure
-*/
+ */
 - (BOOL)writeNull;
 
 /** Write a boolean to the stream
  @return YES if successful, or NO on failure
-*/
+ */
 - (BOOL)writeBool:(BOOL)x;
 
 /** Write a Number to the stream
  @return YES if successful, or NO on failure
-*/
+ */
 - (BOOL)writeNumber:(NSNumber*)n;
 
 /** Write a String to the stream
  @return YES if successful, or NO on failure
-*/
+ */
 - (BOOL)writeString:(NSString*)s;
 
 @end

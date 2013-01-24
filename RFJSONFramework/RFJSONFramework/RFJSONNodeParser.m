@@ -40,6 +40,8 @@
 
 #import "RFJSONNodeParser.h"
 
+#import "REExtendedFoundation.h"
+
 #import "RFJSONNodeParserPrivate.h"
 #import "RFJSONNodeParserType.h"
 
@@ -151,67 +153,67 @@
 - (void)_parserStated
 {
     // This stub.
-    NSAssert(NO, @"Override me!");
+    RENSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFinished
 {
     // This stub.
-    NSAssert(NO, @"Override me!");
+    RENSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundObjectKey:(NSString*)key
 {
     // This stub.
-    NSAssert(NO, @"Override me!");
+    RENSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundObjectStart
 {
     // This stub.
-    NSAssert(NO, @"Override me!");
+    RENSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundObjectEnd
 {
     // This stub.
-    NSAssert(NO, @"Override me!");
+    RENSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundArrayStart
 {
     // This stub.
-    NSAssert(NO, @"Override me!");
+    RENSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundArrayEnd
 {
     // This stub.
-    NSAssert(NO, @"Override me!");
+    RENSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundNull
 {
     // This stub.
-    NSAssert(NO, @"Override me!");
+    RENSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundBoolean:(BOOL)boolean
 {
     // This stub.
-    NSAssert(NO, @"Override me!");
+    RENSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundNumber:(NSNumber*)number
 {
     // This stub.
-    NSAssert(NO, @"Override me!");
+    RENSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundString:(NSString*)string
 {
     // This stub.
-    NSAssert(NO, @"Override me!");
+    RENSAssert(NO, @"Override me!");
 }
 
 @end

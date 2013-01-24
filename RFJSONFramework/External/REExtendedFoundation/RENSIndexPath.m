@@ -383,7 +383,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
     [self enumerateIndexInRange:range options:0 usingBlock:block];
 }
 
-- (void)enumerateIndexWithOptions:(NSIndexPathEnumerationOption)options usingBlock:(void (^)(NSUInteger index, NSUInteger position, BOOL *stop))block
+- (void)enumerateIndexWithOptions:(NSIndexPathEnumerationOptions)options usingBlock:(void (^)(NSUInteger index, NSUInteger position, BOOL *stop))block
 {
     NSRange range;
     range.location = 0;
@@ -392,7 +392,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
     [self enumerateIndexInRange:range options:options usingBlock:block];
 }
 
-- (void)enumerateIndexInRange:(NSRange)range options:(NSIndexPathEnumerationOption)options usingBlock:(void (^)(NSUInteger index, NSUInteger position, BOOL *stop))block
+- (void)enumerateIndexInRange:(NSRange)range options:(NSIndexPathEnumerationOptions)options usingBlock:(void (^)(NSUInteger index, NSUInteger position, BOOL *stop))block
 {
     NSUInteger maxRange = NSMaxRange(range);
     

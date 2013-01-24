@@ -42,15 +42,15 @@
 
 #import "REExtendedCompiler.h"
 
-typedef enum NSIndexPathCompareOptions
+typedef NS_OPTIONS(NSUInteger, NSIndexPathCompareOptions)
 {
     NSIndexPathCompareOptionBackwardsSearch = 1 << 0  // Search from end of source index path.
-} NSIndexPathCompareOptions;
+};
 
-typedef enum NSIndexPathEnumerationOptions
+typedef NS_OPTIONS(NSUInteger, NSIndexPathEnumerationOptions)
 {
 	NSIndexPathEnumerationOptionReverse = 1 << 0      // Causes enumeration to occur from the end of the specified range to the start.
-} NSIndexPathEnumerationOption;
+} ;
 
 @interface NSIndexPath (NSIndexPathRENSIndexPath)
 
@@ -82,8 +82,8 @@ typedef enum NSIndexPathEnumerationOptions
 - (NSRange)rangeOfIndexPath:(NSIndexPath *)aIndexPath options:(NSIndexPathCompareOptions)mask range:(NSRange)searchRange;
 
 - (void)enumerateIndexUsingBlock:(void (^)(NSUInteger index, NSUInteger position, BOOL *stop))block;
-- (void)enumerateIndexWithOptions:(NSIndexPathEnumerationOption)options usingBlock:(void (^)(NSUInteger index, NSUInteger position, BOOL *stop))block;
-- (void)enumerateIndexInRange:(NSRange)range options:(NSIndexPathEnumerationOption)options usingBlock:(void (^)(NSUInteger index, NSUInteger position, BOOL *stop))block;
+- (void)enumerateIndexWithOptions:(NSIndexPathEnumerationOptions)options usingBlock:(void (^)(NSUInteger index, NSUInteger position, BOOL *stop))block;
+- (void)enumerateIndexInRange:(NSRange)range options:(NSIndexPathEnumerationOptions)options usingBlock:(void (^)(NSUInteger index, NSUInteger position, BOOL *stop))block;
 
 // Replacing Subindex Paths
 

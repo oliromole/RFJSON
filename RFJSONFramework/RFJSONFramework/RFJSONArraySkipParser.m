@@ -81,7 +81,7 @@ static NSSet * volatile RFJSONArraySkipParser_JSONNodeParserTypes = nil;
             if (!RFJSONArraySkipParser_JSONNodeParserTypes)
             {
                 NSMutableSet *jsonNodeParserTypes = [[RFJSONArrayParser jsonNodeParserTypes] mutableCopy];
-                NSAssert(jsonNodeParserTypes, @"The method has a logical error.");
+                RENSAssert(jsonNodeParserTypes, @"The method has a logical error.");
                 
                 [jsonNodeParserTypes addObject:RFJSONNodeParserTypeArray];
                 [jsonNodeParserTypes addObject:RFJSONNodeParserTypeBool];

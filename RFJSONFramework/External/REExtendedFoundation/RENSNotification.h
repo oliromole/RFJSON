@@ -46,7 +46,7 @@
 
 // Managing Notification Observers
 
-- (void)addObserver:(id)observer selector:(SEL)aSelector name:(NSString *)aName;
+- (void)addObserver:(id)observer selector:(SEL)selector name:(NSString *)aName;
 
 @end
 
