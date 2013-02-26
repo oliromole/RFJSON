@@ -80,13 +80,9 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
 
 - (void)dealloc
 {
-    RENSObjectRelease(mJSONObjectKey);
     mJSONObjectKey = nil;
     
-    RENSObjectRelease(mJSONObjectKeyJSONNodeParserTypes);
     mJSONObjectKeyJSONNodeParserTypes = nil;
-    
-    RENSObjectSuperDealloc();
 }
 
 #pragma mark - Private Handling JSON
@@ -128,8 +124,7 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
                 jsonTypes = [mJSONObjectKeyJSONNodeParserTypes objectForKey:RFJSONOjectParserAllOtherObjectKeys];
             }
             
-            RENSObjectRelease(mJSONObjectKey);
-            mJSONObjectKey = RENSObjectRetain(key);
+            mJSONObjectKey = key;
             
             if (jsonTypes)
             {
@@ -197,7 +192,6 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
             
             if (!mIsError && !mSubJSONNodeParser)
             {
-                RENSObjectRelease(mSubJSONNodeParser);
                 mSubJSONNodeParser = [[RFJSONOjectSkipParser alloc] init];
             }
             
@@ -274,10 +268,8 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
                 
                 if (!mIsError)
                 {
-                    RENSObjectRelease(mJSONObjectKey);
                     mJSONObjectKey = nil;
                     
-                    RENSObjectRelease(mSubJSONNodeParser);
                     mSubJSONNodeParser = nil;
                 }
             }
@@ -340,7 +332,6 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
             
             if (!mIsError && !mSubJSONNodeParser)
             {
-                RENSObjectRelease(mSubJSONNodeParser);
                 mSubJSONNodeParser = [[RFJSONArraySkipParser alloc] init];
             }
             
@@ -417,10 +408,8 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
                 
                 if (!mIsError)
                 {
-                    RENSObjectRelease(mJSONObjectKey);
                     mJSONObjectKey = nil;
                     
-                    RENSObjectRelease(mSubJSONNodeParser);
                     mSubJSONNodeParser = nil;
                 }
             }
@@ -479,7 +468,6 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
             
             if (!mIsError)
             {
-                RENSObjectRelease(mJSONObjectKey);
                 mJSONObjectKey = nil;
             }
         }
@@ -532,7 +520,6 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
             
             if (!mIsError)
             {
-                RENSObjectRelease(mJSONObjectKey);
                 mJSONObjectKey = nil;
             }
         }
@@ -585,7 +572,6 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
             
             if (!mIsError)
             {
-                RENSObjectRelease(mJSONObjectKey);
                 mJSONObjectKey = nil;
             }
         }
@@ -638,7 +624,6 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
             
             if (!mIsError)
             {
-                RENSObjectRelease(mJSONObjectKey);
                 mJSONObjectKey = nil;
             }
         }

@@ -46,7 +46,7 @@
 
 + (id)dateFormatter
 {
-    return RENSObjectAutorelease([[self alloc] init]);
+    return [[self alloc] init];
 }
 
 @end

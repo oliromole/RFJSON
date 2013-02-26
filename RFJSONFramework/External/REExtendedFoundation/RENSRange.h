@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 FOUNDATION_EXTERN const NSRange NSRangeNotFound;
 FOUNDATION_EXTERN const NSRange NSRangeZero;
 

@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 NS_INLINE id NSNullFromCNil(id object)
 {
     id resultObject = (object ? object: [NSNull null]);

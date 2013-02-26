@@ -40,11 +40,17 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 #import "RENSObject.h"
 
 @interface NSArray (NSArrayRENSArray)
+
+// Initializing and Creating an Array.
+
+- (id)initWithLength:(NSUInteger)length;
++ (id)arrauWithLength:(NSUInteger)length;
+
+- (id)initWithLength:(NSUInteger)length object:(id)object;
++ (id)arrauWithLength:(NSUInteger)length object:(id)object;;
 
 // Querying an Array
 

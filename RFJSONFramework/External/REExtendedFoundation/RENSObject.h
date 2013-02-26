@@ -40,7 +40,20 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
+#import <objc/runtime.h>
+
+typedef NS_ENUM(uintptr_t, NSObjectAssociationPolicy)
+{
+    NSObjectAssociationPolicyAssign = OBJC_ASSOCIATION_ASSIGN,                    // 0
+    NSObjectAssociationPolicyRetainNonatomic = OBJC_ASSOCIATION_RETAIN_NONATOMIC, // 1
+    NSObjectAssociationPolicyCopyNonatomic = OBJC_ASSOCIATION_COPY_NONATOMIC,     // 3
+    NSObjectAssociationPolicyRetain = OBJC_ASSOCIATION_RETAIN,                    // 01401
+    NSObjectAssociationPolicyCopy = OBJC_ASSOCIATION_COPY,                        // 01403
+    
+    NSObjectAssociationPolicyWeak = NSObjectAssociationPolicyAssign,                     // 0
+    NSObjectAssociationPolicyStrongNonatomic = NSObjectAssociationPolicyRetainNonatomic, // 1
+    NSObjectAssociationPolicyStrong = NSObjectAssociationPolicyRetain                    // 01401
+};
 
 @protocol NSInitializingInstance <NSObject>
 
@@ -57,9 +70,15 @@
 
 + (NSObject *)singletonSynchronizer;
 
+// Managing Associative References
+
+- (id)associatedObjectForKey:(const void *)key;
+- (void)setAssociatedObject:(id)object forKey:(const void *)key policy:(NSObjectAssociationPolicy)policy;
+- (void)removeAllAssociatedObjects;
+
 // Managing the NSObject Information
 
-- (NSMutableDictionary *)objectDictionary; // Default is nil. The first time the method is accessed, the NSMutableDictionary is created. This method returns nil for Core Foundation classes.
+@property (nonatomic, readonly) NSMutableDictionary *objectDictionary; // Default is nil. The first time the method is accessed, the NSMutableDictionary is created. This method returns nil for Core Foundation classes.
 
 // Identifying and Comparing the Reference of Objects
 
@@ -81,4 +100,4 @@
 
 @end
 
-#define NSMutableObjectCastOrCopy(object, className) ({ __typeof__(object) __object = (object); [__object isKindOfClass:[className class]] ? RENSObjectRetain((className *)(__object)) : [(__object) mutableCopy]; })
+#define NSMutableObjectCastOrCopy(object, className) ({ __typeof__(object) __object = (object); [__object isKindOfClass:[className class]] ? ((className *)(__object)) : [(__object) mutableCopy]; })

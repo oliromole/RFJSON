@@ -45,96 +45,12 @@
 
 #import <pthread.h>
 
-#import "REExtendedFoundation.h"
+#import "RENSException.h"
 
-static NSObject * volatile NSObject_SingletonSynchronizer = nil;
+static NSObject * volatile NSObject_NSObjectRENSObject_SingletonSynchronizer = nil;
 
-typedef struct RENSObjectDictionaryHashTableLevel1
-{
-    CFTypeRef              objectRef;
-    CFMutableDictionaryRef objectDictionaryRef;
-} RENSObjectDictionaryHashTableLevel1;
-
-typedef struct RENSObjectDictionaryHashTableLevel0
-{
-    RENSObjectDictionaryHashTableLevel1 *level1s;
-    unsigned int                         level1sCount;
-    unsigned int                         level1sLength;
-} RENSObjectDictionaryHashTableLevel0;
-
-static RENSObjectDictionaryHashTableLevel0 *NSObject_ObjectDictionary_HashTableLevel0s = NULL;
-static BOOL                                 NSObject_ObjectDictionary_Initialized = NO;
-static pthread_mutex_t                      NSObject_ObjectDictionary_Mutext;
-static CFTypeID                             NSObject_ObjectDictionary_ObjectTypeID = 0;
-
-static void (* NSObject_ObjectDictionary_PreviousDealloc)(id, SEL) = NULL;
-
-#define NS_OBJECT_OBJECT_DICTIONARY_HASH_TABLE_LEVEL0S_LENGTH (1 << 14)
-
-#define NS_OBJECT_OBJECT_DICTIONARY_HASH_TABLE_LEVEL0S_INDEX_OF_OBJECT(object) ( \
-((((unsigned int)object) >> 0) & 0x00003FFF) ^ \
-((((unsigned int)object) >> 14) & 0x00003FFF) ^ \
-((((unsigned int)object) >> 28) & 0x00003FFF))
-
-static void NSObject_ObjectDictionary_Dealloc(id self, SEL _cmd);
-
-static void NSObject_ObjectDictionary_Dealloc(id self, SEL _cmd)
-{
-    unsigned int hashTableLevel0sIndex = NS_OBJECT_OBJECT_DICTIONARY_HASH_TABLE_LEVEL0S_INDEX_OF_OBJECT(self);
-    RENSObjectDictionaryHashTableLevel0 *hashTableLevel0 = NSObject_ObjectDictionary_HashTableLevel0s + hashTableLevel0sIndex;
-    
-    if (hashTableLevel0->level1sCount > 0)
-    {
-        NSMutableDictionary *objectDictionary = nil;
-        int                  result = 0;
-        
-        result = pthread_mutex_lock(&NSObject_ObjectDictionary_Mutext);
-        NSCAssert((result == 0), @"The NSObject_ObjectDictionary_Dealloc funcation can not lock the mutex.");
-        
-        RENSObjectDictionaryHashTableLevel1 *hashTableLevel1Start = hashTableLevel0->level1s;
-        RENSObjectDictionaryHashTableLevel1 *hashTableLevel1End = hashTableLevel1Start + hashTableLevel0->level1sLength;
-        
-        RENSObjectDictionaryHashTableLevel1 *hashTableLevel1 = hashTableLevel1Start;
-        
-        while (hashTableLevel1 < hashTableLevel1End)
-        {
-            if (hashTableLevel1->objectRef == RECMBridge(CFTypeRef, self))
-            {
-                objectDictionary = RECMBridgeTransfer(NSMutableDictionary *, hashTableLevel1->objectDictionaryRef);
-                
-                hashTableLevel1->objectRef = NULL;
-                hashTableLevel1->objectDictionaryRef = NULL;
-                
-                hashTableLevel0->level1sCount--;
-                
-                if (hashTableLevel0->level1sCount == 0)
-                {
-                    free(hashTableLevel0->level1s);
-                    hashTableLevel0->level1s = NULL;
-                    hashTableLevel0->level1sLength = 0;
-                }
-                
-                break;
-            }
-            
-            hashTableLevel1++;
-        }
-        
-        result = pthread_mutex_unlock(&NSObject_ObjectDictionary_Mutext);
-        NSCAssert((result == 0), @"The NSObject_ObjectDictionary_Dealloc funcation can not unlock the mutex.");
-        
-        if (objectDictionary)
-        {
-            RENSObjectRelease(objectDictionary);
-            objectDictionary = nil;
-        }
-    }
-    
-    if (NSObject_ObjectDictionary_PreviousDealloc)
-    {
-        NSObject_ObjectDictionary_PreviousDealloc(self, _cmd);
-    }
-}
+const char * const NSObject_NSObjectRENSObject_ObjectDictionaryKey = "NSObject_NSObjectRENSObject_ObjectDictionaryKey";
+CFTypeID NSObject_NSObjectRENSObject_NSObject_TypeID = 0;
 
 @implementation NSObject (NSObjectRENSObject)
 
@@ -142,34 +58,49 @@ static void NSObject_ObjectDictionary_Dealloc(id self, SEL _cmd)
 
 + (void)load
 {
-    NSObject_SingletonSynchronizer = [[NSObject alloc] init];
+    NSObject_NSObjectRENSObject_SingletonSynchronizer = [[NSObject alloc] init];
     
-    pthread_mutexattr_t mutextAttr;
-    int                 result = 0;
+    NSObject *object = [[NSObject alloc] init];
+    NSObject_NSObjectRENSObject_NSObject_TypeID = CFGetTypeID((__bridge CFTypeRef)object);
     
-    result = pthread_mutexattr_init(&mutextAttr);
-    RENSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not initialize a mutex attribute.");
-    
-    result = pthread_mutexattr_setpshared(&mutextAttr, PTHREAD_PROCESS_PRIVATE );
-    RENSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not set a process-shared of the mutex attribute.");
-    
-    result = pthread_mutexattr_settype(&mutextAttr, PTHREAD_MUTEX_NORMAL);
-    RENSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not set a type of the mutex attribute.");
-    
-    result = pthread_mutex_init(&NSObject_ObjectDictionary_Mutext, &mutextAttr);
-    RENSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not initialize a mutex.");
-    
-    result = pthread_mutexattr_destroy(&mutextAttr);
-    RENSAssert((result == 0), @"The NSObject (NSObjectRENSObject) category can not destroy the mutex attribute.");
 }
 
 #pragma mark - Synchronizing the Singleton
 
 + (NSObject *)singletonSynchronizer
 {
-    RENSAssert(NSObject_SingletonSynchronizer, @"The %@ class is incorrectly used.", NSStringFromClass([self class]));
+    RENSAssert(NSObject_NSObjectRENSObject_SingletonSynchronizer, @"The %@ class is incorrectly used.", NSStringFromClass([self class]));
     
-    return NSObject_SingletonSynchronizer;
+    return NSObject_NSObjectRENSObject_SingletonSynchronizer;
+}
+
+#pragma mark - Managing Associative References
+
+- (id)associatedObjectForKey:(const void *)key
+{
+    if (!key)
+    {
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"The key argument is NULL." userInfo:nil];
+    }
+    
+    id associatedObject = objc_getAssociatedObject(self, key);
+    
+    return associatedObject;
+}
+
+- (void)setAssociatedObject:(id)object forKey:(const void *)key policy:(NSObjectAssociationPolicy)policy
+{
+    if (!key)
+    {
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"The key argument is NULL." userInfo:nil];
+    }
+    
+    objc_setAssociatedObject(self, key, object, (uintptr_t)policy);
+}
+
+- (void)removeAllAssociatedObjects
+{
+    objc_removeAssociatedObjects(self);
 }
 
 #pragma mark - Managing the NSObject Information
@@ -177,114 +108,25 @@ static void NSObject_ObjectDictionary_Dealloc(id self, SEL _cmd)
 - (NSMutableDictionary *)objectDictionary
 {
     NSMutableDictionary *objectDictionary = nil;
-    int                  result = 0;
     
-    result = pthread_mutex_lock(&NSObject_ObjectDictionary_Mutext);
-    RENSAssert((result == 0), @"The %@ method can not lock the mutex.", NSStringFromSelector(_cmd));
+    CFTypeID objectTypeID = CFGetTypeID((__bridge CFTypeRef)self);
     
-    if (!NSObject_ObjectDictionary_Initialized)
-    {
-        NSObject *object = [[NSObject alloc] init];
-        RENSAssert(object, @"The %@ method can not create a object.", NSStringFromSelector(_cmd));
-        
-        NSObject_ObjectDictionary_ObjectTypeID = CFGetTypeID(RECMBridge(CFTypeRef, object));
-        
-        RENSObjectRelease(object);
-        object = nil;
-        
-        NSObject_ObjectDictionary_HashTableLevel0s = (RENSObjectDictionaryHashTableLevel0 *)malloc(sizeof(RENSObjectDictionaryHashTableLevel0) * NS_OBJECT_OBJECT_DICTIONARY_HASH_TABLE_LEVEL0S_LENGTH);
-        RENSAssert(NSObject_ObjectDictionary_HashTableLevel0s, @"The %@ method can not alloc memory.", NSStringFromSelector(_cmd));
-        
-        memset(NSObject_ObjectDictionary_HashTableLevel0s, 0, (sizeof(RENSObjectDictionaryHashTableLevel0) * NS_OBJECT_OBJECT_DICTIONARY_HASH_TABLE_LEVEL0S_LENGTH));
-        
-        BOOL success = class_addMethod([NSObject class], NSSelectorFromString(@"dealloc"), (IMP)NSObject_ObjectDictionary_Dealloc, "v8@0:4");
-        
-        if (!success)
-        {
-            NSObject_ObjectDictionary_PreviousDealloc = (void (*)(id, SEL))class_replaceMethod([NSObject class], NSSelectorFromString(@"dealloc"), (IMP)NSObject_ObjectDictionary_Dealloc, "v8@0:4");
-        }
-        
-        NSObject_ObjectDictionary_Initialized = YES;
-    }
-    
-    CFTypeID objectType = CFGetTypeID(RECMBridge(CFTypeRef, self));
-    
-    if (objectType != NSObject_ObjectDictionary_ObjectTypeID)
+    if (objectTypeID != NSObject_NSObjectRENSObject_NSObject_TypeID)
     {
         NSLog(@"WARNING: The %@ class is Core Foundation class. The %@ method returns nil for Core Foundation classes.", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
     }
     
     else
     {
-        unsigned int hashTableLevel0sIndex = NS_OBJECT_OBJECT_DICTIONARY_HASH_TABLE_LEVEL0S_INDEX_OF_OBJECT(self);
-        RENSObjectDictionaryHashTableLevel0 *hashTableLevel0 = NSObject_ObjectDictionary_HashTableLevel0s + hashTableLevel0sIndex;
-        
-        RENSObjectDictionaryHashTableLevel1 *hashTableLevel1Start = hashTableLevel0->level1s;
-        RENSObjectDictionaryHashTableLevel1 *hashTableLevel1End = hashTableLevel1Start + hashTableLevel0->level1sLength;
-        
-        RENSObjectDictionaryHashTableLevel1 *hashTableLevel1 = hashTableLevel1Start;
-        
-        while (hashTableLevel1 < hashTableLevel1End)
-        {
-            if (hashTableLevel1->objectRef == RECMBridge(CFTypeRef, self))
-            {
-                objectDictionary = RECMBridge(NSMutableDictionary *, hashTableLevel1->objectDictionaryRef);
-                
-                break;
-            }
-            
-            hashTableLevel1++;
-        }
+        objectDictionary = objc_getAssociatedObject(self, NSObject_NSObjectRENSObject_ObjectDictionaryKey);
         
         if (!objectDictionary)
         {
-            RENSObjectDictionaryHashTableLevel1 *hashTableLevel1 = hashTableLevel1Start;
+            objectDictionary = [[NSMutableDictionary alloc] init];
             
-            while (hashTableLevel1 < hashTableLevel1End)
-            {
-                if (hashTableLevel1->objectRef == NULL)
-                {
-                    hashTableLevel1->objectRef = RECMBridge(CFTypeRef, self);
-                    hashTableLevel1->objectDictionaryRef = RECMBridgeRetained(CFMutableDictionaryRef, [[NSMutableDictionary alloc] init]);
-                    
-                    objectDictionary = RECMBridge(NSMutableDictionary *, hashTableLevel1->objectDictionaryRef);
-                    
-                    hashTableLevel0->level1sCount++;
-                    
-                    RENSAssert((hashTableLevel0->level1sCount <= hashTableLevel0->level1sLength), @"The %@ method has a logical error.", NSStringFromSelector(_cmd));
-                    
-                    break;
-                }
-                
-                hashTableLevel1++;
-            }
-        }
-        
-        if (!objectDictionary)
-        {
-            RENSAssert((hashTableLevel0->level1sCount == hashTableLevel0->level1sLength), @"The %@ method has a logical error.", NSStringFromSelector(_cmd));
-            
-            RENSObjectDictionaryHashTableLevel1 *hashTableLevel1s = (RENSObjectDictionaryHashTableLevel1 *)malloc(sizeof(RENSObjectDictionaryHashTableLevel1) * (hashTableLevel0->level1sLength + 1));
-            RENSAssert(hashTableLevel1s, @"The %@ method can not alloc memory.", NSStringFromSelector(_cmd));
-            
-            memcpy(hashTableLevel1s, hashTableLevel0->level1s, (sizeof(RENSObjectDictionaryHashTableLevel1) * hashTableLevel0->level1sLength));
-            
-            hashTableLevel1 = hashTableLevel1s + hashTableLevel0->level1sLength;
-            hashTableLevel1->objectRef = RECMBridge(CFTypeRef, self);
-            hashTableLevel1->objectDictionaryRef = RECMBridgeRetained(CFMutableDictionaryRef, [[NSMutableDictionary alloc] init]);
-            
-            objectDictionary = RECMBridge(NSMutableDictionary *, hashTableLevel1->objectDictionaryRef);
-            
-            free(hashTableLevel0->level1s);
-            hashTableLevel0->level1s = hashTableLevel1s;
-            
-            hashTableLevel0->level1sCount++;
-            hashTableLevel0->level1sLength++;
+            objc_setAssociatedObject(self, NSObject_NSObjectRENSObject_ObjectDictionaryKey, objectDictionary, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
-    
-    result = pthread_mutex_unlock(&NSObject_ObjectDictionary_Mutext);
-    RENSAssert((result == 0), @"The %@ method can not unlock the mutex.", NSStringFromSelector(_cmd));
     
     return objectDictionary;
 }
@@ -349,7 +191,7 @@ static void NSObject_ObjectDictionary_Dealloc(id self, SEL _cmd)
 
 + (BOOL)isEqualLeftObject:(id)leftObject rightObject:(id)rightObject
 {
-    BOOL isEqual = (leftObject == rightObject);
+    BOOL isEqual = (!leftObject == !rightObject);
     
     if (isEqual && leftObject && rightObject)
     {

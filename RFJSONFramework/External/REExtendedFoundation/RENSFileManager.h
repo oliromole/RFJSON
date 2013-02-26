@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 @interface NSFileManager (NSFileManagerRENSFileManager)
 
 // Determining Access to Files

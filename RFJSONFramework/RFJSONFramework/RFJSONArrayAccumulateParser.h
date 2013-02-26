@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 #import "RFJSONArrayParser.h"
 
 @interface RFJSONArrayAccumulateParser : RFJSONArrayParser

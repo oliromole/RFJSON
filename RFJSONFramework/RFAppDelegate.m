@@ -59,13 +59,9 @@
 
 - (void)dealloc
 {
-    [mMainWindow release];
     mMainWindow = nil;
     
-    [mRootNavigationController release];
     mRootNavigationController = nil;
-    
-    [super dealloc];
 }
 
 #pragma mark - Accessing the graphical user interface
@@ -144,8 +140,7 @@
 {
     if (mMainWindow != window)
     {
-        [mMainWindow release];
-        mMainWindow = [window retain];
+        mMainWindow = window;
     }
 }
 

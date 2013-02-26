@@ -78,7 +78,8 @@
 {
     NSInteger bytesWritten = 0;
     
-    do {
+    do
+    {
         int result = [self write:(buffer + bytesWritten) maxLength:(bufferLength - bytesWritten)];
         
         if (result < 0)
@@ -95,6 +96,18 @@
     } while (bytesWritten < bufferLength);
     
     return bytesWritten;
+}
+
+- (NSInteger)writeData:(NSData *)data
+{
+    if (!data)
+    {
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"The data argument is nil." userInfo:nil];
+    }
+    
+    NSInteger result = [self writeAllBuffer:(const uint8_t *)data.bytes maxLength:data.length];
+    
+    return result;
 }
 
 @end

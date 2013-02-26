@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 @interface NSInputStream (NSInputStreamRENSInputStream)
 
 // Using Streams
@@ -55,5 +53,6 @@
 // Using Streams
 
 - (NSInteger)writeAllBuffer:(const uint8_t *)buffer maxLength:(NSUInteger)length;
+- (NSInteger)writeData:(NSData *)data;
 
 @end

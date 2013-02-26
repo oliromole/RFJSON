@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 //
 // See also:
 // http://www.ietf.org/rfc/rfc0822.txt

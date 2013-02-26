@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 typedef NS_OPTIONS(NSUInteger, NSIndexPathCompareOptions)
 {
     NSIndexPathCompareOptionBackwardsSearch = 1 << 0  // Search from end of source index path.

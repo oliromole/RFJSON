@@ -40,7 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
 #import "RWObjCWrapper.h"
 
 NS_INLINE NSComparisonResult NSInvertComparisonResult(NSComparisonResult comparisonResult)
@@ -89,7 +88,7 @@ NS_INLINE NSComparisonResult NSComparisonResultFromCComparisonResult(int cCompar
 
 NS_INLINE int CComparisonResultFromNSComparisonResult(NSComparisonResult nsComparisonResult)
 {
-    NSComparisonResult cComparisonResult;
+    int cComparisonResult;
     
     if (nsComparisonResult < NSOrderedSame)
     {

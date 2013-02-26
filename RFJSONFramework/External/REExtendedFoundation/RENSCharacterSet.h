@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 #import "RENSObject.h"
 
 #define NSMutableCharacterSetCastOrCopy(characterSet) NSMutableObjectCastOrCopy(characterSet, NSMutableCharacterSet)

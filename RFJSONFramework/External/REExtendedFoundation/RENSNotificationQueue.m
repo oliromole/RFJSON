@@ -86,9 +86,6 @@
     
     NSNotification *notification = [NSNotification notificationWithName:aName object:object];
     
-    RENSObjectRelease(object);
-    object = nil;
-    
     [self dequeueNotificationsMatching:notification coalesceMask:NSNotificationCoalescingOnName];
 }
 

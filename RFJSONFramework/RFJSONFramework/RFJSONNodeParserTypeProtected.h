@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 @interface NSNumber (NSNumberRFJSONNodeParserTypeProtected)
 
 // Initializing and Creating a NSNumber

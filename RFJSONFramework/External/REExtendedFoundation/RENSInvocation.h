@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 @interface NSInvocation (NSInvocationRENSInvocation)
 
 // Initializing and Creating a NSInvocation

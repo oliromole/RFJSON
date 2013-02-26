@@ -40,7 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
 #import "SBJson.h"
 
 #import "RFJSONOjectParser.h"

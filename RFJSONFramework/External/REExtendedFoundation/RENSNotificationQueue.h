@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 enum
 {
     NSNotificationCoalescingOnNameAndSender = (NSNotificationCoalescingOnName | NSNotificationCoalescingOnSender)

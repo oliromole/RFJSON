@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 @interface NSNotificationCenter (NSNotificationCenterRENSNotificationCenter)
 
 // Managing Notification Observers

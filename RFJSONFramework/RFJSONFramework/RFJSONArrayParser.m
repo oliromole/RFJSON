@@ -76,10 +76,7 @@ static NSSet * volatile NSObject_JSONNodeParserTypes = nil;
 
 - (void)dealloc
 {
-    RENSObjectRelease(mJSONNodeParserTypes);
     mJSONNodeParserTypes = nil;
-    
-    RENSObjectSuperDealloc();
 }
 
 #pragma mark - Private Handling JSON
@@ -159,7 +156,6 @@ static NSSet * volatile NSObject_JSONNodeParserTypes = nil;
             
             if (!mIsError && !mSubJSONNodeParser)
             {
-                RENSObjectRelease(mSubJSONNodeParser);
                 mSubJSONNodeParser = [[RFJSONOjectSkipParser alloc] init];
             }
             
@@ -224,7 +220,6 @@ static NSSet * volatile NSObject_JSONNodeParserTypes = nil;
                     self.isError = YES;
                 }
                 
-                RENSObjectRelease(mSubJSONNodeParser);
                 mSubJSONNodeParser = nil;
             }
         }
@@ -276,7 +271,6 @@ static NSSet * volatile NSObject_JSONNodeParserTypes = nil;
             
             if (!mIsError && !mSubJSONNodeParser)
             {
-                RENSObjectRelease(mSubJSONNodeParser);
                 mSubJSONNodeParser = [[RFJSONArraySkipParser alloc] init];
             }
             
@@ -341,7 +335,6 @@ static NSSet * volatile NSObject_JSONNodeParserTypes = nil;
                     self.isError = YES;
                 }
                 
-                RENSObjectRelease(mSubJSONNodeParser);
                 mSubJSONNodeParser = nil;
             }
         }

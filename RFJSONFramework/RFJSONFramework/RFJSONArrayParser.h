@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 #import "RFJSONNodeParser.h"
 
 @interface RFJSONArrayParser : RFJSONNodeParser

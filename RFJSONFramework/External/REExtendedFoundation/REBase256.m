@@ -44,9 +44,9 @@
 
 #pragma mark - Methods of Base256
 
-- (NSData *)copyDecodeBase256
+- (NSMutableData *)copyDecodeBase256
 {
-    NSMutableData *mutableData = [[NSMutableData alloc] init];
+    NSMutableData *data = [[NSMutableData alloc] init];
     
     NSUInteger length = self.length;
     
@@ -111,26 +111,21 @@
             
             unsigned int value = (((value0 & 0xF) << 4) | (value1 & 0xF));
             
-            [mutableData appendBytes:&value length:1];
+            [data appendBytes:&value length:1];
         }
     }
     
-    NSData *data = nil;
-    
-    if (!hasError)
+    if (hasError)
     {
-        data = [mutableData copy];
+        data = nil;
     }
-    
-    RENSObjectRelease(mutableData);
-    mutableData = nil;
     
     return data;
 }
 
-- (NSData *)decodeBase256
+- (NSMutableData *)decodeBase256
 {
-    NSData *data = RENSObjectAutorelease([self copyDecodeBase256]);
+    NSMutableData *data = [self copyDecodeBase256];
     return data;
 }
 
@@ -140,29 +135,24 @@
 
 #pragma mark - Methods of Base256
 
-- (NSString *)copyEncodeBase256
+- (NSMutableString *)copyEncodeBase256
 {
-    NSMutableString *mutableString = [[NSMutableString alloc] init];
+    NSMutableString *string = [[NSMutableString alloc] init];
     
     const unsigned char *bytes = (const unsigned char *)self.bytes;
     NSUInteger length = self.length;
     
     for (NSUInteger index = 0; index < length; index++)
     {
-        [mutableString appendFormat:@"%02x", (unsigned int)bytes[index]];
+        [string appendFormat:@"%02x", (unsigned int)bytes[index]];
     }
-    
-    NSString *string = [mutableString copy];
-    
-    RENSObjectRelease(mutableString);
-    mutableString = nil;
     
     return string;
 }
 
-- (NSString *)encodeBase256
+- (NSMutableString *)encodeBase256
 {
-    NSString *string = RENSObjectAutorelease([self copyEncodeBase256]);
+    NSMutableString *string = [self copyEncodeBase256];
     return string;
 }
 

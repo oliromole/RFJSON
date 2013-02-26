@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 #import "RENSObject.h"
 
 #define NSMutableSetCastOrCopy(set) NSMutableObjectCastOrCopy(set, NSMutableSet)

@@ -65,10 +65,7 @@ static NSSet * volatile RFJSONArrayAccumulateParser_JSONNodeParserTypes = nil;
 
 - (void)dealloc
 {
-    RENSObjectRelease(mJSONArray);
     mJSONArray = nil;
-    
-    RENSObjectSuperDealloc();
 }
 
 #pragma mark - Managing the RFJSONArrayAccumulateParser Object
@@ -79,7 +76,6 @@ static NSSet * volatile RFJSONArrayAccumulateParser_JSONNodeParserTypes = nil;
 
 - (void)parserFoundObjectStart
 {
-    RENSObjectRelease(mSubJSONNodeParser);
     mSubJSONNodeParser = [[RFJSONOjectAccumulateParser alloc] init];
 }
 
@@ -93,7 +89,6 @@ static NSSet * volatile RFJSONArrayAccumulateParser_JSONNodeParserTypes = nil;
 
 - (void)parserFoundArrayStart
 {
-    RENSObjectRelease(mSubJSONNodeParser);
     mSubJSONNodeParser = [[RFJSONArrayAccumulateParser alloc] init];
 }
 
@@ -150,9 +145,6 @@ static NSSet * volatile RFJSONArrayAccumulateParser_JSONNodeParserTypes = nil;
                 [jsonNodeParserTypes addObject:RFJSONNodeParserTypeString];
                 
                 RFJSONArrayAccumulateParser_JSONNodeParserTypes = [jsonNodeParserTypes copy];
-                
-                RENSObjectRelease(jsonNodeParserTypes);
-                jsonNodeParserTypes = nil;
             }
         }
     }

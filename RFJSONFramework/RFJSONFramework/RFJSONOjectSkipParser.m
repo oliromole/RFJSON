@@ -61,7 +61,6 @@ static NSDictionary * volatile RFJSONOjectSkipParser_JSONObjectKeyJSONNodeParser
 
 - (void)dealloc
 {
-    RENSObjectSuperDealloc();
 }
 
 #pragma mark - Conforming the NSObjectRFJSONOjectParser Protocol
@@ -82,9 +81,6 @@ static NSDictionary * volatile RFJSONOjectSkipParser_JSONObjectKeyJSONNodeParser
                 RENSAssert(jsonObjectKeyJSONNodeParserTypes, @"The method has a logical error.");
                 
                 RFJSONOjectSkipParser_JSONObjectKeyJSONNodeParserTypes = [jsonObjectKeyJSONNodeParserTypes copy];
-                
-                RENSObjectRelease(jsonObjectKeyJSONNodeParserTypes);
-                jsonObjectKeyJSONNodeParserTypes = nil;
             }
         }
     }

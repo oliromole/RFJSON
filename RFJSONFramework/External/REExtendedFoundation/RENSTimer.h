@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 @interface NSTimer (NSTimerRENSTimer)
 
 // Initializing and Creating a NSTimer

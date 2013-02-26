@@ -41,27 +41,35 @@
 #import <Foundation/Foundation.h>
 
 #define RENSAssert(condition, format, ...) \
-    do \
-    { \
-        if (!(condition)) \
-        { \
-            NSString *_rens_assert_message = [NSString stringWithFormat:(format), ##__VA_ARGS__]; \
-            _rens_assert_message = _rens_assert_message; \
-             \
-            NSAssert1(condition, @"%@", _rens_assert_message); \
-        } \
-    } \
-    while (0)
+do \
+{ \
+if (!(condition)) \
+{ \
+NSString *_rens_assert_message = [NSString stringWithFormat:(format), ##__VA_ARGS__]; \
+_rens_assert_message = _rens_assert_message; \
+\
+NSAssert1(condition, @"%@", _rens_assert_message); \
+} \
+} \
+while (0)
 
 #define RENSCAssert(condition, format, ...) \
-    do \
-    { \
-        if (!(condition)) \
-        { \
-            NSString *_rensc_assert_message = [NSString stringWithFormat:(format), ##__VA_ARGS__]; \
-            _rensc_assert_message = _rensc_assert_message; \
-             \
-            NSCAssert1(NO, @"%@", _rensc_assert_message); \
-        } \
-    } \
-    while (0)
+do \
+{ \
+if (!(condition)) \
+{ \
+NSString *_rensc_assert_message = [NSString stringWithFormat:(format), ##__VA_ARGS__]; \
+_rensc_assert_message = _rensc_assert_message; \
+\
+NSCAssert1(NO, @"%@", _rensc_assert_message); \
+} \
+} \
+while (0)
+
+#if NS_BLOCKS_AVAILABLE
+
+typedef void (^RENSAbortBlock)(NSString *format, ...);
+typedef void (^RENSAssertBlock)(BOOL condition, NSString *format, ...);
+typedef void (^RENSWarnBlock)(BOOL condition, NSString *format, ...);
+
+#endif

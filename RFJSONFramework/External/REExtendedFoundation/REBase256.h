@@ -40,14 +40,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 @interface NSString (NSStringREBase256)
 
 // Methods of Base256
 
-- (NSData *)copyDecodeBase256;
-- (NSData *)decodeBase256;
+- (NSMutableData *)copyDecodeBase256;
+- (NSMutableData *)decodeBase256;
 
 @end
 
@@ -55,7 +53,7 @@
 
 // Methods of Base256
 
-- (NSString *)copyEncodeBase256;
-- (NSString *)encodeBase256;
+- (NSMutableString *)copyEncodeBase256;
+- (NSMutableString *)encodeBase256;
 
 @end

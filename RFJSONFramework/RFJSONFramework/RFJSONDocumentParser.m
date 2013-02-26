@@ -65,14 +65,10 @@
 
 - (void)dealloc
 {
-    RENSObjectRelease(mRootJSONOjectParser);
     mRootJSONOjectParser = nil;
     
     mJSONStreamParser.delegate = self;
-    RENSObjectRelease(mJSONStreamParser);
     mJSONStreamParser = nil;
-    
-    RENSObjectSuperDealloc();
 }
 
 #pragma mark - Managing the RFJSONDocument Object
@@ -105,8 +101,7 @@
     if (mJSONStreamParser != jsonStreamParser)
     {
         mJSONStreamParser.delegate = nil;
-        RENSObjectRelease(mJSONStreamParser);
-        mJSONStreamParser = RENSObjectRetain(jsonStreamParser);
+        mJSONStreamParser = jsonStreamParser;
         mJSONStreamParser.delegate = self;
     }
 }

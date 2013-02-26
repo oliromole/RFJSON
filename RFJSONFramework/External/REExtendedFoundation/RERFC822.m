@@ -82,13 +82,7 @@
                 date = [dateFormatter dateFromString:self];
             }
         }
-        
-        RENSObjectRelease(dateFormatter);
-        dateFormatter = nil;
     }
-    
-    RENSObjectRelease(locale);
-    locale = nil;
     
     return date;
 }
@@ -116,13 +110,7 @@
             
             string = [dateFormatter stringFromDate:self];
         }
-        
-        RENSObjectRelease(dateFormatter);
-        dateFormatter = nil;
     }
-    
-    RENSObjectRelease(locale);
-    locale = nil;
     
     return string;
 }

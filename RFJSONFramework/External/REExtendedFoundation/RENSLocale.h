@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 @interface NSLocale (NSLocaleRENSLocale)
 
 // Initializing and Creating a NSLocale

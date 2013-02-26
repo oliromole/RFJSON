@@ -67,10 +67,7 @@
 
 - (void)dealloc
 {
-    RENSObjectRelease(mSubJSONNodeParser);
     mSubJSONNodeParser = nil;
-    
-    RENSObjectSuperDealloc();
 }
 
 #pragma mark - Managing the RFJSONNodeParser Object

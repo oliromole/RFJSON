@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 #import "RENSObject.h"
 
 @interface NSString (NSStringRENSString)
@@ -119,6 +117,12 @@
 - (BOOL)hasPrefix:(NSString *)aString range:(NSRange)range;
 - (BOOL)hasSuffix:(NSString *)aString range:(NSRange)range;
 
+// Getting C Strings
+
+// NULL return if conversion not possible due to encoding errors.
+- (void)getCString:(char **)pCString encoding:(NSStringEncoding)encoding;
+- (void)getUTF8String:(char **)pCString;
+
 // Working with Encodings
 
 - (NSData *)dataUsingUTF8StringEncoding;
@@ -130,6 +134,7 @@
 // Modifying a String
 
 - (void)deleteAllCharacters;
+- (void)deleteLastCharacter;
 
 - (void)deletePrefix:(NSString *)prefix;
 - (void)deleteSuffix:(NSString *)suffix;

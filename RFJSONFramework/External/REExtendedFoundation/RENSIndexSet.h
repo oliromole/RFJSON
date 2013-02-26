@@ -40,8 +40,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "REExtendedCompiler.h"
-
 #import "RENSObject.h"
 
 #define NSMutableIndexSetCastOrCopy(indexSet) NSMutableObjectCastOrCopy(indexSet, NSMutableIndexSet)

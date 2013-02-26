@@ -60,7 +60,7 @@
         }
     }
     
-    return RENSObjectAutorelease(dictionary);
+    return dictionary;
 }
 
 - (NSDictionary *)dictionaryWithKeys:(NSArray *)keys notFoundMarker:(id)marker
@@ -87,7 +87,7 @@
         }
     }
     
-    return RENSObjectAutorelease(dictionary);
+    return dictionary;
 }
 
 @end
@@ -128,9 +128,6 @@ static id NSDictionary_ObjectForKeyedSubscript(NSDictionary *self, SEL _cmd, id 
     
     [self removeAllObjects];
     [self setDictionary:mutableDictionary];
-    
-    RENSObjectRelease(mutableDictionary);
-    mutableDictionary = nil;
 }
 
 @end

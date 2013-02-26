@@ -66,10 +66,7 @@ static NSDictionary * volatile RFJSONOjectAccumulateParser_JSONObjectKeyJSONNode
 
 - (void)dealloc
 {
-    RENSObjectRelease(mJSONObject);
     mJSONObject = nil;
-    
-    RENSObjectSuperDealloc();
 }
 
 #pragma mark - Managing the RFJSONOjectAccumulateParser Object
@@ -80,7 +77,6 @@ static NSDictionary * volatile RFJSONOjectAccumulateParser_JSONObjectKeyJSONNode
 
 - (void)parserFoundObjectStart
 {
-    RENSObjectRelease(mSubJSONNodeParser);
     mSubJSONNodeParser = [[RFJSONOjectAccumulateParser alloc] init];
 }
 
@@ -94,7 +90,6 @@ static NSDictionary * volatile RFJSONOjectAccumulateParser_JSONObjectKeyJSONNode
 
 - (void)parserFoundArrayStart
 {
-    RENSObjectRelease(mSubJSONNodeParser);
     mSubJSONNodeParser = [[RFJSONArrayAccumulateParser alloc] init];
 }
 
@@ -154,9 +149,6 @@ static NSDictionary * volatile RFJSONOjectAccumulateParser_JSONObjectKeyJSONNode
                                                      forKey:RFJSONOjectParserAllOtherObjectKeys];
                 
                 RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserTypes = [jsonObjectKeyJSONNodeParserTypes copy];
-                
-                RENSObjectRelease(jsonObjectKeyJSONNodeParserTypes);
-                jsonObjectKeyJSONNodeParserTypes = nil;
             }
         }
     }

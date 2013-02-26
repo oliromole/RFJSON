@@ -63,7 +63,6 @@ static NSSet * volatile RFJSONArraySkipParser_JSONNodeParserTypes = nil;
 
 - (void)dealloc
 {
-    RENSObjectSuperDealloc();
 }
 
 #pragma mark - Conforming the NSObjectRFJSONArrayParser Protocol
@@ -91,9 +90,6 @@ static NSSet * volatile RFJSONArraySkipParser_JSONNodeParserTypes = nil;
                 [jsonNodeParserTypes addObject:RFJSONNodeParserTypeString];
                 
                 RFJSONArraySkipParser_JSONNodeParserTypes = [jsonNodeParserTypes copy];
-                
-                RENSObjectRelease(jsonNodeParserTypes);
-                jsonNodeParserTypes = nil;
             }
         }
     }
