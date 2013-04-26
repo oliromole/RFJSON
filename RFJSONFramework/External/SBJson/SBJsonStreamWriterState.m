@@ -30,15 +30,41 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if !__has_feature(objc_arc)
+#error "This source file must be compiled with ARC enabled!"
+#endif
+
 #import "SBJsonStreamWriterState.h"
 #import "SBJsonStreamWriter.h"
 
+#define SINGLETON \
++ (id)sharedInstance { \
+static id state = nil; \
+if (!state) { \
+@synchronized(self) { \
+if (!state) state = [[self alloc] init]; \
+} \
+} \
+return state; \
+}
+
+
 @implementation SBJsonStreamWriterState
 + (id)sharedInstance { return nil; }
-- (BOOL)isInvalidState:(SBJsonStreamWriter*)writer { return NO; }
-- (void)appendSeparator:(SBJsonStreamWriter*)writer {}
-- (BOOL)expectingKey:(SBJsonStreamWriter*)writer { return NO; }
-- (void)transitionState:(SBJsonStreamWriter *)writer {}
+- (BOOL)isInvalidState:(SBJsonStreamWriter*)writer {
+#pragma unused(writer)
+    return NO;
+}
+- (void)appendSeparator:(SBJsonStreamWriter*)writer {
+#pragma unused(writer)
+}
+- (BOOL)expectingKey:(SBJsonStreamWriter*)writer {
+#pragma unused(writer)
+    return NO;
+}
+- (void)transitionState:(SBJsonStreamWriter *)writer {
+#pragma unused(writer)
+}
 - (void)appendWhitespace:(SBJsonStreamWriter*)writer {
 	[writer appendBytes:"\n" length:1];
 	for (NSUInteger i = 0; i < writer.stateStack.count; i++)
@@ -48,15 +74,7 @@
 
 @implementation SBJsonStreamWriterStateObjectStart
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (void)transitionState:(SBJsonStreamWriter *)writer {
 	writer.state = [SBJsonStreamWriterStateObjectValue sharedInstance];
@@ -69,15 +87,7 @@
 
 @implementation SBJsonStreamWriterStateObjectKey
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (void)appendSeparator:(SBJsonStreamWriter *)writer {
 	[writer appendBytes:"," length:1];
@@ -86,15 +96,7 @@
 
 @implementation SBJsonStreamWriterStateObjectValue
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (void)appendSeparator:(SBJsonStreamWriter *)writer {
 	[writer appendBytes:":" length:1];
@@ -109,15 +111,7 @@
 
 @implementation SBJsonStreamWriterStateArrayStart
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (void)transitionState:(SBJsonStreamWriter *)writer {
     writer.state = [SBJsonStreamWriterStateArrayValue sharedInstance];
@@ -126,15 +120,7 @@
 
 @implementation SBJsonStreamWriterStateArrayValue
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (void)appendSeparator:(SBJsonStreamWriter *)writer {
 	[writer appendBytes:"," length:1];
@@ -143,34 +129,20 @@
 
 @implementation SBJsonStreamWriterStateStart
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
+
 
 - (void)transitionState:(SBJsonStreamWriter *)writer {
     writer.state = [SBJsonStreamWriterStateComplete sharedInstance];
 }
 - (void)appendSeparator:(SBJsonStreamWriter *)writer {
+#pragma unused(writer)
 }
 @end
 
 @implementation SBJsonStreamWriterStateComplete
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (BOOL)isInvalidState:(SBJsonStreamWriter*)writer {
 	writer.error = @"Stream is closed";
@@ -180,14 +152,6 @@
 
 @implementation SBJsonStreamWriterStateError
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 @end

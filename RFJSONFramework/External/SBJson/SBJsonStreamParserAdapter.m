@@ -30,6 +30,10 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if !__has_feature(objc_arc)
+#error "This source file must be compiled with ARC enabled!"
+#endif
+
 #import "SBJsonStreamParserAdapter.h"
 
 @interface SBJsonStreamParserAdapter ()
@@ -38,6 +42,8 @@
 - (void)parser:(SBJsonStreamParser*)parser found:(id)obj;
 
 @end
+
+
 
 @implementation SBJsonStreamParserAdapter
 
@@ -57,25 +63,13 @@
 	return self;
 }
 
-- (void)dealloc {
-    array = nil;
-    
-    dict = nil;
-    
-    keyStack = nil;
-    
-    stack = nil;
-}
 
-#pragma mark Private Methods
+#pragma mark Private methods
 
 - (void)pop {
 	[stack removeLastObject];
-    
 	array = nil;
-	
-    dict = nil;
-    
+	dict = nil;
 	currentType = SBJsonStreamParserAdapterNone;
 	
 	id value = [stack lastObject];
@@ -116,17 +110,20 @@
 	}
 }
 
-#pragma mark Delegate Methods
+
+#pragma mark Delegate methods
 
 - (void)parserFoundObjectStart:(SBJsonStreamParser*)parser {
+#pragma unused(parser)
 	if (++depth > self.levelsToSkip) {
-		dict = [[NSMutableDictionary alloc] init];
+		dict = [NSMutableDictionary new];
 		[stack addObject:dict];
 		currentType = SBJsonStreamParserAdapterObject;
 	}
 }
 
 - (void)parser:(SBJsonStreamParser*)parser foundObjectKey:(NSString*)key_ {
+#pragma unused(parser)
 	[keyStack addObject:key_];
 }
 
@@ -139,8 +136,9 @@
 }
 
 - (void)parserFoundArrayStart:(SBJsonStreamParser*)parser {
+#pragma unused(parser)
 	if (++depth > self.levelsToSkip) {
-		array = [[NSMutableArray alloc] init];
+		array = [NSMutableArray new];
 		[stack addObject:array];
 		currentType = SBJsonStreamParserAdapterArray;
 	}
@@ -155,7 +153,7 @@
 }
 
 - (void)parser:(SBJsonStreamParser*)parser foundBoolean:(BOOL)x {
-	[self parser:parser found:[[NSNumber alloc] initWithBool:x]];
+	[self parser:parser found:[NSNumber numberWithBool:x]];
 }
 
 - (void)parserFoundNull:(SBJsonStreamParser*)parser {

@@ -43,10 +43,35 @@
 #import "REExtendedFoundation.h"
 
 @interface RENSOtherThread : NSThread
+{
+@protected
+    
+    int64_t mIterationCounter;
+}
 
 @end
 
 @implementation RENSOtherThread
+
+#pragma mark - Initializing and Creating a RENSOtherThread
+
+- (id)init
+{
+    if ((self = [super init]))
+    {
+        mIterationCounter = 0;
+    }
+    
+    return self;
+}
+
+#pragma mark - Dealocating a RENSOtherThread
+
+- (void)dealloc
+{
+}
+
+#pragma mark - Starting a Thread
 
 - (void)main
 {
@@ -62,6 +87,12 @@
                 {
                     NSString *className = NSStringFromClass([self class]);
                     NSString *threadName = [[NSString alloc] initWithFormat:@"com.oliromole.%@", className];
+                    currentThread.name = threadName;
+                }
+                
+                else
+                {
+                    NSMutableString *threadName = [currentThread.name mutableCopy];
                     currentThread.name = threadName;
                 }
             }
@@ -85,13 +116,17 @@
         {
             @autoreleasepool
             {
+                mIterationCounter++;
+                
                 runLoopRunResult = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 10.0, YES);
+                
+                //NSLog(@"%@ %ld", self.name, (long)mIterationCounter);
             }
         }
         
-        RENSAssert(!self.isCancelled, @"The %@ class is incorrectly used.", NSStringFromClass([self class]));
-        RENSAssert(!self.isFinished, @"The %@ class is incorrectly used.", NSStringFromClass([self class]));
-        RENSAssert((runLoopRunResult != kCFRunLoopRunStopped), @"The %@ class is incorrectly used.", NSStringFromClass([self class]));
+        RENSAssert(!self.isCancelled, @"The %@ class is used incorrectly.", NSStringFromClass([self class]));
+        RENSAssert(!self.isFinished, @"The %@ class is used incorrectly.", NSStringFromClass([self class]));
+        RENSAssert((runLoopRunResult != kCFRunLoopRunStopped), @"The %@ class is used incorrectly.", NSStringFromClass([self class]));
     }
 }
 
@@ -127,7 +162,7 @@ static RENSOtherThread * volatile NSThread_SecondThread = nil;
             if (!NSThread_SecondThread)
             {
                 NSThread_SecondThread = [[RENSOtherThread alloc] init];
-                NSThread_SecondThread.name = @"com.oliromole.SASecondThread";
+                NSThread_SecondThread.name = @"com.oliromole.SecondThread";
                 [NSThread_SecondThread start];
             }
         }

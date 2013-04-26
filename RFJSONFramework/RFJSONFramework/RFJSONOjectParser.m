@@ -128,7 +128,7 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
             
             if (jsonTypes)
             {
-                if ([jsonTypes count] > 0)
+                if (jsonTypes.count > 0)
                 {
                     [self parserFoundObjectKey:key];
                 }
@@ -171,7 +171,7 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
             
             if (jsonTypes)
             {
-                if ([jsonTypes count] > 0)
+                if (jsonTypes.count > 0)
                 {
                     if ([jsonTypes containsObject:RFJSONNodeParserTypeObject])
                     {
@@ -247,7 +247,7 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
                 
                 if (jsonTypes)
                 {
-                    if ([jsonTypes count] > 0)
+                    if (jsonTypes.count > 0)
                     {
                         if ([jsonTypes containsObject:RFJSONNodeParserTypeObject])
                         {
@@ -311,7 +311,7 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
             
             if (jsonTypes)
             {
-                if ([jsonTypes count] > 0)
+                if (jsonTypes.count > 0)
                 {
                     if ([jsonTypes containsObject:RFJSONNodeParserTypeArray])
                     {
@@ -387,7 +387,7 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
                 
                 if (jsonTypes)
                 {
-                    if ([jsonTypes count] > 0)
+                    if (jsonTypes.count > 0)
                     {
                         if ([jsonTypes containsObject:RFJSONNodeParserTypeArray])
                         {
@@ -447,7 +447,7 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
             
             if (jsonTypes)
             {
-                if ([jsonTypes count] > 0)
+                if (jsonTypes.count > 0)
                 {
                     if ([jsonTypes containsObject:RFJSONNodeParserTypeNull])
                     {
@@ -499,7 +499,7 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
             
             if (jsonTypes)
             {
-                if ([jsonTypes count] > 0)
+                if (jsonTypes.count > 0)
                 {
                     if ([jsonTypes containsObject:RFJSONNodeParserTypeBool])
                     {
@@ -551,7 +551,7 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
             
             if (jsonTypes)
             {
-                if ([jsonTypes count] > 0)
+                if (jsonTypes.count > 0)
                 {
                     if ([jsonTypes containsObject:RFJSONNodeParserTypeNumber])
                     {
@@ -603,7 +603,7 @@ static NSDictionary * volatile NSObject_JSONObjectKeyJSONNodeParserTypes = nil;
             
             if (jsonTypes)
             {
-                if ([jsonTypes count] > 0)
+                if (jsonTypes.count > 0)
                 {
                     if ([jsonTypes containsObject:RFJSONNodeParserTypeString])
                     {

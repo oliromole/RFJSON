@@ -160,3 +160,7 @@
 @end
 
 #define NSMutableStringCastOrCopy(string) NSMutableObjectCastOrCopy(string, NSMutableString)
+
+FOUNDATION_EXTERN void *RECStringCreateWithNSString(NSString *nsString, NSStringEncoding encoding, BOOL fast, void *(*mallocFuntion)(size_t), void (*freeFunction)(void *));
+FOUNDATION_EXTERN NSString *RENSStringCreateWithCString(const void *cString, int numberOfBytes, NSStringEncoding encoding);
+FOUNDATION_EXTERN NSMutableString *RENSMutableStringCreateWithCString(const void *cString, int numberOfBytes, NSStringEncoding encoding);

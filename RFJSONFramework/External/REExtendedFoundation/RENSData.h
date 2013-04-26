@@ -43,3 +43,8 @@
 #import "RENSObject.h"
 
 #define NSMutableDataCastOrCopy(data) NSMutableObjectCastOrCopy(data, NSMutableData)
+
+FOUNDATION_EXTERN void *RECDataCreateWithNSData(NSData *nsData, void *(*mallocFuntion)(size_t));
+
+FOUNDATION_EXTERN NSData *RENSDataCreateWithCData(const void *cData, int numberOfBytes);
+FOUNDATION_EXTERN NSMutableData *RENSMutableDataCreateWithCData(const void *cData, int numberOfBytes);

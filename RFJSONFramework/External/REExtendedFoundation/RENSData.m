@@ -39,3 +39,61 @@
  */
 
 #import "RENSData.h"
+
+#import "RENSException.h"
+
+void *RECDataCreateWithNSData(NSData *nsData, void *(*mallocFuntion)(size_t))
+{
+    RENSCAssert(mallocFuntion, @"The mallocFuntion argument is NULL.");
+    
+    void *cData = NULL;
+    
+    if (nsData)
+    {
+        NSUInteger nsDataLength = nsData.length;
+        
+        cData = mallocFuntion(nsDataLength);
+        
+        if (cData)
+        {
+            NSRange nsRange;
+            nsRange.location = 0;
+            nsRange.length = nsDataLength;
+            
+            [nsData getBytes:cData range:nsRange];
+        }
+    }
+    
+    return cData;
+    
+}
+
+NSData *RENSDataCreateWithCData(const void *cData, int numberOfBytes)
+{
+    NSData *nsData = NULL;
+    
+    if (cData)
+    {
+        if (numberOfBytes >= 0)
+        {
+            nsData = [[NSData alloc] initWithBytes:cData length:(NSUInteger)numberOfBytes];
+        }
+    }
+    
+    return nsData;
+}
+
+NSMutableData *RENSMutableDataCreateWithCData(const void *cData, int numberOfBytes)
+{
+    NSMutableData *nsData = NULL;
+    
+    if (cData)
+    {
+        if (numberOfBytes >= 0)
+        {
+            nsData = [[NSMutableData alloc] initWithBytes:cData length:(NSUInteger)numberOfBytes];
+        }
+    }
+    
+    return nsData;
+}

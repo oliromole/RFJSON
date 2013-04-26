@@ -32,6 +32,6 @@
 
 @interface SBJsonStreamParserAccumulator : NSObject <SBJsonStreamParserAdapterDelegate>
 
-@property (copy) id value;
+@property (nonatomic, copy) id value;
 
 @end

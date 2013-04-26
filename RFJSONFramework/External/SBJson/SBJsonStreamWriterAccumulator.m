@@ -27,7 +27,12 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if !__has_feature(objc_arc)
+#error "This source file must be compiled with ARC enabled!"
+#endif
+
 #import "SBJsonStreamWriterAccumulator.h"
+
 
 @implementation SBJsonStreamWriterAccumulator
 
@@ -41,13 +46,11 @@
     return self;
 }
 
-- (void)dealloc {
-    data = nil;
-}
 
 #pragma mark SBJsonStreamWriterDelegate
 
 - (void)writer:(SBJsonStreamWriter *)writer appendBytes:(const void *)bytes length:(NSUInteger)length {
+#pragma unused(writer)
     [data appendBytes:bytes length:length];
 }
 

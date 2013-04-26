@@ -50,7 +50,7 @@
     
     do
     {
-        NSInteger result = [self read:(buffer + bytesRead) maxLength:(bufferLength - bytesRead)];
+        NSInteger result = [self read:(buffer + bytesRead) maxLength:(bufferLength - (NSUInteger)bytesRead)];
         
         if (result < 0)
         {
@@ -63,7 +63,7 @@
         }
         
         bytesRead += result;
-    } while (bytesRead < bufferLength);
+    } while (bytesRead < (NSInteger)bufferLength);
     
     return bytesRead;
 }
@@ -80,7 +80,7 @@
     
     do
     {
-        int result = [self write:(buffer + bytesWritten) maxLength:(bufferLength - bytesWritten)];
+        NSInteger result = [self write:(buffer + bytesWritten) maxLength:(bufferLength - (NSUInteger)bytesWritten)];
         
         if (result < 0)
         {
@@ -93,7 +93,7 @@
         }
         
         bytesWritten += result;
-    } while (bytesWritten < bufferLength);
+    } while (bytesWritten < (NSInteger)bufferLength);
     
     return bytesWritten;
 }

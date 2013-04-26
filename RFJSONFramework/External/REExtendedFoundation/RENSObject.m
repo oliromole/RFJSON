@@ -69,7 +69,7 @@ CFTypeID NSObject_NSObjectRENSObject_NSObject_TypeID = 0;
 
 + (NSObject *)singletonSynchronizer
 {
-    RENSAssert(NSObject_NSObjectRENSObject_SingletonSynchronizer, @"The %@ class is incorrectly used.", NSStringFromClass([self class]));
+    RENSAssert(NSObject_NSObjectRENSObject_SingletonSynchronizer, @"The %@ class is used incorrectly.", NSStringFromClass([self class]));
     
     return NSObject_NSObjectRENSObject_SingletonSynchronizer;
 }

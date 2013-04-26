@@ -27,23 +27,26 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if !__has_feature(objc_arc)
+#error "This source file must be compiled with ARC enabled!"
+#endif
+
 #import "SBJsonStreamParserAccumulator.h"
 
 @implementation SBJsonStreamParserAccumulator
 
-- (void)dealloc {
-    value = nil;
-}
-
 @synthesize value;
+
 
 #pragma mark SBJsonStreamParserAdapterDelegate
 
 - (void)parser:(SBJsonStreamParser*)parser foundArray:(NSArray *)array {
+#pragma unused(parser)
 	value = array;
 }
 
 - (void)parser:(SBJsonStreamParser*)parser foundObject:(NSDictionary *)dict {
+#pragma unused(parser)
 	value = dict;
 }
 

@@ -27,6 +27,10 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if !__has_feature(objc_arc)
+#error "This source file must be compiled with ARC enabled!"
+#endif
+
 #import "SBJsonParser.h"
 #import "SBJsonStreamParser.h"
 #import "SBJsonStreamParserAdapter.h"
@@ -44,9 +48,6 @@
     return self;
 }
 
-- (void)dealloc {
-    error = nil;
-}
 
 #pragma mark Methods
 
@@ -83,21 +84,8 @@
 	return nil;
 }
 
-- (id)objectWithString:(NSString *)repr {
-	return [self objectWithData:[repr dataUsingEncoding:NSUTF8StringEncoding]];
-}
-
-- (id)objectWithString:(NSString*)repr error:(NSError**)error_ {
-	id tmp = [self objectWithString:repr];
-    if (tmp)
-        return tmp;
-    
-    if (error_) {
-		NSDictionary *ui = [[NSDictionary alloc] initWithObjectsAndKeys:error, NSLocalizedDescriptionKey, nil];
-        *error_ = [[NSError alloc] initWithDomain:@"org.brautaset.SBJsonParser.ErrorDomain" code:0 userInfo:ui];
-	}
-	
-    return nil;
+- (id)objectWithString:(NSString *)string {
+	return [self objectWithData:[string dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 @end

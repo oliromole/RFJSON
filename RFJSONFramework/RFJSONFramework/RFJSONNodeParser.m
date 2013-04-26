@@ -102,6 +102,8 @@
 
 - (void)parserFoundObjectKey:(NSString*)key
 {
+#pragma unused(key)
+    
     // This stub
 }
 
@@ -132,16 +134,22 @@
 
 - (void)parserFoundBoolean:(BOOL)boolean
 {
+#pragma unused(boolean)
+    
     // This stub
 }
 
 - (void)parserFoundNumber:(NSNumber*)number
 {
+#pragma unused(number)
+    
     // This stub
 }
 
 - (void)parserFoundString:(NSString*)string
 {
+#pragma unused(string)
+    
     // This stub
 }
 
@@ -161,6 +169,8 @@
 
 - (void)_parserFoundObjectKey:(NSString*)key
 {
+#pragma unused(key)
+    
     // This stub.
     RENSAssert(NO, @"Override me!");
 }
@@ -197,18 +207,24 @@
 
 - (void)_parserFoundBoolean:(BOOL)boolean
 {
+#pragma unused(boolean)
+    
     // This stub.
     RENSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundNumber:(NSNumber*)number
 {
+#pragma unused(number)
+    
     // This stub.
     RENSAssert(NO, @"Override me!");
 }
 
 - (void)_parserFoundString:(NSString*)string
 {
+#pragma unused(string)
+    
     // This stub.
     RENSAssert(NO, @"Override me!");
 }

@@ -30,6 +30,10 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if !__has_feature(objc_arc)
+#error "This source file must be compiled with ARC enabled!"
+#endif
+
 #import "SBJsonStreamWriter.h"
 #import "SBJsonStreamWriterState.h"
 
@@ -38,6 +42,7 @@ static NSNumber *kTrue;
 static NSNumber *kFalse;
 static NSNumber *kPositiveInfinity;
 static NSNumber *kNegativeInfinity;
+
 
 @implementation SBJsonStreamWriter
 
@@ -50,14 +55,11 @@ static NSNumber *kNegativeInfinity;
 @synthesize sortKeysComparator;
 
 + (void)initialize {
-    if (self == [SBJsonStreamWriter class])
-    {
-        kNotANumber = [NSDecimalNumber notANumber];
-        kPositiveInfinity = [[NSNumber alloc] initWithDouble:+INFINITY];
-        kNegativeInfinity = [[NSNumber alloc] initWithDouble:-INFINITY];
-        kTrue = [[NSNumber alloc] initWithBool:YES];
-        kFalse = [[NSNumber alloc] initWithBool:NO];
-    }
+	kNotANumber = [NSDecimalNumber notANumber];
+    kPositiveInfinity = [NSNumber numberWithDouble:+HUGE_VAL];
+    kNegativeInfinity = [NSNumber numberWithDouble:-HUGE_VAL];
+    kTrue = [NSNumber numberWithBool:YES];
+    kFalse = [NSNumber numberWithBool:NO];
 }
 
 #pragma mark Housekeeping
@@ -73,20 +75,6 @@ static NSNumber *kNegativeInfinity;
         cache = [[NSMutableDictionary alloc] initWithCapacity:32];
     }
 	return self;
-}
-
-- (void)dealloc {
-    cache = nil;
-    
-    error = nil;
-    
-    if (sortKeysComparator) {
-        // ???
-        //Block_release(sortKeysComparator);
-        sortKeysComparator = NULL;
-    }
-    
-    stateStack = nil;
 }
 
 #pragma mark Methods
@@ -134,6 +122,7 @@ static NSNumber *kNegativeInfinity;
 	return [self writeArrayClose];
 }
 
+
 - (BOOL)writeObjectOpen {
 	if ([state isInvalidState:self]) return NO;
 	if ([state expectingKey:self]) return NO;
@@ -164,9 +153,6 @@ static NSNumber *kNegativeInfinity;
 	[delegate writer:self appendBytes:"}" length:1];
     
 	[state transitionState:self];
-    
-    prev = nil;
-    
 	return YES;
 }
 
@@ -201,9 +187,6 @@ static NSNumber *kNegativeInfinity;
 	[delegate writer:self appendBytes:"]" length:1];
     
 	[state transitionState:self];
-    
-    prev = nil;
-    
 	return YES;
 }
 
@@ -231,6 +214,7 @@ static NSNumber *kNegativeInfinity;
 	[state transitionState:self];
 	return YES;
 }
+
 
 - (BOOL)writeValue:(id)o {
 	if ([o isKindOfClass:[NSDictionary class]]) {
@@ -367,10 +351,10 @@ static const char *strForChar(int c) {
     
 	switch (objcType[0]) {
 		case 'c': case 'i': case 's': case 'l': case 'q':
-			len = snprintf(num, sizeof num, "%lld", [number longLongValue]);
+			len = (size_t)snprintf(num, sizeof num, "%lld", [number longLongValue]);
 			break;
 		case 'C': case 'I': case 'S': case 'L': case 'Q':
-			len = snprintf(num, sizeof num, "%llu", [number unsignedLongLongValue]);
+			len = (size_t)snprintf(num, sizeof num, "%llu", [number unsignedLongLongValue]);
 			break;
 		case 'f': case 'd': default:
 			if ([number isKindOfClass:[NSDecimalNumber class]]) {
@@ -379,7 +363,7 @@ static const char *strForChar(int c) {
 				[state transitionState:self];
 				return YES;
 			}
-			len = snprintf(num, sizeof num, "%.17g", [number doubleValue]);
+			len = (size_t)snprintf(num, sizeof num, "%.17g", [number doubleValue]);
 			break;
 	}
 	[delegate writer:self appendBytes:num length: len];

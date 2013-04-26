@@ -40,6 +40,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "RENSException.h"
+
 @interface NSNumber (NSNumberRENSNumber)
 
 // Comparing NSNumber Objects
@@ -190,4 +192,22 @@ NS_INLINE BOOL NSBoolFromNumberUnsignedInteger(NSNumber *value)
 {
     BOOL boolValue = (value && ![value isEqual:NSNumberUnsignedIntegerZero]);
     return boolValue;
+}
+
+NS_INLINE NSNumber *NSNumberMin(NSNumber *leftNumber, NSNumber *rightNumber)
+{
+    RENSCAssert(leftNumber, @"The leftNumber argument is nil.");
+    RENSCAssert(rightNumber, @"The rightNumber argument is nil.");
+    
+    NSNumber *minNumber = (([leftNumber compare:rightNumber] == NSOrderedAscending) ? leftNumber : rightNumber);
+    return minNumber;
+}
+
+NS_INLINE NSNumber *NSNumberMax(NSNumber *leftNumber, NSNumber *rightNumber)
+{
+    RENSCAssert(leftNumber, @"The leftNumber argument is nil.");
+    RENSCAssert(rightNumber, @"The rightNumber argument is nil.");
+    
+    NSNumber *maxNumber = (([leftNumber compare:rightNumber] == NSOrderedDescending) ? leftNumber : rightNumber);
+    return maxNumber;
 }

@@ -1,8 +1,8 @@
 //
 //  RFJSONNodeParserTypeProtected.m
-//  StoAmigo
+//  ImmotopLu
 //
-//  Created by Roman Oliichuk on 08/09/2012.
+//  Created by Roman Oliichuk on 2013.04.23.
 //  Copyright (c) 2012 Roman Oliichuk. All rights reserved.
 //
 

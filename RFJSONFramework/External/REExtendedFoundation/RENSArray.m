@@ -171,6 +171,8 @@
 
 - (NSUInteger)indexOfObject:(id)anObject options:(NSEnumerationOptions)options
 {
+#pragma unused(options)
+    
     NSUInteger indexOfObject = [self indexOfObject:anObject inRange:self.range options:0];
     return indexOfObject;
 }
@@ -182,15 +184,15 @@
         @throw [NSException exceptionWithName:NSRangeException reason:@"The range argument is invalid." userInfo:nil];
     }
     
-    NSUInteger indexOfObject = NSNotFound;
+    NSInteger indexOfObject = NSNotFound;
     
     if ((options & NSEnumerationReverse) == NSEnumerationReverse)
     {
-        NSInteger index1 = range.location - 1;
+        NSInteger index1 = (NSInteger)range.location - 1;
         
-        for (NSInteger index2 = NSMaxRange(range) - 1; index1 < index2; index2--)
+        for (NSInteger index2 = (NSInteger)NSMaxRange(range) - 1; index1 < index2; index2--)
         {
-            id object = [self objectAtIndex:index2];
+            id object = [self objectAtIndex:(NSUInteger)index2];
             
             if ([object isEqual:anObject])
             {
@@ -202,11 +204,11 @@
     
     else
     {
-        NSInteger index2 = NSMaxRange(range);
+        NSInteger index2 = (NSInteger)NSMaxRange(range);
         
-        for (NSInteger index1 = range.location; index1 < index2; index1++)
+        for (NSInteger index1 = (NSInteger)range.location; index1 < index2; index1++)
         {
-            id object = [self objectAtIndex:index1];
+            id object = [self objectAtIndex:(NSUInteger)index1];
             
             if ([object isEqual:anObject])
             {
@@ -216,12 +218,12 @@
         }
     }
     
-    return indexOfObject;
+    return (NSUInteger)indexOfObject;
 }
 
 - (NSUInteger)indexOfObjectIdenticalTo:(id)anObject options:(NSEnumerationOptions)options
 {
-    NSUInteger indexOfObject = [self indexOfObjectIdenticalTo:anObject inRange:self.range options:0];
+    NSUInteger indexOfObject = [self indexOfObjectIdenticalTo:anObject inRange:self.range options:options];
     return indexOfObject;
 }
 
@@ -232,15 +234,15 @@
         @throw [NSException exceptionWithName:NSRangeException reason:@"The range argument is invalid." userInfo:nil];
     }
     
-    NSUInteger indexOfObject = NSNotFound;
+    NSInteger indexOfObject = NSNotFound;
     
     if ((options & NSEnumerationReverse) == NSEnumerationReverse)
     {
-        NSInteger index1 = range.location - 1;
+        NSInteger index1 = (NSInteger)range.location - 1;
         
-        for (NSInteger index2 = NSMaxRange(range) - 1; index1 < index2; index2--)
+        for (NSInteger index2 = (NSInteger)NSMaxRange(range) - 1; index1 < index2; index2--)
         {
-            id object = [self objectAtIndex:index2];
+            id object = [self objectAtIndex:(NSUInteger)index2];
             
             if (object == anObject)
             {
@@ -252,11 +254,11 @@
     
     else
     {
-        NSInteger index2 = NSMaxRange(range);
+        NSInteger index2 = (NSInteger)NSMaxRange(range);
         
-        for (NSInteger index1 = range.location; index1 < index2; index1++)
+        for (NSInteger index1 = (NSInteger)range.location; index1 < index2; index1++)
         {
-            id object = [self objectAtIndex:index1];
+            id object = [self objectAtIndex:(NSUInteger)index1];
             
             if (object == anObject)
             {
@@ -266,21 +268,21 @@
         }
     }
     
-    return indexOfObject;
+    return (NSUInteger)indexOfObject;
 }
 
 #pragma mark - Reversing the Array
 
 - (NSArray *)reversedArray
 {
-    NSInteger count = self.count;
+    NSInteger count = (NSInteger)self.count;
     NSInteger index = count - 1;
     
-    NSMutableArray *mutableReversedArray = [[NSMutableArray alloc] initWithCapacity:count];
+    NSMutableArray *mutableReversedArray = [[NSMutableArray alloc] initWithCapacity:(NSUInteger)count];
     
     while (index > -1)
     {
-        id object = [self objectAtIndex:index];
+        id object = [self objectAtIndex:(NSUInteger)index];
         [mutableReversedArray addObject:object];
         
         index--;
@@ -641,11 +643,11 @@
 - (void)reverse
 {
     NSInteger index1 = 0;
-    NSInteger index2 = self.count - 1;
+    NSInteger index2 = (NSInteger)self.count - 1;
     
     while (index1 < index2)
     {
-        [self exchangeObjectAtIndex:index1 withObjectAtIndex:index2];
+        [self exchangeObjectAtIndex:(NSUInteger)index1 withObjectAtIndex:(NSUInteger)index2];
         
         index1++;
         index2--;

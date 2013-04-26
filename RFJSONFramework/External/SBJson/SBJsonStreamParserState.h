@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "SBJsonTokeniser.h"
+#import "SBJsonStreamTokeniser.h"
 #import "SBJsonStreamParser.h"
 
 @interface SBJsonStreamParserState : NSObject
@@ -56,6 +56,7 @@
 
 @interface SBJsonStreamParserStateError : SBJsonStreamParserState
 @end
+
 
 @interface SBJsonStreamParserStateObjectStart : SBJsonStreamParserState
 @end

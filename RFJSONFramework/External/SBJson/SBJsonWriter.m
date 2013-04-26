@@ -27,9 +27,14 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if !__has_feature(objc_arc)
+#error "This source file must be compiled with ARC enabled!"
+#endif
+
 #import "SBJsonWriter.h"
 #import "SBJsonStreamWriter.h"
 #import "SBJsonStreamWriterAccumulator.h"
+
 
 @interface SBJsonWriter ()
 @property (copy) NSString *error;
@@ -53,34 +58,12 @@
     return self;
 }
 
-- (void)dealloc {
-    error = nil;
-    
-    if (sortKeysComparator) {
-        // ???
-        //Block_release(sortKeysComparator);
-        sortKeysComparator = NULL;
-    }
-}
 
 - (NSString*)stringWithObject:(id)value {
 	NSData *data = [self dataWithObject:value];
 	if (data)
 		return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	return nil;
-}
-
-- (NSString*)stringWithObject:(id)value error:(NSError**)error_ {
-    NSString *tmp = [self stringWithObject:value];
-    if (tmp)
-        return tmp;
-    
-    if (error_) {
-		NSDictionary *ui = [[NSDictionary alloc] initWithObjectsAndKeys:error, NSLocalizedDescriptionKey, nil];
-        *error_ = [[NSError alloc] initWithDomain:@"org.brautaset.SBJsonWriter.ErrorDomain" code:0 userInfo:ui];
-	}
-	
-    return nil;
 }
 
 - (NSData*)dataWithObject:(id)object {
@@ -115,5 +98,6 @@
 	self.error = streamWriter.error;
 	return nil;
 }
+
 
 @end

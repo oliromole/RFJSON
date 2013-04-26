@@ -174,7 +174,7 @@ NS_INLINE long lvmax(int count, long value0, ...)
     return maxValue;
 }
 
-NS_INLINE unsigned long ulvmax(int count, long value0, ...)
+NS_INLINE unsigned long ulvmax(int count, unsigned long value0, ...)
 {
     va_list valist;
     va_start(valist, value0);
@@ -218,7 +218,7 @@ NS_INLINE long long llvmax(int count, long long value0, ...)
     return maxValue;
 }
 
-NS_INLINE unsigned long long ullvmax(int count, long long value0, ...)
+NS_INLINE unsigned long long ullvmax(int count, unsigned long long value0, ...)
 {
     va_list valist;
     va_start(valist, value0);
@@ -240,7 +240,7 @@ NS_INLINE unsigned long long ullvmax(int count, long long value0, ...)
     return maxValue;
 }
 
-NS_INLINE float fvmaxf(int count, double value0, ...)
+NS_INLINE float fvmaxf(int count, float value0, ...)
 {
     va_list valist;
     va_start(valist, value0);
@@ -350,7 +350,7 @@ NS_INLINE long lvmin(int count, long value0, ...)
     return minValue;
 }
 
-NS_INLINE unsigned long ulvmin(int count, long value0, ...)
+NS_INLINE unsigned long ulvmin(int count, unsigned long value0, ...)
 {
     va_list valist;
     va_start(valist, value0);
@@ -394,7 +394,7 @@ NS_INLINE long long llvmin(int count, long long value0, ...)
     return minValue;
 }
 
-NS_INLINE unsigned long long ullvmin(int count, long long value0, ...)
+NS_INLINE unsigned long long ullvmin(int count, unsigned long long value0, ...)
 {
     va_list valist;
     va_start(valist, value0);
@@ -416,7 +416,7 @@ NS_INLINE unsigned long long ullvmin(int count, long long value0, ...)
     return minValue;
 }
 
-NS_INLINE float fvminf(int count, double value0, ...)
+NS_INLINE float fvminf(int count, float value0, ...)
 {
     va_list valist;
     va_start(valist, value0);

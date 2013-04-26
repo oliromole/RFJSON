@@ -62,10 +62,10 @@
 
 - (id)performInvocation:(NSInvocation *)invocation;
 - (void)performInvocation:(NSInvocation *)invocation returnValue:(void *)returnLocation;
-- (void)performInvocation:(NSInvocation *)invocation onThread:(NSThread *)thr waitUntilDone:(BOOL)wait;
-- (void)performInvocation:(NSInvocation *)invocation onThread:(NSThread *)thr waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
+- (void)performInvocation:(NSInvocation *)invocation onThread:(NSThread *)thread waitUntilDone:(BOOL)wait;
+- (void)performInvocation:(NSInvocation *)invocation onThread:(NSThread *)thread waitUntilDone:(BOOL)wait modes:(NSArray *)modes;
 - (void)performInvocation:(NSInvocation *)invocation afterDelay:(NSTimeInterval)delay;
-- (void)performInvocation:(NSInvocation *)invocation afterDelay:(NSTimeInterval)delay inModes:(NSArray *)array;
+- (void)performInvocation:(NSInvocation *)invocation afterDelay:(NSTimeInterval)delay inModes:(NSArray *)modes;
 - (void)performInvocationInBackground:(NSInvocation *)invocation;
 - (void)performInvocationOnMainThread:(NSInvocation *)invocation waitUntilDone:(BOOL)wait;
 - (void)performInvocationOnMainThread:(NSInvocation *)invocation waitUntilDone:(BOOL)wait modes:(NSArray *)modes;

@@ -36,22 +36,20 @@
 @interface NSObject (SBProxyForJson)
 
 /**
- @brief Allows generation of JSON for otherwise unsupported classes.
+ Allows generation of JSON for otherwise unsupported classes.
  
  If you have a custom class that you want to create a JSON representation
  for you can implement this method in your class. It should return a
  representation of your object defined in terms of objects that can be
  translated into JSON. For example, a Person object might implement it like this:
  
- @code
  - (id)proxyForJson {
- return [[NSDictionary alloc] initWithObjectsAndKeys:
+ return [NSDictionary dictionaryWithObjectsAndKeys:
  name, @"name",
  phone, @"phone",
  email, @"email",
  nil];
  }
- @endcode
  
  */
 - (id)proxyForJson;
@@ -69,7 +67,7 @@
 @class SBJsonStreamWriterState;
 
 /**
- @brief The Stream Writer class.
+ The Stream Writer class.
  
  Accepts a stream of messages and writes JSON of these to its delegate object.
  
@@ -78,7 +76,24 @@
  to start an array and then repeatedly call -writeObject: with various objects
  before finishing off with a -writeArrayClose call.
  
- @see @ref json2objc
+ Objective-C types are mapped to JSON types in the following way:
+ 
+ - NSNull        -> null
+ - NSString      -> string
+ - NSArray       -> array
+ - NSDictionary  -> object
+ - NSNumber's -initWithBool:YES -> true
+ - NSNumber's -initWithBool:NO  -> false
+ - NSNumber      -> number
+ 
+ NSNumber instances created with the -numberWithBool: method are
+ converted into the JSON boolean "true" and "false" values, and vice
+ versa. Any other NSNumber instances are converted to a JSON number the
+ way you would expect.
+ 
+ @warning: In JSON the keys of an object must be strings. NSDictionary
+ keys need not be, but attempting to convert an NSDictionary with
+ non-string keys into JSON will throw an exception.*
  
  */
 
@@ -90,47 +105,47 @@
 @property (nonatomic, readonly, strong) NSMutableArray *stateStack; // Internal
 
 /**
- @brief delegate to receive JSON output
+ delegate to receive JSON output
  Delegate that will receive messages with output.
  */
-@property (unsafe_unretained) id<SBJsonStreamWriterDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<SBJsonStreamWriterDelegate> delegate;
 
 /**
- @brief The maximum recursing depth.
+ The maximum recursing depth.
  
  Defaults to 512. If the input is nested deeper than this the input will be deemed to be
  malicious and the parser returns nil, signalling an error. ("Nested too deep".) You can
  turn off this security feature by setting the maxDepth value to 0.
  */
-@property NSUInteger maxDepth;
+@property (nonatomic) NSUInteger maxDepth;
 
 /**
- @brief Whether we are generating human-readable (multiline) JSON.
+ Whether we are generating human-readable (multiline) JSON.
  
  Set whether or not to generate human-readable JSON. The default is NO, which produces
  JSON without any whitespace between tokens. If set to YES, generates human-readable
  JSON with linebreaks after each array value and dictionary key/value pair, indented two
  spaces per nesting level.
  */
-@property BOOL humanReadable;
+@property (nonatomic) BOOL humanReadable;
 
 /**
- @brief Whether or not to sort the dictionary keys in the output.
+ Whether or not to sort the dictionary keys in the output.
  
  If this is set to YES, the dictionary keys in the JSON output will be in sorted order.
  (This is useful if you need to compare two structures, for example.) The default is NO.
  */
-@property BOOL sortKeys;
+@property (nonatomic) BOOL sortKeys;
 
 /**
- @brief An optional comparator to be used if sortKeys is YES.
+ An optional comparator to be used if sortKeys is YES.
  
  If this is nil, sorting will be done via @selector(compare:).
  */
-@property (copy) NSComparator sortKeysComparator;
+@property (nonatomic, copy) NSComparator sortKeysComparator;
 
 /// Contains the error description after an error has occured.
-@property (copy) NSString *error;
+@property (nonatomic, copy) NSString *error;
 
 /**
  Write an NSDictionary to the JSON stream.
@@ -192,4 +207,3 @@
 - (BOOL)writeValue:(id)v;
 - (void)appendBytes:(const void *)bytes length:(NSUInteger)length;
 @end
-

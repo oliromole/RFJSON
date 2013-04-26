@@ -70,7 +70,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
         va_list valist;
         va_start(valist, length);
         
-        for (int position = 0; position < length; position++)
+        for (int position = 0; position < (NSInteger)length; position++)
         {
             NSUInteger index = va_arg(valist, NSUInteger);
             
@@ -102,7 +102,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
         va_list valist;
         va_start(valist, length);
         
-        for (int position = 0; position < length; position++)
+        for (int position = 0; position < (NSInteger)length; position++)
         {
             NSUInteger index = va_arg(valist, NSUInteger);
             
@@ -168,7 +168,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
         va_list valist;
         va_start(valist, length2);
         
-        for (int position2 = 0; position2 < length2; position2++)
+        for (NSUInteger position2 = 0; position2 < length2; position2++)
         {
             NSUInteger index2 = va_arg(valist, NSUInteger);
             
@@ -205,7 +205,7 @@ NSIndexPath * NSIndexPathEmpty = nil;
         va_list valist;
         va_start(valist, length2);
         
-        for (int position2 = 0; position2 < length2; position2++)
+        for (NSUInteger position2 = 0; position2 < length2; position2++)
         {
             NSUInteger index2 = va_arg(valist, NSUInteger);
             

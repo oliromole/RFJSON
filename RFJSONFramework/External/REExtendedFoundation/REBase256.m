@@ -48,7 +48,7 @@
 {
     NSMutableData *data = [[NSMutableData alloc] init];
     
-    NSUInteger length = self.length;
+    NSInteger length = (NSInteger)self.length;
     
     BOOL hasError = NO;
     
@@ -61,8 +61,8 @@
     {
         for (NSInteger index = 0; index < length; index += 2)
         {
-            unichar character0 = [self characterAtIndex:index];
-            unichar character1 = [self characterAtIndex:index + 1];
+            unichar character0 = [self characterAtIndex:(NSUInteger)index];
+            unichar character1 = [self characterAtIndex:(NSUInteger)(index + 1)];
             
             unsigned int value0 = 0;
             unsigned int value1 = 0;

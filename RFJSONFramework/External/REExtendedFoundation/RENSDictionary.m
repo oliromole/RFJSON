@@ -67,7 +67,7 @@
 {
     if (!marker)
     {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"*** -[NSDictionary dictionaryForKeys:notFoundMarker:]: marker cannot be nil" userInfo:nil];
+        @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"*** -[NSDictionary dictionaryForKeys:notFoundMarker:]: marker cannot be nil." userInfo:nil];
     }
     
     NSMutableDictionary *dictionary = [self mutableCopy];
@@ -94,7 +94,8 @@
 
 static id NSDictionary_ObjectForKeyedSubscript(NSDictionary *self, SEL _cmd, id key)
 {
-    printf("a");
+#pragma unused(_cmd)
+    
     id object = [self objectForKey:key];
     return object;
 }
@@ -134,6 +135,8 @@ static id NSDictionary_ObjectForKeyedSubscript(NSDictionary *self, SEL _cmd, id 
 
 static void NSMutableDictionary_setObject_ForKeyedSubscript(NSMutableDictionary *self, SEL _cmd, id object, id<NSCopying> key)
 {
+#pragma unused(_cmd)
+    
     [self setObject:object forKey:key];
 }
 

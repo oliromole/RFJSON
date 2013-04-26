@@ -30,22 +30,42 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if !__has_feature(objc_arc)
+#error "This source file must be compiled with ARC enabled!"
+#endif
+
 #import "SBJsonStreamParserState.h"
-#import "SBJsonStreamParser.h"
+
+#define SINGLETON \
++ (id)sharedInstance { \
+static id state = nil; \
+if (!state) { \
+@synchronized(self) { \
+if (!state) state = [[self alloc] init]; \
+} \
+} \
+return state; \
+}
 
 @implementation SBJsonStreamParserState
 
 + (id)sharedInstance { return nil; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
+#pragma unused(parser)
+#pragma unused(token)
 	return NO;
 }
 
 - (SBJsonStreamParserStatus)parserShouldReturn:(SBJsonStreamParser*)parser {
+#pragma unused(parser)
 	return SBJsonStreamParserWaitingForData;
 }
 
-- (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {}
+- (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
+#pragma unused(parser)
+#pragma unused(tok)
+}
 
 - (BOOL)needKey {
 	return NO;
@@ -65,34 +85,27 @@
 
 @implementation SBJsonStreamParserStateStart
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
-	return token == sbjson_token_array_start || token == sbjson_token_object_start;
+#pragma unused(parser)
+	return token == sbjson_token_array_open || token == sbjson_token_object_open;
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
     
 	SBJsonStreamParserState *state = nil;
 	switch (tok) {
-		case sbjson_token_array_start:
+		case sbjson_token_array_open:
 			state = [SBJsonStreamParserStateArrayStart sharedInstance];
 			break;
             
-		case sbjson_token_object_start:
+		case sbjson_token_object_open:
 			state = [SBJsonStreamParserStateObjectStart sharedInstance];
 			break;
             
-		case sbjson_token_array_end:
-		case sbjson_token_object_end:
+		case sbjson_token_array_close:
+		case sbjson_token_object_close:
 			if (parser.supportMultipleDocuments)
 				state = parser.state;
 			else
@@ -107,6 +120,7 @@
 			break;
 	}
     
+    
 	parser.state = state;
 }
 
@@ -118,19 +132,12 @@
 
 @implementation SBJsonStreamParserStateComplete
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (NSString*)name { return @"after outer-most array or object"; }
 
 - (SBJsonStreamParserStatus)parserShouldReturn:(SBJsonStreamParser*)parser {
+#pragma unused(parser)
 	return SBJsonStreamParserComplete;
 }
 
@@ -140,19 +147,12 @@
 
 @implementation SBJsonStreamParserStateError
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (NSString*)name { return @"in error"; }
 
 - (SBJsonStreamParserStatus)parserShouldReturn:(SBJsonStreamParser*)parser {
+#pragma unused(parser)
 	return SBJsonStreamParserError;
 }
 
@@ -166,22 +166,16 @@
 
 @implementation SBJsonStreamParserStateObjectStart
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (NSString*)name { return @"at beginning of object"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
+#pragma unused(parser)
 	switch (token) {
-		case sbjson_token_object_end:
+		case sbjson_token_object_close:
 		case sbjson_token_string:
+        case sbjson_token_encoded:
 			return YES;
 			break;
 		default:
@@ -191,6 +185,7 @@
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
+#pragma unused(tok)
 	parser.state = [SBJsonStreamParserStateObjectGotKey sharedInstance];
 }
 
@@ -204,23 +199,18 @@
 
 @implementation SBJsonStreamParserStateObjectGotKey
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (NSString*)name { return @"after object key"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
-	return token == sbjson_token_keyval_separator;
+#pragma unused(parser)
+	return token == sbjson_token_entry_sep;
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
+#pragma unused(parser)
+#pragma unused(tok)
 	parser.state = [SBJsonStreamParserStateObjectSeparator sharedInstance];
 }
 
@@ -230,27 +220,21 @@
 
 @implementation SBJsonStreamParserStateObjectSeparator
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (NSString*)name { return @"as object value"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
+#pragma unused(parser)
 	switch (token) {
-		case sbjson_token_object_start:
-		case sbjson_token_array_start:
-		case sbjson_token_true:
-		case sbjson_token_false:
+		case sbjson_token_object_open:
+		case sbjson_token_array_open:
+		case sbjson_token_bool:
 		case sbjson_token_null:
-		case sbjson_token_number:
-		case sbjson_token_string:
+        case sbjson_token_integer:
+        case sbjson_token_real:
+        case sbjson_token_string:
+        case sbjson_token_encoded:
 			return YES;
 			break;
             
@@ -261,6 +245,7 @@
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
+#pragma unused(tok)
 	parser.state = [SBJsonStreamParserStateObjectGotValue sharedInstance];
 }
 
@@ -270,22 +255,15 @@
 
 @implementation SBJsonStreamParserStateObjectGotValue
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (NSString*)name { return @"after object value"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
+#pragma unused(parser)
 	switch (token) {
-		case sbjson_token_object_end:
-		case sbjson_token_separator:
+		case sbjson_token_object_close:
+        case sbjson_token_value_sep:
 			return YES;
 			break;
 		default:
@@ -295,8 +273,10 @@
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
+#pragma unused(tok)
 	parser.state = [SBJsonStreamParserStateObjectNeedKey sharedInstance];
 }
+
 
 @end
 
@@ -304,23 +284,17 @@
 
 @implementation SBJsonStreamParserStateObjectNeedKey
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (NSString*)name { return @"in place of object key"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
-    return sbjson_token_string == token;
+#pragma unused(parser)
+    return sbjson_token_string == token || sbjson_token_encoded == token;
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
+#pragma unused(tok)
 	parser.state = [SBJsonStreamParserStateObjectGotKey sharedInstance];
 }
 
@@ -334,23 +308,16 @@
 
 @implementation SBJsonStreamParserStateArrayStart
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (NSString*)name { return @"at array start"; }
 
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
+#pragma unused(parser)
 	switch (token) {
-		case sbjson_token_object_end:
-		case sbjson_token_keyval_separator:
-		case sbjson_token_separator:
+		case sbjson_token_object_close:
+        case sbjson_token_entry_sep:
+        case sbjson_token_value_sep:
 			return NO;
 			break;
             
@@ -361,6 +328,8 @@
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
+#pragma unused(parser)
+#pragma unused(tok)
 	parser.state = [SBJsonStreamParserStateArrayGotValue sharedInstance];
 }
 
@@ -370,24 +339,18 @@
 
 @implementation SBJsonStreamParserStateArrayGotValue
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (NSString*)name { return @"after array value"; }
 
+
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
-	return token == sbjson_token_array_end || token == sbjson_token_separator;
+#pragma unused(parser)
+	return token == sbjson_token_array_close || token == sbjson_token_value_sep;
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
-	if (tok == sbjson_token_separator)
+	if (tok == sbjson_token_value_sep)
 		parser.state = [SBJsonStreamParserStateArrayNeedValue sharedInstance];
 }
 
@@ -397,24 +360,18 @@
 
 @implementation SBJsonStreamParserStateArrayNeedValue
 
-+ (id)sharedInstance {
-    static id state = nil;
-    if (!state) {
-        @synchronized(self) {
-            if (!state) state = [[self alloc] init];
-        }
-    }
-    return state;
-}
+SINGLETON
 
 - (NSString*)name { return @"as array value"; }
 
+
 - (BOOL)parser:(SBJsonStreamParser*)parser shouldAcceptToken:(sbjson_token_t)token {
+#pragma unused(parser)
 	switch (token) {
-		case sbjson_token_array_end:
-		case sbjson_token_keyval_separator:
-		case sbjson_token_object_end:
-		case sbjson_token_separator:
+		case sbjson_token_array_close:
+        case sbjson_token_entry_sep:
+		case sbjson_token_object_close:
+		case sbjson_token_value_sep:
 			return NO;
 			break;
             
@@ -425,8 +382,8 @@
 }
 
 - (void)parser:(SBJsonStreamParser*)parser shouldTransitionTo:(sbjson_token_t)tok {
+#pragma unused(tok)
 	parser.state = [SBJsonStreamParserStateArrayGotValue sharedInstance];
 }
 
 @end
-

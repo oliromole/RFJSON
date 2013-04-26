@@ -86,7 +86,7 @@
     {
         invocation.selector = selector;
         
-        NSUInteger numberOfArguments = methodSignature.numberOfArguments;
+        NSInteger numberOfArguments = (NSInteger)methodSignature.numberOfArguments;
         
         if (numberOfArguments > 2)
         {
@@ -97,7 +97,7 @@
                 va_list valist;
                 va_start(valist, pArgument0);
                 
-                for (NSUInteger indexOfArgument = 3; indexOfArgument < numberOfArguments; indexOfArgument++)
+                for (NSInteger indexOfArgument = 3; indexOfArgument < numberOfArguments; indexOfArgument++)
                 {
                     void *pArgument = va_arg(valist, void *);
                     
@@ -132,7 +132,7 @@
     {
         invocation.selector = selector;
         
-        NSUInteger numberOfArguments = methodSignature.numberOfArguments;
+        NSInteger numberOfArguments = (NSInteger)methodSignature.numberOfArguments;
         
         if (numberOfArguments > 2)
         {
@@ -143,7 +143,7 @@
                 va_list valist;
                 va_start(valist, pArgument0);
                 
-                for (NSUInteger indexOfArgument = 3; indexOfArgument < numberOfArguments; indexOfArgument++)
+                for (NSInteger indexOfArgument = 3; indexOfArgument < numberOfArguments; indexOfArgument++)
                 {
                     void *pArgument = va_arg(valist, void *);
                     
@@ -215,7 +215,7 @@
         invocation.selector = selector;
         invocation.target = tagert;
         
-        NSUInteger numberOfArguments = methodSignature.numberOfArguments;
+        NSInteger numberOfArguments = (NSInteger)methodSignature.numberOfArguments;
         
         if (numberOfArguments > 2)
         {
@@ -226,7 +226,7 @@
                 va_list valist;
                 va_start(valist, pArgument0);
                 
-                for (NSUInteger indexOfArgument = 3; indexOfArgument < numberOfArguments; indexOfArgument++)
+                for (NSInteger indexOfArgument = 3; indexOfArgument < numberOfArguments; indexOfArgument++)
                 {
                     void *pArgument = va_arg(valist, void *);
                     
@@ -267,7 +267,7 @@
         invocation.selector = selector;
         invocation.target = tagert;
         
-        NSUInteger numberOfArguments = methodSignature.numberOfArguments;
+        NSInteger numberOfArguments = (NSInteger)methodSignature.numberOfArguments;
         
         if (numberOfArguments > 2)
         {
@@ -278,7 +278,7 @@
                 va_list valist;
                 va_start(valist, pArgument0);
                 
-                for (NSUInteger indexOfArgument = 3; indexOfArgument < numberOfArguments; indexOfArgument++)
+                for (NSInteger indexOfArgument = 3; indexOfArgument < numberOfArguments; indexOfArgument++)
                 {
                     void *pArgument = va_arg(valist, void *);
                     
@@ -363,7 +363,7 @@
             invocation.selector = selector;
             invocation.target = tagert;
             
-            NSUInteger numberOfArguments = methodSignature.numberOfArguments;
+            NSInteger numberOfArguments = (NSInteger)methodSignature.numberOfArguments;
             
             if (numberOfArguments > 2)
             {
@@ -374,7 +374,7 @@
                     va_list valist;
                     va_start(valist, pArgument0);
                     
-                    for (NSUInteger indexOfArgument = 3; indexOfArgument < numberOfArguments; indexOfArgument++)
+                    for (NSInteger indexOfArgument = 3; indexOfArgument < numberOfArguments; indexOfArgument++)
                     {
                         void *pArgument = va_arg(valist, void *);
                         
@@ -422,7 +422,7 @@
             invocation.selector = selector;
             invocation.target = tagert;
             
-            NSUInteger numberOfArguments = methodSignature.numberOfArguments;
+            NSInteger numberOfArguments = (NSInteger)methodSignature.numberOfArguments;
             
             if (numberOfArguments > 2)
             {
@@ -433,7 +433,7 @@
                     va_list valist;
                     va_start(valist, pArgument0);
                     
-                    for (NSUInteger indexOfArgument = 3; indexOfArgument < numberOfArguments; indexOfArgument++)
+                    for (NSInteger indexOfArgument = 3; indexOfArgument < numberOfArguments; indexOfArgument++)
                     {
                         void *pArgument = va_arg(valist, void *);
                         

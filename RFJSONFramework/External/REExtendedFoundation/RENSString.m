@@ -40,6 +40,8 @@
 
 #import "RENSString.h"
 
+#import "RENSException.h"
+
 @implementation NSString (NSStringRENSString)
 
 #pragma mark - Getting a String’s Range
@@ -1119,12 +1121,12 @@
         
         // Trimming right.
         
-        length = self.length;
+        length = (NSInteger)self.length;
         index = length - 1;
         
         for (; index > -1; index--)
         {
-            unichar character = [self characterAtIndex:index];
+            unichar character = [self characterAtIndex:(NSUInteger)index];
             
             if (![characterSet characterIsMember:character])
             {
@@ -1132,8 +1134,8 @@
             }
         }
         
-        range.location = index + 1;
-        range.length = length - index - 1;
+        range.location = (NSUInteger)(index + 1);
+        range.length = (NSUInteger)(length - index - 1);
         
         if (range.length > 0)
         {
@@ -1142,12 +1144,12 @@
         
         // Trimming left.
         
-        length = self.length;
+        length = (NSInteger)self.length;
         index = 0;
         
         for (; index < length; index++)
         {
-            unichar character = [self characterAtIndex:index];
+            unichar character = [self characterAtIndex:(NSUInteger)index];
             
             if (![characterSet characterIsMember:character])
             {
@@ -1156,7 +1158,7 @@
         }
         
         range.location = 0;
-        range.length = index;
+        range.length = (NSUInteger)index;
         
         if (range.length > 0)
         {
@@ -1169,12 +1171,12 @@
 {
     if (characterSet)
     {
-        NSInteger length = self.length;
+        NSInteger length = (NSInteger)self.length;
         NSInteger index = 0;
         
         for (; index < length; index++)
         {
-            unichar character = [self characterAtIndex:index];
+            unichar character = [self characterAtIndex:(NSUInteger)index];
             
             if (![characterSet characterIsMember:character])
             {
@@ -1184,7 +1186,7 @@
         
         NSRange range;
         range.location = 0;
-        range.length = index;
+        range.length = (NSUInteger)index;
         
         if (range.length > 0)
         {
@@ -1197,12 +1199,12 @@
 {
     if (characterSet)
     {
-        NSInteger length = self.length;
+        NSInteger length = (NSInteger)self.length;
         NSInteger index = length - 1;
         
         for (; index > -1; index--)
         {
-            unichar character = [self characterAtIndex:index];
+            unichar character = [self characterAtIndex:(NSUInteger)index];
             
             if (![characterSet characterIsMember:character])
             {
@@ -1211,8 +1213,8 @@
         }
         
         NSRange range;
-        range.location = index + 1;
-        range.length = length - index - 1;
+        range.location = (NSUInteger)(index + 1);
+        range.length = (NSUInteger)(length - index - 1);
         
         if (range.length > 0)
         {
@@ -1414,3 +1416,78 @@
 }
 
 @end
+
+void *RECStringCreateWithNSString(NSString *nsString, NSStringEncoding encoding, BOOL fast, void *(*mallocFuntion)(size_t), void (*freeFunction)(void *))
+{
+    RENSCAssert(mallocFuntion, @"The mallocFuntion argument is NULL.");
+    RENSCAssert(freeFunction, @"The freeFunction argument is NULL.");
+    
+    void *cString = NULL;
+    BOOL  result = NO;
+    
+    if (nsString)
+    {
+        NSUInteger maximumLengthOfBytes = (fast ? [nsString maximumLengthOfBytesUsingEncoding:encoding] : [nsString lengthOfBytesUsingEncoding:encoding]);
+        
+        if (maximumLengthOfBytes != NSIntegerMax)
+        {
+            maximumLengthOfBytes += 4;
+            
+            cString = mallocFuntion(maximumLengthOfBytes);
+            
+            if (cString)
+            {
+                result = [nsString getCString:(char *)cString maxLength:maximumLengthOfBytes encoding:encoding];
+                
+                if (!result)
+                {
+                    freeFunction(cString);
+                    cString = NULL;
+                }
+            }
+        }
+    }
+    
+    return cString;
+}
+
+NSString *RENSStringCreateWithCString(const void *cString, int numberOfBytes, NSStringEncoding encoding)
+{
+    NSString *nsString = nil;
+    
+    if (cString)
+    {
+        if (numberOfBytes >= 0)
+        {
+            nsString = [[NSString alloc] initWithBytes:(const char *)cString length:(NSUInteger)numberOfBytes encoding:encoding];
+        }
+        
+        else
+        {
+            nsString = [[NSString alloc] initWithCString:(const char *)cString encoding:encoding];
+        }
+    }
+    
+    return nsString;
+}
+
+NSMutableString *RENSMutableStringCreateWithCString(const void *cString, int numberOfBytes, NSStringEncoding encoding)
+{
+    
+    NSMutableString *nsString = nil;
+    
+    if (cString)
+    {
+        if (numberOfBytes >= 0)
+        {
+            nsString = [[NSMutableString alloc] initWithBytes:(const char *)cString length:(NSUInteger)numberOfBytes encoding:encoding];
+        }
+        
+        else
+        {
+            nsString = [[NSMutableString alloc] initWithCString:(const char *)cString encoding:encoding];
+        }
+    }
+    
+    return nsString;
+}
