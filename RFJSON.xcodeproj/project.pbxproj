@@ -1,0 +1,663 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		30699FCF17CA404600154C51 /* RFJSON-UniversalFramework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 30699FD017CA404600154C51 /* Build configuration list for PBXAggregateTarget "RFJSON-UniversalFramework" */;
+			buildPhases = (
+				30699FD317CA406400154C51 /* Build Universal Framework */,
+			);
+			dependencies = (
+			);
+			name = "RFJSON-UniversalFramework";
+			productName = "RFJSON-UniversalFramework";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		30699FD417CA40FA00154C51 /* RFJSON-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 307C267817C4A6470086A0DF /* RFJSON-Prefix.pch */; };
+		30699FD817CA411F00154C51 /* REFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3029F9CD17C4A9460046C587 /* REFoundation.framework */; };
+		30699FD917CA411F00154C51 /* RWObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30699FD517CA411600154C51 /* RWObjC.framework */; };
+		30699FDA17CA412000154C51 /* SBJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C26D817C4A8AE0086A0DF /* SBJson.framework */; };
+		30699FDB17CA412000154C51 /* REFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3029F9CD17C4A9460046C587 /* REFoundation.framework */; };
+		30699FDC17CA412000154C51 /* RWObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30699FD517CA411600154C51 /* RWObjC.framework */; };
+		30699FDD17CA412000154C51 /* SBJson.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 307C26D817C4A8AE0086A0DF /* SBJson.framework */; };
+		307C269B17C4A68E0086A0DF /* RFJSONArrayAccumulateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C268417C4A68E0086A0DF /* RFJSONArrayAccumulateParser.m */; };
+		307C269C17C4A68E0086A0DF /* RFJSONArrayParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C268617C4A68E0086A0DF /* RFJSONArrayParser.m */; };
+		307C269D17C4A68E0086A0DF /* RFJSONArraySkipParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C268817C4A68E0086A0DF /* RFJSONArraySkipParser.m */; };
+		307C269E17C4A68E0086A0DF /* RFJSONDocumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C268A17C4A68E0086A0DF /* RFJSONDocumentParser.m */; };
+		307C269F17C4A68E0086A0DF /* RFJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C268C17C4A68E0086A0DF /* RFJSON.m */; };
+		307C26A017C4A68E0086A0DF /* RFJSONNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C268E17C4A68E0086A0DF /* RFJSONNodeParser.m */; };
+		307C26A117C4A68E0086A0DF /* RFJSONNodeParserPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C269017C4A68E0086A0DF /* RFJSONNodeParserPrivate.m */; };
+		307C26A217C4A68E0086A0DF /* RFJSONNodeParserType.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C269217C4A68E0086A0DF /* RFJSONNodeParserType.m */; };
+		307C26A317C4A68E0086A0DF /* RFJSONNodeParserTypeProtected.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C269417C4A68E0086A0DF /* RFJSONNodeParserTypeProtected.m */; };
+		307C26A417C4A68E0086A0DF /* RFJSONOjectAccumulateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C269617C4A68E0086A0DF /* RFJSONOjectAccumulateParser.m */; };
+		307C26A517C4A68E0086A0DF /* RFJSONOjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C269817C4A68E0086A0DF /* RFJSONOjectParser.m */; };
+		307C26A617C4A68E0086A0DF /* RFJSONOjectSkipParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C269A17C4A68E0086A0DF /* RFJSONOjectSkipParser.m */; };
+		307C26A917C4A7B10086A0DF /* RFJSONArrayAccumulateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C268417C4A68E0086A0DF /* RFJSONArrayAccumulateParser.m */; };
+		307C26AA17C4A7B10086A0DF /* RFJSONArrayParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C268617C4A68E0086A0DF /* RFJSONArrayParser.m */; };
+		307C26AB17C4A7B10086A0DF /* RFJSONArraySkipParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C268817C4A68E0086A0DF /* RFJSONArraySkipParser.m */; };
+		307C26AC17C4A7B10086A0DF /* RFJSONDocumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C268A17C4A68E0086A0DF /* RFJSONDocumentParser.m */; };
+		307C26AD17C4A7B10086A0DF /* RFJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C268C17C4A68E0086A0DF /* RFJSON.m */; };
+		307C26AE17C4A7B10086A0DF /* RFJSONNodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C268E17C4A68E0086A0DF /* RFJSONNodeParser.m */; };
+		307C26AF17C4A7B10086A0DF /* RFJSONNodeParserPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C269017C4A68E0086A0DF /* RFJSONNodeParserPrivate.m */; };
+		307C26B017C4A7B10086A0DF /* RFJSONNodeParserType.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C269217C4A68E0086A0DF /* RFJSONNodeParserType.m */; };
+		307C26B117C4A7B10086A0DF /* RFJSONNodeParserTypeProtected.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C269417C4A68E0086A0DF /* RFJSONNodeParserTypeProtected.m */; };
+		307C26B217C4A7B10086A0DF /* RFJSONOjectAccumulateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C269617C4A68E0086A0DF /* RFJSONOjectAccumulateParser.m */; };
+		307C26B317C4A7B10086A0DF /* RFJSONOjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C269817C4A68E0086A0DF /* RFJSONOjectParser.m */; };
+		307C26B417C4A7B10086A0DF /* RFJSONOjectSkipParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 307C269A17C4A68E0086A0DF /* RFJSONOjectSkipParser.m */; };
+		307C26BD17C4A7EF0086A0DF /* RFJSONArrayAccumulateParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 307C268317C4A68E0086A0DF /* RFJSONArrayAccumulateParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		307C26BE17C4A7EF0086A0DF /* RFJSONArrayParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 307C268517C4A68E0086A0DF /* RFJSONArrayParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		307C26BF17C4A7EF0086A0DF /* RFJSONArraySkipParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 307C268717C4A68E0086A0DF /* RFJSONArraySkipParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		307C26C017C4A7EF0086A0DF /* RFJSONDocumentParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 307C268917C4A68E0086A0DF /* RFJSONDocumentParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		307C26C117C4A7EF0086A0DF /* RFJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 307C268B17C4A68E0086A0DF /* RFJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		307C26C217C4A7EF0086A0DF /* RFJSONNodeParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 307C268D17C4A68E0086A0DF /* RFJSONNodeParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		307C26C317C4A7EF0086A0DF /* RFJSONNodeParserPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 307C268F17C4A68E0086A0DF /* RFJSONNodeParserPrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		307C26C417C4A7EF0086A0DF /* RFJSONNodeParserType.h in Headers */ = {isa = PBXBuildFile; fileRef = 307C269117C4A68E0086A0DF /* RFJSONNodeParserType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		307C26C517C4A7EF0086A0DF /* RFJSONNodeParserTypeProtected.h in Headers */ = {isa = PBXBuildFile; fileRef = 307C269317C4A68E0086A0DF /* RFJSONNodeParserTypeProtected.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		307C26C617C4A7EF0086A0DF /* RFJSONOjectAccumulateParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 307C269517C4A68E0086A0DF /* RFJSONOjectAccumulateParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		307C26C717C4A7EF0086A0DF /* RFJSONOjectParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 307C269717C4A68E0086A0DF /* RFJSONOjectParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		307C26C817C4A7EF0086A0DF /* RFJSONOjectSkipParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 307C269917C4A68E0086A0DF /* RFJSONOjectSkipParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		307C266F17C4A6470086A0DF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3029F9CD17C4A9460046C587 /* REFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = REFoundation.framework; sourceTree = "<group>"; };
+		30699FD517CA411600154C51 /* RWObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RWObjC.framework; sourceTree = "<group>"; };
+		307C267117C4A6470086A0DF /* libRFJSON.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRFJSON.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		307C267817C4A6470086A0DF /* RFJSON-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "RFJSON-Prefix.pch"; path = "RFJSON/RFJSON-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		307C268317C4A68E0086A0DF /* RFJSONArrayAccumulateParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONArrayAccumulateParser.h; sourceTree = "<group>"; };
+		307C268417C4A68E0086A0DF /* RFJSONArrayAccumulateParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONArrayAccumulateParser.m; sourceTree = "<group>"; };
+		307C268517C4A68E0086A0DF /* RFJSONArrayParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONArrayParser.h; sourceTree = "<group>"; };
+		307C268617C4A68E0086A0DF /* RFJSONArrayParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONArrayParser.m; sourceTree = "<group>"; };
+		307C268717C4A68E0086A0DF /* RFJSONArraySkipParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONArraySkipParser.h; sourceTree = "<group>"; };
+		307C268817C4A68E0086A0DF /* RFJSONArraySkipParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONArraySkipParser.m; sourceTree = "<group>"; };
+		307C268917C4A68E0086A0DF /* RFJSONDocumentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONDocumentParser.h; sourceTree = "<group>"; };
+		307C268A17C4A68E0086A0DF /* RFJSONDocumentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONDocumentParser.m; sourceTree = "<group>"; };
+		307C268B17C4A68E0086A0DF /* RFJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSON.h; sourceTree = "<group>"; };
+		307C268C17C4A68E0086A0DF /* RFJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSON.m; sourceTree = "<group>"; };
+		307C268D17C4A68E0086A0DF /* RFJSONNodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONNodeParser.h; sourceTree = "<group>"; };
+		307C268E17C4A68E0086A0DF /* RFJSONNodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONNodeParser.m; sourceTree = "<group>"; };
+		307C268F17C4A68E0086A0DF /* RFJSONNodeParserPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONNodeParserPrivate.h; sourceTree = "<group>"; };
+		307C269017C4A68E0086A0DF /* RFJSONNodeParserPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONNodeParserPrivate.m; sourceTree = "<group>"; };
+		307C269117C4A68E0086A0DF /* RFJSONNodeParserType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONNodeParserType.h; sourceTree = "<group>"; };
+		307C269217C4A68E0086A0DF /* RFJSONNodeParserType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONNodeParserType.m; sourceTree = "<group>"; };
+		307C269317C4A68E0086A0DF /* RFJSONNodeParserTypeProtected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONNodeParserTypeProtected.h; sourceTree = "<group>"; };
+		307C269417C4A68E0086A0DF /* RFJSONNodeParserTypeProtected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONNodeParserTypeProtected.m; sourceTree = "<group>"; };
+		307C269517C4A68E0086A0DF /* RFJSONOjectAccumulateParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONOjectAccumulateParser.h; sourceTree = "<group>"; };
+		307C269617C4A68E0086A0DF /* RFJSONOjectAccumulateParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONOjectAccumulateParser.m; sourceTree = "<group>"; };
+		307C269717C4A68E0086A0DF /* RFJSONOjectParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONOjectParser.h; sourceTree = "<group>"; };
+		307C269817C4A68E0086A0DF /* RFJSONOjectParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONOjectParser.m; sourceTree = "<group>"; };
+		307C269917C4A68E0086A0DF /* RFJSONOjectSkipParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFJSONOjectSkipParser.h; sourceTree = "<group>"; };
+		307C269A17C4A68E0086A0DF /* RFJSONOjectSkipParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFJSONOjectSkipParser.m; sourceTree = "<group>"; };
+		307C26BB17C4A7B10086A0DF /* libRFJSON.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRFJSON.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		307C26D817C4A8AE0086A0DF /* SBJson.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SBJson.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		307C266E17C4A6470086A0DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30699FD817CA411F00154C51 /* REFoundation.framework in Frameworks */,
+				30699FD917CA411F00154C51 /* RWObjC.framework in Frameworks */,
+				30699FDA17CA412000154C51 /* SBJson.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		307C26B517C4A7B10086A0DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30699FDB17CA412000154C51 /* REFoundation.framework in Frameworks */,
+				30699FDC17CA412000154C51 /* RWObjC.framework in Frameworks */,
+				30699FDD17CA412000154C51 /* SBJson.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		307C266817C4A6470086A0DF = {
+			isa = PBXGroup;
+			children = (
+				307C267617C4A6470086A0DF /* RFJSON */,
+				307C267317C4A6470086A0DF /* Frameworks */,
+				307C26CA17C4A82E0086A0DF /* External Frameworks */,
+				307C267217C4A6470086A0DF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		307C267217C4A6470086A0DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				307C267117C4A6470086A0DF /* libRFJSON.a */,
+				307C26BB17C4A7B10086A0DF /* libRFJSON.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		307C267317C4A6470086A0DF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		307C267617C4A6470086A0DF /* RFJSON */ = {
+			isa = PBXGroup;
+			children = (
+				307C268217C4A68E0086A0DF /* RFJSON */,
+				307C267817C4A6470086A0DF /* RFJSON-Prefix.pch */,
+			);
+			path = RFJSON;
+			sourceTree = "<group>";
+		};
+		307C268217C4A68E0086A0DF /* RFJSON */ = {
+			isa = PBXGroup;
+			children = (
+				307C268B17C4A68E0086A0DF /* RFJSON.h */,
+				307C268C17C4A68E0086A0DF /* RFJSON.m */,
+				307C268317C4A68E0086A0DF /* RFJSONArrayAccumulateParser.h */,
+				307C268417C4A68E0086A0DF /* RFJSONArrayAccumulateParser.m */,
+				307C268517C4A68E0086A0DF /* RFJSONArrayParser.h */,
+				307C268617C4A68E0086A0DF /* RFJSONArrayParser.m */,
+				307C268717C4A68E0086A0DF /* RFJSONArraySkipParser.h */,
+				307C268817C4A68E0086A0DF /* RFJSONArraySkipParser.m */,
+				307C268917C4A68E0086A0DF /* RFJSONDocumentParser.h */,
+				307C268A17C4A68E0086A0DF /* RFJSONDocumentParser.m */,
+				307C268D17C4A68E0086A0DF /* RFJSONNodeParser.h */,
+				307C268E17C4A68E0086A0DF /* RFJSONNodeParser.m */,
+				307C268F17C4A68E0086A0DF /* RFJSONNodeParserPrivate.h */,
+				307C269017C4A68E0086A0DF /* RFJSONNodeParserPrivate.m */,
+				307C269117C4A68E0086A0DF /* RFJSONNodeParserType.h */,
+				307C269217C4A68E0086A0DF /* RFJSONNodeParserType.m */,
+				307C269317C4A68E0086A0DF /* RFJSONNodeParserTypeProtected.h */,
+				307C269417C4A68E0086A0DF /* RFJSONNodeParserTypeProtected.m */,
+				307C269517C4A68E0086A0DF /* RFJSONOjectAccumulateParser.h */,
+				307C269617C4A68E0086A0DF /* RFJSONOjectAccumulateParser.m */,
+				307C269717C4A68E0086A0DF /* RFJSONOjectParser.h */,
+				307C269817C4A68E0086A0DF /* RFJSONOjectParser.m */,
+				307C269917C4A68E0086A0DF /* RFJSONOjectSkipParser.h */,
+				307C269A17C4A68E0086A0DF /* RFJSONOjectSkipParser.m */,
+			);
+			path = RFJSON;
+			sourceTree = "<group>";
+		};
+		307C26CA17C4A82E0086A0DF /* External Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3029F9CD17C4A9460046C587 /* REFoundation.framework */,
+				30699FD517CA411600154C51 /* RWObjC.framework */,
+				307C26D817C4A8AE0086A0DF /* SBJson.framework */,
+			);
+			path = "External Frameworks";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		307C26BC17C4A7E10086A0DF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307C26BD17C4A7EF0086A0DF /* RFJSONArrayAccumulateParser.h in Headers */,
+				307C26BE17C4A7EF0086A0DF /* RFJSONArrayParser.h in Headers */,
+				307C26BF17C4A7EF0086A0DF /* RFJSONArraySkipParser.h in Headers */,
+				307C26C017C4A7EF0086A0DF /* RFJSONDocumentParser.h in Headers */,
+				307C26C117C4A7EF0086A0DF /* RFJSON.h in Headers */,
+				307C26C217C4A7EF0086A0DF /* RFJSONNodeParser.h in Headers */,
+				307C26C417C4A7EF0086A0DF /* RFJSONNodeParserType.h in Headers */,
+				307C26C517C4A7EF0086A0DF /* RFJSONNodeParserTypeProtected.h in Headers */,
+				307C26C617C4A7EF0086A0DF /* RFJSONOjectAccumulateParser.h in Headers */,
+				307C26C717C4A7EF0086A0DF /* RFJSONOjectParser.h in Headers */,
+				307C26C817C4A7EF0086A0DF /* RFJSONOjectSkipParser.h in Headers */,
+				307C26C317C4A7EF0086A0DF /* RFJSONNodeParserPrivate.h in Headers */,
+				30699FD417CA40FA00154C51 /* RFJSON-Prefix.pch in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		307C267017C4A6470086A0DF /* RFJSON */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 307C267F17C4A6470086A0DF /* Build configuration list for PBXNativeTarget "RFJSON" */;
+			buildPhases = (
+				307C266D17C4A6470086A0DF /* Sources */,
+				307C266E17C4A6470086A0DF /* Frameworks */,
+				307C266F17C4A6470086A0DF /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RFJSON;
+			productName = RFJSON;
+			productReference = 307C267117C4A6470086A0DF /* libRFJSON.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		307C26A717C4A7B10086A0DF /* RFJSON-SimpleFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 307C26B817C4A7B10086A0DF /* Build configuration list for PBXNativeTarget "RFJSON-SimpleFramework" */;
+			buildPhases = (
+				307C26A817C4A7B10086A0DF /* Sources */,
+				307C26B517C4A7B10086A0DF /* Frameworks */,
+				307C26BC17C4A7E10086A0DF /* Headers */,
+				307C26C917C4A8070086A0DF /* Copy Static Library */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RFJSON-SimpleFramework";
+			productName = RFJSON;
+			productReference = 307C26BB17C4A7B10086A0DF /* libRFJSON.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		307C266917C4A6470086A0DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Roman Oliichuk";
+			};
+			buildConfigurationList = 307C266C17C4A6470086A0DF /* Build configuration list for PBXProject "RFJSON" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 307C266817C4A6470086A0DF;
+			productRefGroup = 307C267217C4A6470086A0DF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				307C267017C4A6470086A0DF /* RFJSON */,
+				307C26A717C4A7B10086A0DF /* RFJSON-SimpleFramework */,
+				30699FCF17CA404600154C51 /* RFJSON-UniversalFramework */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		30699FD317CA406400154C51 /* Build Universal Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Universal Framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\n# Exiting with the error if the value of the \"CONFIGURATION\" variable is not \"Release\".\n\nif [ ${CONFIGURATION} != \"Release\" ]\nthen\n    echo \"The CONFIGURATION variable is not equal \\\"Release\\\". The CONFIGURATION variable is ${CONFIGURATION}\"\n    exit 1\nfi\n\n# Removing the old external frameworks.\n\nSRCROOT_EXTERNAL_FRAMEWORKS_DIR=\"${SRCROOT}/External Frameworks\"\n\nrm -rf \"${SRCROOT_EXTERNAL_FRAMEWORKS_DIR}\"\n\n# Removing the old saved universal framework from the source directory.\n\nSRCROOT_FRAMEWORK_DIR=\"${SRCROOT}/${PRODUCT_NAME}.framework\"\n\nrm -rf \"${SRCROOT_FRAMEWORK_DIR}\"\n\n# Copying the new external frameworks.\n\nEXTERNAL_FRAMEWORK_NAMES=(\"REFoundation\" \"RWObjC\" \"SBJson\")\n\nif [ \"${#EXTERNAL_FRAMEWORK_NAMES[@]}\" -gt 0 ]\nthen\n    mkdir -p \"${SRCROOT_EXTERNAL_FRAMEWORKS_DIR}\"\n\n    for external_framework_name in \"${EXTERNAL_FRAMEWORK_NAMES[@]}\"\n    do\n        cp -R \"${SRCROOT}/../../$external_framework_name/$external_framework_name/$external_framework_name.framework/\" \"${SRCROOT_EXTERNAL_FRAMEWORKS_DIR}/$external_framework_name.framework/\"\n    done\nfi\n\n# Building the framework for the iPhone simulator.\n\nIPHONE_SIMULATOR_PROJECT=\"${PROJECT_NAME}.xcodeproj\"\nIPHONE_SIMULATOR_TARGET=\"${PROJECT_NAME}-SimpleFramework\"\nIPHONE_SIMULATOR_SDK=\"iphonesimulator\"\nIPHONE_SIMULATOR_EFFECTIVE_PLATFORM_NAME=\"-${IPHONE_SIMULATOR_SDK}\"\nIPHONE_SIMULATOR_BUILD_DIR=\"${BUILD_DIR}/${CONFIGURATION}-${IPHONE_SIMULATOR_SDK}-universal\"\nIPHONE_SIMULATOR_BUILD_ROOT=\"${BUILD_ROOT}/${CONFIGURATION}-${IPHONE_SIMULATOR_SDK}-universal\"\nIPHONE_SIMULATOR_OBJROOT=\"${OBJROOT}/${CONFIGURATION}-${IPHONE_SIMULATOR_SDK}-universal\"\nIPHONE_SIMULATOR_CONFIGURATION_BUILD_DIR=\"${IPHONE_SIMULATOR_BUILD_DIR}/${CONFIGURATION}${IPHONE_SIMULATOR_EFFECTIVE_PLATFORM_NAME}\"\nIPHONE_SIMULATOR_FRAMEWORK_DIR=\"${IPHONE_SIMULATOR_CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.framework\"\nIPHONE_SIMULATOR_FRAMEWORK_HEADERS_DIR=\"${IPHONE_SIMULATOR_FRAMEWORK_DIR}/Headers\"\nIPHONE_SIMULATOR_FRAMEWORK_PRIVATE_HEADERS_DIR=\"${IPHONE_SIMULATOR_FRAMEWORK_DIR}/PrivateHeaders\"\nIPHONE_SIMULATOR_FRAMEWORK_RESOURCES_DIR=\"${IPHONE_SIMULATOR_FRAMEWORK_DIR}/Resources\"\n\nxcodebuild -project \"${IPHONE_SIMULATOR_PROJECT}\" -target \"${IPHONE_SIMULATOR_TARGET}\" -configuration \"${CONFIGURATION}\" -sdk \"${IPHONE_SIMULATOR_SDK}\" ${ACTION} BUILD_DIR=\"${IPHONE_SIMULATOR_BUILD_DIR}\" BUILD_ROOT=\"${IPHONE_SIMULATOR_BUILD_ROOT}\" OBJROOT=\"${IPHONE_SIMULATOR_OBJROOT}\"\n\n# Building the framework for the iOS.\n\nIPHONE_OS_PROJECT=\"${PROJECT_NAME}.xcodeproj\"\nIPHONE_OS_TARGET=\"${PROJECT_NAME}-SimpleFramework\"\nIPHONE_OS_SDK=\"iphoneos\"\nIPHONE_OS_EFFECTIVE_PLATFORM_NAME=\"-${IPHONE_OS_SDK}\"\nIPHONE_OS_BUILD_DIR=\"${BUILD_DIR}/${CONFIGURATION}-${IPHONE_OS_SDK}-universal\"\nIPHONE_OS_BUILD_ROOT=\"${BUILD_ROOT}/${CONFIGURATION}-${IPHONE_OS_SDK}-universal\"\nIPHONE_OS_OBJROOT=\"${OBJROOT}/${CONFIGURATION}-${IPHONE_OS_SDK}-universal\"\nIPHONE_OS_CONFIGURATION_BUILD_DIR=\"${IPHONE_OS_BUILD_DIR}/${CONFIGURATION}${IPHONE_OS_EFFECTIVE_PLATFORM_NAME}\"\nIPHONE_OS_FRAMEWORK_DIR=\"${IPHONE_OS_CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.framework\"\nIPHONE_OS_FRAMEWORK_HEADERS_DIR=\"${IPHONE_OS_FRAMEWORK_DIR}/Headers\"\nIPHONE_OS_FRAMEWORK_PRIVATE_HEADERS_DIR=\"${IPHONE_OS_FRAMEWORK_DIR}/PrivateHeaders\"\nIPHONE_OS_FRAMEWORK_RESOURCES_DIR=\"${IPHONE_OS_FRAMEWORK_DIR}/Resources\"\n\nxcodebuild -project \"${IPHONE_OS_PROJECT}\" -target \"${IPHONE_OS_TARGET}\" -configuration \"${CONFIGURATION}\" -sdk \"${IPHONE_OS_SDK}\" ${ACTION} BUILD_DIR=\"${IPHONE_OS_BUILD_DIR}\" BUILD_ROOT=\"${IPHONE_OS_BUILD_ROOT}\" OBJROOT=\"${IPHONE_OS_OBJROOT}\"\n\n# Creating the universal framework.\n\nUNIVERSAL_LIBRARY_NAME=\"${EXECUTABLE_PREFIX}${PRODUCT_NAME}.${EXECUTABLE_EXTENSION}\"\nUNIVERSAL_LIBRARY_PATH=\"${CONFIGURATION_BUILD_DIR}/${UNIVERSAL_LIBRARY_NAME}\"\nUNIVERSAL_FRAMEWORK_DIR=\"${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.framework\"\nUNIVERSAL_FRAMEWORK_LIBRARY_PATH=\"${UNIVERSAL_FRAMEWORK_DIR}/${PRODUCT_NAME}\";\nUNIVERSAL_FRAMEWORK_HEADERS_DIR=\"${UNIVERSAL_FRAMEWORK_DIR}/Headers\"\nUNIVERSAL_FRAMEWORK_PRIVATE_HEADERS_DIR=\"${UNIVERSAL_FRAMEWORK_DIR}/PrivateHeaders\"\nUNIVERSAL_FRAMEWORK_RESOURCES_DIR=\"${UNIVERSAL_FRAMEWORK_DIR}/Resources\"\n\nmkdir -p \"${CONFIGURATION_BUILD_DIR}\"\n\nlipo -create \"${IPHONE_SIMULATOR_FRAMEWORK_DIR}/${PRODUCT_NAME}\" \"${IPHONE_OS_FRAMEWORK_DIR}/${PRODUCT_NAME}\" -output \"${UNIVERSAL_LIBRARY_PATH}\"\n\nmkdir -p  \"${UNIVERSAL_FRAMEWORK_DIR}\"\ncp -R \"${UNIVERSAL_LIBRARY_PATH}\" \"${UNIVERSAL_FRAMEWORK_LIBRARY_PATH}\"\ncp -R \"${IPHONE_SIMULATOR_FRAMEWORK_HEADERS_DIR}/\" \"${UNIVERSAL_FRAMEWORK_HEADERS_DIR}/\"\n\nif [ -d \"${IPHONE_SIMULATOR_FRAMEWORK_PRIVATE_HEADERS_DIR}\" ]\nthen\n    cp -R \"${IPHONE_SIMULATOR_FRAMEWORK_PRIVATE_HEADERS_DIR}/\" \"${UNIVERSAL_FRAMEWORK_PRIVATE_HEADERS_DIR}/\"\nfi\n\nif [ -d \"${IPHONE_SIMULATOR_FRAMEWORK_RESOURCES_DIR}\" ]\nthen\n    cp -R \"${IPHONE_SIMULATOR_FRAMEWORK_RESOURCES_DIR}/\" \"${UNIVERSAL_FRAMEWORK_RESOURCES_DIR}/\"\nfi\n\n# Saving the new universal framework into the source directory.\n\ncp -R \"${UNIVERSAL_FRAMEWORK_DIR}/\" \"${SRCROOT_FRAMEWORK_DIR}/\"\n\n# Cleaning the source directory.\n\nrm -rf \"${SRCROOT}/build\"\n";
+		};
+		307C26C917C4A8070086A0DF /* Copy Static Library */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Static Library";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\n# Copying the static library into the framework.\n\ncp -R \"${CONFIGURATION_BUILD_DIR}/${EXECUTABLE_PREFIX}${PRODUCT_NAME}.${EXECUTABLE_EXTENSION}\" \"${CONFIGURATION_BUILD_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		307C266D17C4A6470086A0DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307C269B17C4A68E0086A0DF /* RFJSONArrayAccumulateParser.m in Sources */,
+				307C269C17C4A68E0086A0DF /* RFJSONArrayParser.m in Sources */,
+				307C269D17C4A68E0086A0DF /* RFJSONArraySkipParser.m in Sources */,
+				307C269E17C4A68E0086A0DF /* RFJSONDocumentParser.m in Sources */,
+				307C269F17C4A68E0086A0DF /* RFJSON.m in Sources */,
+				307C26A017C4A68E0086A0DF /* RFJSONNodeParser.m in Sources */,
+				307C26A117C4A68E0086A0DF /* RFJSONNodeParserPrivate.m in Sources */,
+				307C26A217C4A68E0086A0DF /* RFJSONNodeParserType.m in Sources */,
+				307C26A317C4A68E0086A0DF /* RFJSONNodeParserTypeProtected.m in Sources */,
+				307C26A417C4A68E0086A0DF /* RFJSONOjectAccumulateParser.m in Sources */,
+				307C26A517C4A68E0086A0DF /* RFJSONOjectParser.m in Sources */,
+				307C26A617C4A68E0086A0DF /* RFJSONOjectSkipParser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		307C26A817C4A7B10086A0DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307C26A917C4A7B10086A0DF /* RFJSONArrayAccumulateParser.m in Sources */,
+				307C26AA17C4A7B10086A0DF /* RFJSONArrayParser.m in Sources */,
+				307C26AB17C4A7B10086A0DF /* RFJSONArraySkipParser.m in Sources */,
+				307C26AC17C4A7B10086A0DF /* RFJSONDocumentParser.m in Sources */,
+				307C26AD17C4A7B10086A0DF /* RFJSON.m in Sources */,
+				307C26AE17C4A7B10086A0DF /* RFJSONNodeParser.m in Sources */,
+				307C26AF17C4A7B10086A0DF /* RFJSONNodeParserPrivate.m in Sources */,
+				307C26B017C4A7B10086A0DF /* RFJSONNodeParserType.m in Sources */,
+				307C26B117C4A7B10086A0DF /* RFJSONNodeParserTypeProtected.m in Sources */,
+				307C26B217C4A7B10086A0DF /* RFJSONOjectAccumulateParser.m in Sources */,
+				307C26B317C4A7B10086A0DF /* RFJSONOjectParser.m in Sources */,
+				307C26B417C4A7B10086A0DF /* RFJSONOjectSkipParser.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		30699FD117CA404600154C51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_PREFIX = lib;
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME).framework/PrivateHeaders";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME).framework/Headers";
+			};
+			name = Debug;
+		};
+		30699FD217CA404600154C51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_PREFIX = lib;
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME).framework/PrivateHeaders";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME).framework/Headers";
+			};
+			name = Release;
+		};
+		307C267D17C4A6470086A0DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
+				CLANG_ANALYZER_GCD = YES;
+				CLANG_ANALYZER_MALLOC = YES;
+				CLANG_ANALYZER_OBJC_ATSYNC = YES;
+				CLANG_ANALYZER_OBJC_CFNUMBER = YES;
+				CLANG_ANALYZER_OBJC_COLLECTIONS = YES;
+				CLANG_ANALYZER_OBJC_INCOMP_METHOD_TYPES = YES;
+				CLANG_ANALYZER_OBJC_NSCFERROR = YES;
+				CLANG_ANALYZER_OBJC_RETAIN_COUNT = YES;
+				CLANG_ANALYZER_OBJC_SELF_INIT = YES;
+				CLANG_ANALYZER_OBJC_UNUSED_IVARS = YES;
+				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_GETPW_GETS = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_MKSTEMP = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = NO;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_UNCHECKEDRETURN = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_VFORK = YES;
+				CLANG_ANALYZER_SECURITY_KEYCHAIN_API = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
+				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = NO;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		307C267E17C4A6470086A0DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_DEADCODE_DEADSTORES = YES;
+				CLANG_ANALYZER_GCD = YES;
+				CLANG_ANALYZER_MALLOC = YES;
+				CLANG_ANALYZER_OBJC_ATSYNC = YES;
+				CLANG_ANALYZER_OBJC_CFNUMBER = YES;
+				CLANG_ANALYZER_OBJC_COLLECTIONS = YES;
+				CLANG_ANALYZER_OBJC_INCOMP_METHOD_TYPES = YES;
+				CLANG_ANALYZER_OBJC_NSCFERROR = YES;
+				CLANG_ANALYZER_OBJC_RETAIN_COUNT = YES;
+				CLANG_ANALYZER_OBJC_SELF_INIT = YES;
+				CLANG_ANALYZER_OBJC_UNUSED_IVARS = YES;
+				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_GETPW_GETS = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_MKSTEMP = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = NO;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_UNCHECKEDRETURN = YES;
+				CLANG_ANALYZER_SECURITY_INSECUREAPI_VFORK = YES;
+				CLANG_ANALYZER_SECURITY_KEYCHAIN_API = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
+				CLANG_WARN_OBJC_RECEIVER_WEAK = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN__ARC_BRIDGE_CAST_NONARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = NO;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		307C268017C4A6470086A0DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/RFJSON.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/External Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RFJSON/RFJSON-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		307C268117C4A6470086A0DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/RFJSON.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/External Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RFJSON/RFJSON-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		307C26B917C4A7B10086A0DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/RFJSON.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/External Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RFJSON/RFJSON-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME).framework/PrivateHeaders";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME).framework/Headers";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		307C26BA17C4A7B10086A0DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/RFJSON.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/External Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RFJSON/RFJSON-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME).framework/PrivateHeaders";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME).framework/Headers";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		30699FD017CA404600154C51 /* Build configuration list for PBXAggregateTarget "RFJSON-UniversalFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30699FD117CA404600154C51 /* Debug */,
+				30699FD217CA404600154C51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		307C266C17C4A6470086A0DF /* Build configuration list for PBXProject "RFJSON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				307C267D17C4A6470086A0DF /* Debug */,
+				307C267E17C4A6470086A0DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		307C267F17C4A6470086A0DF /* Build configuration list for PBXNativeTarget "RFJSON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				307C268017C4A6470086A0DF /* Debug */,
+				307C268117C4A6470086A0DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		307C26B817C4A7B10086A0DF /* Build configuration list for PBXNativeTarget "RFJSON-SimpleFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				307C26B917C4A7B10086A0DF /* Debug */,
+				307C26BA17C4A7B10086A0DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 307C266917C4A6470086A0DF /* Project object */;
+}
