@@ -42,6 +42,7 @@
 // Prefix header for all source files of the 'RFJSON' target in the 'RFJSON' project
 //
 
+// Importing the system headers.
 #import <Availability.h>
 
 #ifndef __IPHONE_5_0

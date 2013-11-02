@@ -38,9 +38,11 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
-
+// Importing the project headers.
 #import "RFJSONNodeParser.h"
+
+@class NSNumber;
+@class NSString;
 
 @interface RFJSONNodeParser (RFJSONNodeParserRFJSONNodeParserPrivate)
 

@@ -38,4 +38,8 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+// Importing the header.
 #import "RFJSONNodeParserPrivate.h"
+
+// Importing the system headers.
+#import <Foundation/Foundation.h>

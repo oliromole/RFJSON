@@ -38,10 +38,16 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+// Importing the header.
 #import "RFJSONOjectAccumulateParser.h"
 
+// Importing the system headers.
+#import <Foundation/Foundation.h>
+
+// Importing the external headers.
 #import <REFoundation/REFoundation.h>
 
+// Importing the project headers.
 #import "RFJSONArrayAccumulateParser.h"
 #import "RFJSONNodeParserType.h"
 #import "RFJSONNodeParserTypeProtected.h"

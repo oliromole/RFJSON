@@ -38,11 +38,16 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
+// Importing the system headers.
+#import <Foundation/NSObjCRuntime.h>
+#import <Foundation/NSObject.h>
 
-#import <SBJson/SBJson.h>
+// Importing the external headers.
+#import <SBJson/SBJsonStreamParser.h>
 
-#import "RFJSONOjectParser.h"
+@class SBJsonStreamParser;
+
+@class RFJSONOjectParser;
 
 @interface RFJSONDocument : NSObject <SBJsonStreamParserDelegate>
 {
