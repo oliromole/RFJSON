@@ -41,11 +41,11 @@
 // Importing the header.
 #import "RFJSONOjectSkipParser.h"
 
-// Importing the system headers.
-#import <Foundation/Foundation.h>
-
 // Importing the external headers.
 #import <REFoundation/REFoundation.h>
+
+// Importing the system headers.
+#import <Foundation/Foundation.h>
 
 static NSDictionary * volatile RFJSONOjectSkipParser_JSONObjectKeyJSONNodeParserTypes = nil;
 

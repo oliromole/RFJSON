@@ -41,13 +41,13 @@
 // Importing the header.
 #import "RFJSONNodeParser.h"
 
-// Importing the system headers.
-#import <REFoundation/REFoundation.h>
-
 // Importing the project headers.
 #import "RFJSONNodeParser.h"
 #import "RFJSONNodeParserPrivate.h"
 #import "RFJSONNodeParserType.h"
+
+// Importing the system headers.
+#import <REFoundation/REFoundation.h>
 
 @implementation RFJSONNodeParser
 

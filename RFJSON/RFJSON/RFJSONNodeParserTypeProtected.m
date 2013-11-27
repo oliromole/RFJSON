@@ -41,11 +41,11 @@
 // Importing the header.
 #import "RFJSONNodeParserTypeProtected.h"
 
-// Importing the system headers.
-#import <Foundation/Foundation.h>
-
 // Importing the project headers.
 #import "RFJSONNodeParserType.h"
+
+// Importing the system headers.
+#import <Foundation/Foundation.h>
 
 @implementation NSNumber (NSNumberRFJSONNodeParserTypeProtected)
 

@@ -49,5 +49,17 @@
 #   warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
 
+#if defined(PR_USE_PREPROCESSOR_DEFINITIONS) && (PR_USE_PREPROCESSOR_DEFINITIONS == 1)
+
 #ifdef __OBJC__
+
+// Importing the external headers.
+#import <REFoundation/REFoundation.h>
+#import <SBJson/SBJson.h>
+
+// Importing the system headers.
+#import <Foundation/Foundation.h>
+
+#endif
+
 #endif

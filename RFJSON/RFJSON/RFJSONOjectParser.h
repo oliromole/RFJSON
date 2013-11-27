@@ -38,12 +38,12 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+// Importing the project headers.
+#import "RFJSONNodeParser.h"
+
 // Importing the system headers.
 #import <Foundation/NSObjCRuntime.h>
 #import <Foundation/NSObject.h>
-
-// Importing the project headers.
-#import "RFJSONNodeParser.h"
 
 @class NSDictionary;
 @class NSMutableDictionary;

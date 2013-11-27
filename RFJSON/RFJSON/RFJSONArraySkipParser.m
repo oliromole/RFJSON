@@ -41,14 +41,14 @@
 // Importing the header.
 #import "RFJSONArraySkipParser.h"
 
-// Importing the system headers.
-#import <Foundation/Foundation.h>
+// Importing the project headers.
+#import "RFJSONNodeParserType.h"
 
 // Importing the external headers.
 #import <REFoundation/REFoundation.h>
 
-// Importing the project headers.
-#import "RFJSONNodeParserType.h"
+// Importing the system headers.
+#import <Foundation/Foundation.h>
 
 static NSSet * volatile RFJSONArraySkipParser_JSONNodeParserTypes = nil;
 

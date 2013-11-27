@@ -41,16 +41,16 @@
 // Importing the header.
 #import "RFJSONOjectAccumulateParser.h"
 
-// Importing the system headers.
-#import <Foundation/Foundation.h>
-
-// Importing the external headers.
-#import <REFoundation/REFoundation.h>
-
 // Importing the project headers.
 #import "RFJSONArrayAccumulateParser.h"
 #import "RFJSONNodeParserType.h"
 #import "RFJSONNodeParserTypeProtected.h"
+
+// Importing the external headers.
+#import <REFoundation/REFoundation.h>
+
+// Importing the system headers.
+#import <Foundation/Foundation.h>
 
 static NSDictionary * volatile RFJSONOjectAccumulateParser_JSONObjectKeyJSONNodeParserTypes = nil;
 
